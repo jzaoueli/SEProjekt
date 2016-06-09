@@ -1,7 +1,7 @@
-package game;
+package main.game;
 
 /**
- * Created by Yahima on 08.06.16.
+ * Enemy class
  */
 public class Enemy {
 
