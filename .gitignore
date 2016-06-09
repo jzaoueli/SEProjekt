@@ -1,0 +1,10 @@
+# Generated files
+gen/
+
+# IntelliJ
+out/
+
+# User-specific stuff:
+.idea/
+*.iml
+*.iws
