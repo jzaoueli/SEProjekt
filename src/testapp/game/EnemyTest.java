@@ -11,28 +11,28 @@ public class EnemyTest {
 
 
     @Test
-    public void getAtk() throws Exception {
-
+    public void getAtk() {
+        assertTrue(true);
     }
 
     @Test
-    public void getDef() throws Exception {
-
+    public void getDef() {
+        assertTrue(true);
     }
 
     @Test
-    public void getMag() throws Exception {
-
+    public void getMag() {
+        assertTrue(true);
     }
 
     @Test
-    public void getLp() throws Exception {
-
+    public void getLp() {
+        assertTrue(true);
     }
 
     @Test
-    public void setLp() throws Exception {
-
+    public void setLp() {
+        assertTrue(true);
     }
 
 }
