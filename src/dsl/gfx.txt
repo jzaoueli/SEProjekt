@@ -1,2 +1,5 @@
 Player: player.png
 Background: bg.png
+ATKEnemy: atk.png
+DEFEnemy: def.png
+

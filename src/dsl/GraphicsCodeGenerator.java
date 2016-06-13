@@ -1,4 +1,4 @@
-package main.dsl;
+package dsl;
 
 /**
  * Code generator class for graphics
