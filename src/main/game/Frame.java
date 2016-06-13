@@ -15,7 +15,9 @@ public class Frame {
         this.frame = frame;
         this.duration = duration;
     }
-
+    /**
+     *
+     * */
     public BufferedImage getFrame() {
         return frame;
     }
