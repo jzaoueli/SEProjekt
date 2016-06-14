@@ -1,5 +1,12 @@
-Player: player.png
-Background: bg.png
-ATKEnemy: atk.png
-DEFEnemy: def.png
+Player: {player.png, 512, 512, 96}
+Bullets: {bullets.png, 128, 128, 32}
+ATKEnemy: {atk.png, 512, 512, 96}
+DEFEnemy: {def.png, 512, 512, 96}
+Background: {bg.png, 128, 128, 128}
+
+/**
+Form:
+Objekt: {Bilddatei.png, Breite, Höhe, Sprite-Größe}
+Alle Objekte müssen enthalten sein.
+*/
 
