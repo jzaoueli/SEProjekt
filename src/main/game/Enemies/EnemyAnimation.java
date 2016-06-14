@@ -1,4 +1,4 @@
-package main.game.Enemy;
+package main.game.Enemies;
 
 /**
  * Created by Pi on 10.06.2016.
@@ -21,7 +21,6 @@ public class EnemyAnimation {
     private Frame[] frames = new Frame[3];
 
     public EnemyAnimation(Frame[] frames, int frameDelay) {
-
         this.frames = frames;
         this.frameDelay = frameDelay;
         this.frameCount = 0;
@@ -30,9 +29,7 @@ public class EnemyAnimation {
     }
 
     public void update() {
-
         frameCount++;
-
         if (frameCount > frameDelay) {
             frameCount = 0;
             currentFrameIndex++;
