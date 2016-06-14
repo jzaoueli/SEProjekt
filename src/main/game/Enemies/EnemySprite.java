@@ -55,12 +55,10 @@ class EnemySprite {
         switch (action){
             case "move":
                 setActionSprites(sprites, 0);
-            case "hit":
-                setActionSprites(sprites, 1);
             case "bulletHit":
-                setActionSprites(sprites, 2);
+                setActionSprites(sprites, 1);
             case "die":
-                setActionSprites(sprites, 3);
+                setActionSprites(sprites, 2);
         }
     }
 }
