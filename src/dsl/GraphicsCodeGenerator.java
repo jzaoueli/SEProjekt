@@ -1,7 +1,7 @@
 package dsl;
 
 /**
- * Code generator class for graphics
+ * Generates ImageFiles.java
  */
 public class GraphicsCodeGenerator {
 }
