@@ -21,7 +21,7 @@ class BackgroundPanel extends JPanel{
     private int yPos = 0;
     private int yPosScroll = bgImage.getHeight();
 
-    private Timer bgTimer = new Timer(50, e -> {
+    private Timer bgTimer = new Timer(32, e -> {
         yPos++;
         yPosScroll = yPos - bgImage.getHeight();
         repaint();

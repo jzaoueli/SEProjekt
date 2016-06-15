@@ -9,3 +9,5 @@ out/
 *.iml
 *.iws
 *.xml
+
+.idea/workspace.xml

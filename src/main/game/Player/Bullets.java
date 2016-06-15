@@ -1,4 +1,4 @@
-package main.game;
+package main.game.Player;
 
 /**
  * Created by Yahima on 15.06.16.

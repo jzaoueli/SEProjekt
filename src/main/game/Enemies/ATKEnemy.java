@@ -1,9 +1,6 @@
 package main.game.Enemies;
 
-import main.game.Frame;
-import main.game.Player;
-
-import javax.swing.*;
+import main.game.Player.PlayerControl;
 
 /**
  * Created by Yahima on 08.06.16.
@@ -15,7 +12,7 @@ public class ATKEnemy implements Enemy {
     private int atk;
     private int def;
     private int speed = 8;
-    private int level = Player.getLevel();
+    private int level = PlayerControl.getLevel();
     private int x, y;
     private String action;
 

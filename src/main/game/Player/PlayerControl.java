@@ -1,13 +1,13 @@
-package main.game;
+package main.game.Player;
 
 /**
  * Player class.
  */
-public class Player {
+public class PlayerControl {
     private static int level = 1;
     private int lifePoints;
 
-    Player() {
+    PlayerControl() {
 
     }
 
