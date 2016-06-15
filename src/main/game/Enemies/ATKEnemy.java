@@ -1,26 +1,26 @@
 package main.game.Enemies;
 
+import main.game.Frame;
+import main.game.Player;
+
+import javax.swing.*;
+
 /**
  * Created by Yahima on 08.06.16.
  * ATKEnemy is the common Enemy.
- * No Drop, Common Speed, Common ATK, weak DEF.
+ *
  */
 public class ATKEnemy implements Enemy {
 
     private int atk;
     private int def;
-    private float speed;
-    private int lvl;
+    private int speed = 8;
+    private int level = Player.getLevel();
     private int x, y;
     private String action;
 
-    private EnemySprite sprite;
-
-
-    ATKEnemy(EnemySprite sprite){
-        this.atk = 3 * this.lvl;
-        this.def = this.lvl;
-        this.speed = 1;
+    ATKEnemy(EnemyAnimation animation){
+        this.action = "move";
     }
 
     @Override
@@ -49,5 +49,6 @@ public class ATKEnemy implements Enemy {
 
     @Override
     public void updateAction(String action) {
+        this.action = action;
     }
 }

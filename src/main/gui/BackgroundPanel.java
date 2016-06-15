@@ -14,6 +14,7 @@ import java.io.IOException;
 class BackgroundPanel extends JPanel{
 
     private String file = ImageFiles.getImageFiles().get(4)[0];
+
     private BufferedImage bgImage = ImageIO.read(new File(file));
     private BufferedImage bgImageOff = bgImage;
 

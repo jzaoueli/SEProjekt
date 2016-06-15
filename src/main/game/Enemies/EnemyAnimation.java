@@ -7,7 +7,9 @@ package main.game.Enemies;
 
 import main.game.Frame;
 
-public class EnemyAnimation {
+import javax.swing.*;
+
+class EnemyAnimation {
 
     /**Counts ticks for change*/
     private int frameCount;
@@ -19,6 +21,8 @@ public class EnemyAnimation {
     private int totalFrames;
     /**Frame Array*/
     private Frame[] frames = new Frame[3];
+
+    private EnemySprite sprite;
 
     public EnemyAnimation(Frame[] frames, int frameDelay) {
         this.frames = frames;

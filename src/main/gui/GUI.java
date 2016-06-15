@@ -1,7 +1,7 @@
 package main.gui;
 
 /**
- * Gui class
+ * Gui Class for Test
  */
 
 import javax.swing.*;
@@ -32,5 +32,6 @@ public class GUI extends JFrame {
     public void update(Graphics g){
         repaint();
     }
+
 }
 
