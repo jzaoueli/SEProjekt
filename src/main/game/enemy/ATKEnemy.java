@@ -1,11 +1,9 @@
-package main.game.Enemies;
+package main.game.enemy;
 
-import main.game.Player.PlayerControl;
+import main.game.player.PlayerControl;
 
 /**
- * Created by Yahima on 08.06.16.
- * ATKEnemy is the common Enemy.
- *
+ * common Enemy.
  */
 public class ATKEnemy implements Enemy {
 
@@ -16,7 +14,7 @@ public class ATKEnemy implements Enemy {
     private int x, y;
     private String action;
 
-    ATKEnemy(EnemyAnimation animation){
+    ATKEnemy(EnemyAnimation animation) {
         this.action = "move";
     }
 

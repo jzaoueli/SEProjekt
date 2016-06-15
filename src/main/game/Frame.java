@@ -3,8 +3,7 @@ package main.game;
 import java.awt.image.BufferedImage;
 
 /**
- * Created by Pi on 10.06.2016.
- * The Frame Class holds a Sprite and a Duration associated with that Sprite.
+ * The Frame holds a Sprite and a Duration associated with that Sprite.
  */
 public class Frame {
 
@@ -15,9 +14,7 @@ public class Frame {
         this.frame = frame;
         this.duration = duration;
     }
-    /**
-     *
-     * */
+
     public BufferedImage getFrame() {
         return frame;
     }

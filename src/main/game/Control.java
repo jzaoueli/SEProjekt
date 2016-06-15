@@ -6,7 +6,6 @@ import javax.swing.*;
 import java.io.IOException;
 
 /**
- * Controller class
  * Game Control
  */
 public class Control {

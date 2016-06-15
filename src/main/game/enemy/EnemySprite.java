@@ -1,4 +1,4 @@
-package main.game.Enemies;
+package main.game.enemy;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -6,8 +6,7 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Created by Yahima on 09.06.2016.
- * Class sets the Sheet for the Enemies.
+ * sets the Sheet for the enemy.
  */
 
 class EnemySprite {
