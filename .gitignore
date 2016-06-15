@@ -8,4 +8,4 @@ out/
 .idea/
 *.iml
 *.iws
-.idea/workspace.xml
+*.xml
