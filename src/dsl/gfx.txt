@@ -1,8 +1,8 @@
-Player: {player.png, 512, 512, 96}
-Bullets: {bullets.png, 128, 128, 32}
-ATKEnemy: {atk.png, 512, 512, 96}
-DEFEnemy: {def.png, 512, 512, 96}
-Background: {bg.png, 128, 128, 128}
+Player: {Sheets/player.png, 512, 512, 96}
+Bullets: {Sheets/bullets.png, 128, 128, 32}
+ATKEnemy: {Sheets/atk.png, 512, 512, 96}
+DEFEnemy: {Sheets/def.png, 512, 512, 96}
+Background: {Sheets/bg.png}
 
 /**
 Form:
