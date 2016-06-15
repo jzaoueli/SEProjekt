@@ -17,7 +17,7 @@ public class GUI extends JFrame {
         setMinimumSize(new Dimension(384, 576));
         setMaximumSize(new Dimension(384, 576));
         setLocationRelativeTo(null);
-        GamePanel gamePanel = new GamePanel();
+        BackgroundPanel gamePanel = new BackgroundPanel();
         this.add(gamePanel);
 
         addWindowListener(new WindowAdapter() {
