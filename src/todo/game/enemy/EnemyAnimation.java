@@ -1,10 +1,10 @@
-package main.game.enemy;
+package todo.game.enemy;
 
 /**
  * Frame Animation
  */
 
-import main.game.Frame;
+import todo.game.Frame;
 
 class EnemyAnimation {
 

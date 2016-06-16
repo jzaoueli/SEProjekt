@@ -1,4 +1,4 @@
-package main.game;
+package todo.game;
 
 import main.gui.ImageFiles;
 

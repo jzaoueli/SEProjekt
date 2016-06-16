@@ -1,6 +1,6 @@
 package todo.enemy;
 
-import main.game.Frame;
+import todo.game.Frame;
 
 /**
  * Frame Animation
