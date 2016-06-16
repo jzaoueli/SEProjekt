@@ -1,8 +1,6 @@
 package todo.enemy;
 
 
-import main.model.player.Player;
-
 /**
  * common Enemy.
  */
@@ -11,7 +9,7 @@ public class AttackEnemy implements Enemy {
     private int atk;
     private int def;
     private int speed = 8;
-    private int level ; Player.getLevel();
+    private int level ;// Player.getLevel();
     private int x, y;
     private String action;
 
