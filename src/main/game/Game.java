@@ -10,6 +10,9 @@ import java.util.ArrayList;
 public class Game {
     private static ArrayList<String[]> imageFiles;
 
+    /**
+     * first initialisation of game
+     */
     public static void play(){
         imageFiles = ImageFiles.getImageFiles();
 
