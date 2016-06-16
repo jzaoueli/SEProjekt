@@ -4,6 +4,7 @@ package todo.game.enemy;
  * Frame Animation
  */
 
+import todo.enemy.EnemyFrame;
 import todo.game.Frame;
 
 class EnemyAnimation {

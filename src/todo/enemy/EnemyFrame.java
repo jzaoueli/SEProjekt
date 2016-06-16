@@ -9,7 +9,7 @@ import java.io.IOException;
  * sets the Sheet for the enemy.
  */
 
-class EnemyFrame {
+public class EnemyFrame {
     /**Current Action of Enemy*/
     private String action;
     /**Sprites in Image File*/

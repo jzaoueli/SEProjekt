@@ -1,6 +1,6 @@
 package todo.game;
 
-import main.gui.ImageFiles;
+import main.view.ImageFiles;
 
 import java.util.ArrayList;
 
