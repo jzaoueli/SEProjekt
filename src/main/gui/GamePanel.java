@@ -11,7 +11,7 @@ import java.io.IOException;
  * Created by ordencaos on 14.06.16.
  * Class realizes Background an its Horizontal Scroll Movement
  */
-class BackgroundPanel extends JPanel{
+class GamePanel extends JPanel{
 
     private String file = ImageFiles.getImageFiles().get(4)[0];
 
@@ -21,14 +21,14 @@ class BackgroundPanel extends JPanel{
     private int yPos = 0;
     private int yPosScroll = bgImage.getHeight();
 
-    private Timer bgTimer = new Timer(32, e -> {
+    Timer bgTimer = new Timer(32, e -> {
         yPos++;
         yPosScroll = yPos - bgImage.getHeight();
         repaint();
     });
 
 
-    BackgroundPanel() throws IOException, InterruptedException {
+    GamePanel() throws IOException, InterruptedException {
         bgTimer.start();
     }
 
