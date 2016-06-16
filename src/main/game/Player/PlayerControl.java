@@ -1,7 +1,7 @@
-package main.game.Player;
+package main.game.player;
 
 /**
- * Player class.
+ * player class.
  */
 public class PlayerControl {
     private static int level = 1;

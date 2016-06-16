@@ -1,25 +1,32 @@
-package main.game.Enemies;
+package main.game.enemy;
 
 /**
- * Created by Pi on 10.06.2016.
- * Class for Frame Animation
+ * Frame Animation
  */
 
 import main.game.Frame;
 
-import javax.swing.*;
-
 class EnemyAnimation {
 
-    /**Counts ticks for change*/
+    /**
+     * Counts ticks for change
+     */
     private int frameCount;
-    /**Frame delay (1-12)*/
+    /**
+     * Frame delay (1-12)
+     */
     private int frameDelay;
-    /**Index of the current Animations Frame*/
+    /**
+     * Index of the current Animations Frame
+     */
     private int currentFrameIndex;
-    /**Total amount of Frames in the Animation*/
+    /**
+     * Total amount of Frames in the Animation
+     */
     private int totalFrames;
-    /**Frame Array*/
+    /**
+     * Frame Array
+     */
     private Frame[] frames = new Frame[3];
 
     private EnemySprite sprite;

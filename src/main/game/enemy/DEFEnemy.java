@@ -1,7 +1,6 @@
-package main.game.Enemies;
+package main.game.enemy;
 
 /**
- * Created by Yahima on 08.06.16.
  * DEFEnemy is the common Enemy.
  * No Drop, slow, Common DEF, weak ATK.
  */
