@@ -1,4 +1,4 @@
-package main.game.enemy;
+package todo.enemy;
 
 /**
  * Enemy Interface

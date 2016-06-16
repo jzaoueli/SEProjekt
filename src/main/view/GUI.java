@@ -1,4 +1,4 @@
-package main.gui;
+package main.view;
 
 /**
  * Gui Class for Test

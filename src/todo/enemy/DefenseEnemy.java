@@ -1,4 +1,4 @@
-package main.game.enemy;
+package todo.enemy;
 
 /**
  * DEFEnemy is the common Enemy.

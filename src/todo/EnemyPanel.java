@@ -1,4 +1,4 @@
-package main.gui;
+package todo;
 
 import javax.swing.*;
 

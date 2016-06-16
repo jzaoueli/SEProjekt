@@ -1,4 +1,4 @@
-package main.game.enemy;
+package todo.enemy;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;

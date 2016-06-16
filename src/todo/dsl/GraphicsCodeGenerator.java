@@ -1,4 +1,4 @@
-package dsl;
+package todo.dsl;
 
 /**
  * Generates ImageFiles.java

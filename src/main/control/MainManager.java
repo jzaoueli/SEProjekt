@@ -1,6 +1,6 @@
-package main.game;
+package main.control;
 
-import main.gui.GUI;
+import main.view.GUI;
 
 import javax.swing.*;
 import java.io.IOException;
@@ -8,7 +8,7 @@ import java.io.IOException;
 /**
  * Game Control
  */
-public class Control {
+public class MainManager {
 
     public static void main(String[] args) throws IOException, InterruptedException {
         JFrame frame = new GUI();

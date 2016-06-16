@@ -1,4 +1,4 @@
-package main.game.player;
+package todo;
 
 /**
  * Created by Yahima on 15.06.16.
