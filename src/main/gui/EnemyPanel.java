@@ -5,9 +5,9 @@ import javax.swing.*;
 /**
  * Panel contains enemy of different Types
  */
-public class EnemiesPanel extends JPanel {
+public class EnemyPanel extends JPanel {
 
-    public EnemiesPanel(int level) {
+    public EnemyPanel(int level) {
 
     }
 }

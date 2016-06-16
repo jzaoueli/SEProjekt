@@ -3,11 +3,11 @@ package main.game.player;
 /**
  * player class.
  */
-public class PlayerControl {
+public class Player {
     private static int level = 1;
     private int lifePoints;
 
-    PlayerControl() {
+    Player() {
 
     }
 
