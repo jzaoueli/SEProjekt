@@ -11,3 +11,7 @@ out/
 *.xml
 
 .idea/workspace.xml
+
+src/testmain/game/ControlTest.java
+
+.idea/workspace.xml
