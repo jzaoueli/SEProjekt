@@ -29,7 +29,7 @@ class EnemyAnimation {
      */
     private Frame[] frames = new Frame[3];
 
-    private EnemySprite sprite;
+    private EnemyFrame sprite;
 
     public EnemyAnimation(Frame[] frames, int frameDelay) {
         this.frames = frames;

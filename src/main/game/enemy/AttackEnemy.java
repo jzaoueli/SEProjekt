@@ -1,20 +1,20 @@
 package main.game.enemy;
 
-import main.game.player.PlayerControl;
+import main.game.player.Player;
 
 /**
  * common Enemy.
  */
-public class ATKEnemy implements Enemy {
+public class AttackEnemy implements Enemy {
 
     private int atk;
     private int def;
     private int speed = 8;
-    private int level = PlayerControl.getLevel();
+    private int level = Player.getLevel();
     private int x, y;
     private String action;
 
-    ATKEnemy(EnemyAnimation animation) {
+    AttackEnemy(EnemyAnimation animation) {
         this.action = "move";
     }
 

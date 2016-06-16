@@ -4,16 +4,16 @@ package main.game.enemy;
  * DEFEnemy is the common Enemy.
  * No Drop, slow, Common DEF, weak ATK.
  */
-public class DEFEnemy implements Enemy {
+public class DefenseEnemy implements Enemy {
 
     private int atk = 1;
     private int def = 3;
     private float speed = 1;
     private int x, y;
-    EnemySprite sprite;
+    EnemyFrame sprite;
 
 
-    DEFEnemy() {
+    DefenseEnemy() {
 
     }
 

@@ -9,7 +9,7 @@ import java.io.IOException;
  * sets the Sheet for the enemy.
  */
 
-class EnemySprite {
+class EnemyFrame {
     /**Current Action of Enemy*/
     private String action;
     /**Sprites in Image File*/
@@ -18,7 +18,7 @@ class EnemySprite {
     private static BufferedImage[] actionSprites;
 
     /**Sprite Constructor creates Sprite Set from SpriteSheet Image File*/
-    public EnemySprite(String[] imageFile) throws IOException {
+    public EnemyFrame(String[] imageFile) throws IOException {
         sprites = loadSheet(imageFile);
     }
 
