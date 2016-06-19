@@ -27,7 +27,7 @@ class GamePanel extends JPanel{
     private BufferedImage bgImage = ImageIO.read(new File(file));
     private BufferedImage bgImageOff = bgImage;
     private int yPos = 0;
-    private int yPosScroll = bgImage.getHeight();
+    int yPosScroll = bgImage.getHeight();
 
     /**
      * Player

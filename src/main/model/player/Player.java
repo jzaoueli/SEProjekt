@@ -11,7 +11,6 @@ import java.io.IOException;
 public class Player{
     public FrameAnimation playerAnimation;
     Rectangle boundingBox;
-    private int xPos, yPos;
     private String playerAction = "walk";
     public Player(FrameAnimation animation) throws IOException {
         this.playerAnimation = animation;
