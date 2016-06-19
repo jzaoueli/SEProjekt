@@ -1,6 +1,6 @@
-package main.model.player;
+package model.player;
 
-import main.view.FrameAnimation;
+import view.FrameAnimation;
 
 import java.awt.*;
 import java.io.IOException;

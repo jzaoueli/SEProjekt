@@ -1,4 +1,4 @@
-package main.view;
+package view;
 
 /**
  * Main Game Interface

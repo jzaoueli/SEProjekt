@@ -1,4 +1,4 @@
-package main.view;
+package view;
 
 import java.util.ArrayList;
 
@@ -11,7 +11,7 @@ class ImageData {
     static ArrayList<String[]> imageData = new ArrayList<>();
 
     static String[] player = {"Sheets/player.png", "3", "4", "32", "48"};
-    private static String[] bg = {"Sheets/bg.png"};
+    private static String[] bg = {"Sheets/bground.jpg"};
 
     static ArrayList<String[]> getImageFiles(){
         imageData.add(player);

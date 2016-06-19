@@ -1,6 +1,6 @@
-package main.control;
+package control;
 
-import main.view.GUI;
+import view.GUI;
 
 import javax.swing.*;
 import java.io.IOException;
