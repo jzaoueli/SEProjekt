@@ -1,0 +1,8 @@
+Background: "Sheets/bground.jpg";
+Player: "Sheets/player.png", 3, 4, 32, 48;
+Attack: "Sheets/attack.png", 3, 4, 32, 32, "zigzag", 8, 2, 1, 0,5;
+Defense: "Sheets/defense.png" 3, 4, 32, 32, "zigzag" 8, 1, 2, 0,5;
+AttackItem: "Sheets/attack_item", 3, 4, 32, 32, "vertical", 8, 4, 0,25;
+DefenseItem: "Sheets/defense_item.png", 3, 4, 32, 32, "vertical", 4, 8, 0,25;
+
+Objektname: "Bilddtatei", Zeilen, Reihen, Breite, Höhe, "Bewegungsart", Geschwindigkeit, Angriff, Verteidigung, Wahrscheinlichkeit;
