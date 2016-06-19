@@ -10,8 +10,9 @@ import java.io.File;
 import java.io.IOException;
 
 /**
- * Realizes Background an its Horizontal Scroll Movement
- * Holds Player Image Frames
+ * Realizes Backgrounds Vertical Scroll Movement
+ * Holds and updates Players Image Frames
+ * Realizes Players Horizontal Movement
  * TODO
  */
 
@@ -60,7 +61,6 @@ class GamePanel extends JPanel{
     GamePanel() throws IOException {
         timer.start();
     }
-
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
 
