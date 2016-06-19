@@ -9,12 +9,12 @@ import java.io.IOException;
  * TODO
  */
 public class Player{
-    public FrameAnimation frameAnimation;
+    public FrameAnimation playerAnimation;
     Rectangle boundingBox;
     private int xPos, yPos;
     private String playerAction = "walk";
     public Player(FrameAnimation animation) throws IOException {
-        this.frameAnimation = animation;
+        this.playerAnimation = animation;
     }
     public String getAction() { return playerAction; }
     public void setAction(String action) {

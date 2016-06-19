@@ -35,7 +35,10 @@ public class FrameAnimation {
      */
     private static int totalFrames;
 
-    private int rows, cols, sizeX, sizeY;
+    private int rows;
+    private int cols;
+    public int sizeX;
+    public int sizeY;
     private static BufferedImage[] actionFrames = new BufferedImage[4];
 
     /**

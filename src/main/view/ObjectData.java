@@ -1,5 +1,4 @@
 package main.view;
-
 import java.util.ArrayList;
 
 /**
@@ -7,16 +6,18 @@ import java.util.ArrayList;
  * Contains for each Game Object the readed image file names an its dimensions
  * TODO
  */
-class ImageData {
+class ObjectData {
+
 
     static ArrayList<String[]> imageData = new ArrayList<>();
 
-    static String[] player = {"Sheets/player.png", "3", "4", "32", "48"};
     private static String[] bg = {"Sheets/bground.jpg"};
+    static String[] player = {"Sheets/player.png", "3", "4", "32", "48"};
+
 
     static ArrayList<String[]> getImageFiles(){
-        imageData.add(player);
         imageData.add(bg);
+        imageData.add(player);
         return imageData;
     }
 }

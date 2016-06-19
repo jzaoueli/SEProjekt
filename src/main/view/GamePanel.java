@@ -1,5 +1,6 @@
 package main.view;
 
+import main.model.enemy.Enemy;
 import main.model.player.Player;
 
 import javax.imageio.ImageIO;
@@ -8,6 +9,7 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 /**
  * Realizes Backgrounds Vertical Scroll Movement
@@ -18,20 +20,31 @@ import java.io.IOException;
 
 class GamePanel extends JPanel{
 
-    private String file = ImageData.getImageFiles().get(1)[0];
-
+    /**
+     * Background
+     */
+    private String file = ObjectData.getImageFiles().get(0)[0];
     private BufferedImage bgImage = ImageIO.read(new File(file));
     private BufferedImage bgImageOff = bgImage;
     private int yPos = 0;
     private int yPosScroll = bgImage.getHeight();
 
-    private String[] playerImageData = ImageData.getImageFiles().get(ImageData.imageData.indexOf(ImageData.player));
+    /**
+     * Player
+     */
+    private String[] playerImageData = ObjectData.getImageFiles().get(ObjectData.imageData.indexOf(ObjectData.player));
     private FrameAnimation playerAnimation = new FrameAnimation(playerImageData, 6);
     private Player player = new Player(playerAnimation);
     private int playerXPos = (bgImage.getWidth() / 2) -8;
     private int playerYPos = bgImage.getHeight() - 80;
-
     boolean transitionLeft, transitionRight = false;
+
+    /**
+     * Enemy
+     */
+
+    ArrayList<Enemy> enemies = new ArrayList<>();
+
 
     Timer timer = new Timer(32, e -> {
         yPos++;
@@ -54,7 +67,7 @@ class GamePanel extends JPanel{
                 transitionLeft = false;
             }
         }
-        player.frameAnimation.animate();
+        player.playerAnimation.animate();
         repaint();
     });
 
@@ -72,7 +85,7 @@ class GamePanel extends JPanel{
             yPos = 0;
             yPosScroll = bgImage.getHeight();
         }
-        g.drawImage(player.frameAnimation.frame, playerXPos, playerYPos, null);
+        g.drawImage(player.playerAnimation.frame, playerXPos, playerYPos, null);
         repaint();
     }
 }
