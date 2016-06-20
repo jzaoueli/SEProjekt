@@ -16,9 +16,10 @@ public class Enemy {
     private int speed;
     private int attack, defense;
     private float probability;
-    private Rectangle boundingBox;
     private int enemyX, enemyY;
     int startX, startY;
+    private Rectangle boundingBox;
+
 
     public Enemy(String type, String file, FrameAnimation animation, String movement, int speed, int attack, int defense, float probability){
         this.type = type;
