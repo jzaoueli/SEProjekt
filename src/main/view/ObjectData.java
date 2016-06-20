@@ -13,6 +13,7 @@ class ObjectData {
 
     private static String[] bg = {"Sheets/bground.jpg"};
     static String[] player = {"Sheets/player.png", "3", "4", "32", "48"};
+    //private static String[] attack = {"Sheets/attack.png", "3", "4", "32", "32"};
 
 
     static ArrayList<String[]> getImageFiles(){

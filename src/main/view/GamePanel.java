@@ -21,16 +21,16 @@ import java.util.ArrayList;
 class GamePanel extends JPanel{
 
     /**
-     * Background
+     * Background (wird in MainManager initializiert)
      */
     private String file = ObjectData.getImageFiles().get(0)[0];
     private BufferedImage bgImage = ImageIO.read(new File(file));
     private BufferedImage bgImageOff = bgImage;
     private int yPos = 0;
-    int yPosScroll = bgImage.getHeight();
+    private int yPosScroll = bgImage.getHeight();
 
     /**
-     * Player
+     * Player (wird in MainManager initializiert)
      */
     private String[] playerImageData = ObjectData.getImageFiles().get(ObjectData.imageData.indexOf(ObjectData.player));
     private FrameAnimation playerAnimation = new FrameAnimation(playerImageData, 6);
@@ -40,10 +40,35 @@ class GamePanel extends JPanel{
     boolean transitionLeft, transitionRight = false;
 
     /**
-     * Enemy
+     * Enemy (wird in MainManager initializiert)
      */
-
+    private int random;
+    int distance = 0;
     ArrayList<Enemy> enemies = new ArrayList<>();
+    Timer enemyTimer = new Timer(32, e -> {
+        /**
+         * Random number between 1 and 16
+         */
+        random = (int) (Math.random() * 16) + 1;
+        switch (random){
+            case 1:
+            case 2:
+            case 3:
+            case 4:
+            case 5:
+            case 6:
+            case 7:
+            case 8:
+            case 9:
+            case 10:
+            case 11:
+            case 12:
+            case 13:
+            case 14:
+            case 15:
+            case 16:
+        }
+    });
 
 
     Timer timer = new Timer(32, e -> {

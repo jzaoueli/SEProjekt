@@ -20,10 +20,17 @@ public class Enemy {
     int startX, startY;
     private Rectangle boundingBox;
 
-
-    public Enemy(String type, String file, FrameAnimation animation, String movement, int speed, int attack, int defense, float probability){
+    public Enemy(String type){
+        Enemy enemy;
+        FrameAnimation animation;
         this.type = type;
-        this.file = file;
+        switch (type){
+            case "attack":
+
+        }
+    }
+
+    public Enemy(FrameAnimation animation, String movement, int speed, int attack, int defense, float probability){
         this.enemyAnimation = animation;
         this.movement = movement;
         this.speed = speed;
