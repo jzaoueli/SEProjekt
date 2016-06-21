@@ -5,11 +5,14 @@ import main.model.player.Player;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
+import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.awt.*;
+import java.awt.geom.Arc2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 /**
  * Realizes Backgrounds Vertical Scroll Movement
@@ -17,11 +20,10 @@ import java.util.ArrayList;
  * Realizes Players Horizontal Movement
  * TODO
  */
-
 class GamePanel extends JPanel{
 
     /**
-     * Background (wird in MainManager initializiert)
+     * Background (wird in Control initializiert)
      */
     private String file = ObjectData.getImageFiles().get(0)[0];
     private BufferedImage bgImage = ImageIO.read(new File(file));
@@ -30,7 +32,7 @@ class GamePanel extends JPanel{
     private int yPosScroll = bgImage.getHeight();
 
     /**
-     * Player (wird in MainManager initializiert)
+     * Player (wird in Control initializiert)
      */
     private String[] playerImageData = ObjectData.getImageFiles().get(ObjectData.imageData.indexOf(ObjectData.player));
     private FrameAnimation playerAnimation = new FrameAnimation(playerImageData, 6);
@@ -40,40 +42,47 @@ class GamePanel extends JPanel{
     boolean transitionLeft, transitionRight = false;
 
     /**
-     * Enemy (wird in MainManager initializiert)
+     * Enemy (wird in Control initializiert)
      */
     private int random;
-    int distance = 0;
-    ArrayList<Enemy> enemies = new ArrayList<>();
-    Timer enemyTimer = new Timer(32, e -> {
+    private int enemyStartX;
+    private int enemyIndex;
+    private int distance = 0;
+    private ArrayList<Enemy> aliveEnemy = new ArrayList<>();
+    /**
+     * Enemy creation speed
+     */
+    private int rate = 32;
+    private String[] enemyImageData = ObjectData.getEnemyData().get(ObjectData.enemyData.indexOf(ObjectData.attack));
+    private FrameAnimation enemyAnimation = new FrameAnimation(enemyImageData, 6);
+
+    /**
+     * Sets the Enemy creation rate
+     * Creates Enemies
+     */
+    private Timer enemyTimer = new Timer(rate, e -> {
         /**
          * Random number between 1 and 16
          */
         random = (int) (Math.random() * 16) + 1;
         switch (random){
             case 1:
-            case 2:
-            case 3:
-            case 4:
-            case 5:
-            case 6:
-            case 7:
-            case 8:
-            case 9:
-            case 10:
-            case 11:
-            case 12:
-            case 13:
-            case 14:
-            case 15:
-            case 16:
+                enemyStartX = (int) (Math.random() * 288 + 32);
+                aliveEnemy.add(new Enemy(1, enemyAnimation, enemyStartX));
         }
     });
-
-
+    /**
+     * GUI Timer
+     */
     Timer timer = new Timer(32, e -> {
+        /**
+         * Animate Background seamlessly
+         */
         yPos++;
         yPosScroll = yPos - bgImage.getHeight();
+        /**
+         * Animate Player
+         */
         if(transitionRight){
             transitionLeft = false;
             if(playerXPos <= 320) {
@@ -93,24 +102,54 @@ class GamePanel extends JPanel{
             }
         }
         player.playerAnimation.animate();
+        /**
+         * Animate Enemies
+         * Move Enemies
+         */
+        for (Enemy enemy : aliveEnemy){
+            enemy.enemyAnimation.animate();
+            enemy.setMovement(1, 10);
+            repaint();
+        }
+        /**
+         * Delete Enemies
+         */
+        for (Iterator<Enemy> iterator = aliveEnemy.listIterator(); iterator.hasNext(); ) {
+            Enemy enemy = iterator.next();
+            if (enemy.getY() > 480) {
+                iterator.remove();
+            }
+        }
+        distance++;
         repaint();
     });
 
     GamePanel() throws IOException {
         timer.start();
+        enemyTimer.start();
     }
+
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
-
+        /**
+         * Draw Background seamlessly
+         */
         g.drawImage(bgImage, 0, yPos, null);
         g.drawImage(bgImageOff, 0, yPosScroll, null);
-
         if (yPos == bgImage.getHeight()) {
             g.clearRect(0, bgImage.getHeight(), bgImage.getWidth(), bgImage.getHeight() * 2);
             yPos = 0;
             yPosScroll = bgImage.getHeight();
         }
+        /**
+         * Draw Player
+         */
         g.drawImage(player.playerAnimation.frame, playerXPos, playerYPos, null);
-        repaint();
+        /**
+         * Draw Enemies
+         */
+        for (Enemy enemy : aliveEnemy){
+            g.drawImage(enemy.enemyAnimation.frame, enemy.getX(), enemy.getY(), null);
+        }
     }
 }

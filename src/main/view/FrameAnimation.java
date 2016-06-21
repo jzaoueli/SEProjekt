@@ -35,20 +35,25 @@ public class FrameAnimation {
      */
     private static int totalFrames;
 
+    /**
+     * Image Dimensions
+     */
     private int rows;
     private int cols;
-    public int sizeX;
-    public int sizeY;
-    private static BufferedImage[] actionFrames = new BufferedImage[4];
+    private int sizeX;
+    private int sizeY;
+    /**
+     * Set of Frames to be animated
+     */
+    private BufferedImage[] actionFrames = new BufferedImage[4];
 
     /**
      * Constructor FrameAnimation
      * @param frameDelay Display duration of each Frame in Array
      */
-    FrameAnimation(String[] imageFileData, int frameDelay) throws IOException {
-        setActionFrames(loadFrames(imageFileData), 0);
+    FrameAnimation(String[] objectData, int frameDelay) throws IOException {
+        setActionFrames(loadFrames(objectData), 0);
         FrameAnimation.frameDelay = frameDelay;
-        setActionFrames(actionFrames, 0);
         totalFrames = actionFrames.length;
         frameCount = 0;
         setActionFrames(actionFrames, 0);
@@ -76,32 +81,32 @@ public class FrameAnimation {
 
     /**
      * Loads Image File and divides it into sub-images (Frames)
-     * @param imageFileData holds Image File name and its Dimensions
+     * @param imageData holds Image File name and its Dimensions
      * @return Frame Array containing all sub-images of Image File
      * @throws IOException
      */
-    private BufferedImage[] loadFrames(String[] imageFileData) throws IOException {
+    private BufferedImage[] loadFrames(String[] imageData) throws IOException {
 
         /**
          * File name
          */
-        String file = imageFileData[0];
+        String file = imageData[0];
         /**
          * Number of Frame Rows in Image File
          */
-        rows = Integer.parseInt(imageFileData[1]);
+        rows = Integer.parseInt(imageData[1]);
         /**
          * Number of Frame Columns in Image File
          */
-        cols = Integer.parseInt(imageFileData[2]);
+        cols = Integer.parseInt(imageData[2]);
         /**
          * Frame Width
          */
-        sizeX = Integer.parseInt(imageFileData[3]);
+        sizeX = Integer.parseInt(imageData[3]);
         /**
          * Frame Height
          */
-        sizeY = Integer.parseInt(imageFileData[4]);
+        sizeY = Integer.parseInt(imageData[4]);
         /**
          * Set Length of Array
          */

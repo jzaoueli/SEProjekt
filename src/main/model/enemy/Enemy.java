@@ -1,5 +1,5 @@
 package main.model.enemy;
-import main.view.FrameAnimation;
+import main.view.*;
 import java.awt.*;
 
 /**
@@ -8,54 +8,100 @@ import java.awt.*;
  * TODO
  */
 public class Enemy {
-
-    private FrameAnimation enemyAnimation;
-    private String type;
-    private String file;
+    /**
+     * Enemy Type
+     */
+    private int type;
+    /**
+     * Enemy Animation Frames
+     */
+    public FrameAnimation enemyAnimation;
+    /**
+     * Enemy Movement Type
+     */
     private String movement;
+    /**
+     * Enemy speed
+     */
     private int speed;
-    private int attack, defense;
+    /**
+     * Enemy Attack or Players LifePoints loss
+     */
+    private int attack;
+    /**
+     * Enemy Defense or Player Hits needed for Kill
+     */
+    private int defense;
+    /**
+     * Probability the Enemy will appear
+     */
     private float probability;
-    private int enemyX, enemyY;
-    int startX, startY;
+    /**
+     * Enemy Coordinates
+     */
+    private int x;
+    private int y;
+    /**
+     * Enemy x start position
+     */
+    int startX;
+    /**
+     * Area of Collision
+     */
     private Rectangle boundingBox;
 
-    public Enemy(String type){
-        Enemy enemy;
-        FrameAnimation animation;
-        this.type = type;
-        switch (type){
-            case "attack":
+    /**
+     * TODO Inititialisierung kann in Control stattfinden???
+     */
+    private ObjectData objectData = new ObjectData();
+    private String[] enemyData;
 
-        }
-    }
+    /**
+     * Enemy Constructor
+     * @param enemyType Enemy Type
+     * @param animation Enemy Animation Frames
+     * @param startX Enemy x start position
+     */
+    public Enemy(int enemyType, FrameAnimation animation, int startX){
 
-    public Enemy(FrameAnimation animation, String movement, int speed, int attack, int defense, float probability){
+        this.type = enemyType;
         this.enemyAnimation = animation;
-        this.movement = movement;
-        this.speed = speed;
-        this.attack = attack;
-        this.defense = defense;
-        this.probability = probability;
-        this.boundingBox = new Rectangle(enemyX, enemyY, this.enemyAnimation.sizeX, this.enemyAnimation.sizeY);
+        this.setX(startX);
+        switch (enemyType){
+            case 1:
+                enemyData = ObjectData.enemyData.get(0);
+                setEnemyData(enemyData);
+        }
     }
 
-    public void setMovement(String movement, int speed){
-        int tempX = enemyX;
-        int tempY = enemyY;
-        boolean right = false, left = false;
-
-        switch (movement){
-            case "vertical":
-                this.enemyY += speed;
-            case "zigzag":
-                this.enemyY += speed;
-                if(enemyX < tempX + 32){
-                    this.enemyX++;
-                }
-                else if(enemyX > tempX - 32){
-                    this.enemyX--;
-                }
+    public void setMovement(int movementType, int speed){
+        switch (movementType){
+            case 1:
+                this.setY(this.getY() + speed);
         }
+    }
+
+
+    private void setEnemyData(String[] enemyData){
+        this.speed = Integer.valueOf(enemyData[6]);
+        this.attack = Integer.valueOf(enemyData[7]);
+        this.defense = Integer.valueOf(enemyData[8]);
+        this.probability = Float.valueOf(enemyData[9]);
+    }
+
+    public int getY() {
+        return y;
+    }
+
+    private void setY(int y) {
+        this.y = y;
+    }
+
+    public int getX() {
+        return x;
+    }
+
+    private void setX(int x) {
+        this.x = x;
     }
 }
