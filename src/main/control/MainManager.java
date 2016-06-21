@@ -10,7 +10,6 @@ import java.io.IOException;
  * TODO
  */
 public class MainManager {
-
     public static void main(String[] args) throws IOException, InterruptedException {
         JFrame frame = new GUI();
         frame.setVisible(true);

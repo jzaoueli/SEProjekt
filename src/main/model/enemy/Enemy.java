@@ -42,19 +42,9 @@ public class Enemy {
     private int x;
     private int y;
     /**
-     * Enemy x start position
-     */
-    int startX;
-    /**
      * Area of Collision
      */
     private Rectangle boundingBox;
-
-    /**
-     * TODO Inititialisierung kann in Control stattfinden???
-     */
-    private ObjectData objectData = new ObjectData();
-    private String[] enemyData;
 
     /**
      * Enemy Constructor
@@ -63,17 +53,17 @@ public class Enemy {
      * @param startX Enemy x start position
      */
     public Enemy(int enemyType, FrameAnimation animation, int startX){
-
         this.type = enemyType;
         this.enemyAnimation = animation;
         this.setX(startX);
-        switch (enemyType){
-            case 1:
-                enemyData = ObjectData.enemyData.get(0);
-                setEnemyData(enemyData);
-        }
+        this.enemyAnimation.setActionFrames(0);
     }
 
+    /**
+     * Sets Enemy Movement
+     * @param movementType Enemy Movement Type
+     * @param speed Enemy speed
+     */
     public void setMovement(int movementType, int speed){
         switch (movementType){
             case 1:
@@ -81,7 +71,10 @@ public class Enemy {
         }
     }
 
-
+    /**
+     * Sets Enemy Data
+     * @param enemyData String Array of loaded ObjectData
+     */
     private void setEnemyData(String[] enemyData){
         this.speed = Integer.valueOf(enemyData[6]);
         this.attack = Integer.valueOf(enemyData[7]);
@@ -92,15 +85,12 @@ public class Enemy {
     public int getY() {
         return y;
     }
-
     private void setY(int y) {
         this.y = y;
     }
-
     public int getX() {
         return x;
     }
-
     private void setX(int x) {
         this.x = x;
     }

@@ -6,20 +6,21 @@ import java.util.ArrayList;
  * Contains for each Game Object the read image file name, dimensions and data
  * TODO
  */
-public class ObjectData {
+class ObjectData {
 
     static ArrayList<String[]> imageData = new ArrayList<>();
-    public static ArrayList<String[]> enemyData = new ArrayList<>();
+    static ArrayList<String[]> enemyData = new ArrayList<>();
 
-    private static String[] bg = {"Sheets/bground.jpg"};
+    static String[] bg = {"Sheets/bground.jpg"};
     static String[] player = {"Sheets/player.png", "3", "4", "32", "48"};
-
+    static String[] bullets = {"Sheets/bullets.png", "1", "4","12", "12"};
     static String[] attack = {"Sheets/atk.png", "3", "4", "32", "32", "zigzag", "8", "2", "1", "0.5"};
 
 
     static ArrayList<String[]> getImageFiles(){
         imageData.add(bg);
         imageData.add(player);
+        imageData.add(bullets);
         return imageData;
     }
     static ArrayList<String[]> getEnemyData(){

@@ -18,7 +18,8 @@ import java.util.Iterator;
  * Realizes Backgrounds Vertical Scroll Movement
  * Holds and updates Players Image Frames
  * Realizes Players Horizontal Movement
- * TODO
+ * Creates Enemies
+ * TODO MainManager
  */
 class GamePanel extends JPanel{
 
@@ -39,20 +40,18 @@ class GamePanel extends JPanel{
     private Player player = new Player(playerAnimation);
     private int playerXPos = (bgImage.getWidth() / 2) -8;
     private int playerYPos = bgImage.getHeight() - 80;
-    boolean transitionLeft, transitionRight = false;
+    boolean transitionLeft = false;
+    boolean transitionRight = false;
 
     /**
      * Enemy (wird in Control initializiert)
      */
     private int random;
     private int enemyStartX;
-    private int enemyIndex;
-    private int distance = 0;
     private ArrayList<Enemy> aliveEnemy = new ArrayList<>();
     /**
      * Enemy creation speed
      */
-    private int rate = 32;
     private String[] enemyImageData = ObjectData.getEnemyData().get(ObjectData.enemyData.indexOf(ObjectData.attack));
     private FrameAnimation enemyAnimation = new FrameAnimation(enemyImageData, 6);
 
@@ -60,17 +59,27 @@ class GamePanel extends JPanel{
      * Sets the Enemy creation rate
      * Creates Enemies
      */
-    private Timer enemyTimer = new Timer(rate, e -> {
+    Timer enemyTimer = new Timer(32, e -> {
         /**
          * Random number between 1 and 16
          */
-        random = (int) (Math.random() * 16) + 1;
+        random = (int) (Math.random() * 32) + 1;
         switch (random){
             case 1:
                 enemyStartX = (int) (Math.random() * 288 + 32);
                 aliveEnemy.add(new Enemy(1, enemyAnimation, enemyStartX));
         }
+        /**
+         * Delete Enemies when offscreen
+         */
+        for (Iterator<Enemy> iterator = aliveEnemy.listIterator(); iterator.hasNext(); ) {
+            Enemy enemy = iterator.next();
+            if (enemy.getY() > 480) {
+                iterator.remove();
+            }
+        }
     });
+
     /**
      * GUI Timer
      */
@@ -82,6 +91,7 @@ class GamePanel extends JPanel{
         yPosScroll = yPos - bgImage.getHeight();
         /**
          * Animate Player
+         * Move
          */
         if(transitionRight){
             transitionLeft = false;
@@ -107,21 +117,9 @@ class GamePanel extends JPanel{
          * Move Enemies
          */
         for (Enemy enemy : aliveEnemy){
-            enemy.enemyAnimation.animate();
             enemy.setMovement(1, 10);
-            repaint();
+            enemy.enemyAnimation.animate();
         }
-        /**
-         * Delete Enemies
-         */
-        for (Iterator<Enemy> iterator = aliveEnemy.listIterator(); iterator.hasNext(); ) {
-            Enemy enemy = iterator.next();
-            if (enemy.getY() > 480) {
-                iterator.remove();
-            }
-        }
-        distance++;
-        repaint();
     });
 
     GamePanel() throws IOException {
@@ -145,11 +143,13 @@ class GamePanel extends JPanel{
          * Draw Player
          */
         g.drawImage(player.playerAnimation.frame, playerXPos, playerYPos, null);
+
         /**
          * Draw Enemies
          */
         for (Enemy enemy : aliveEnemy){
             g.drawImage(enemy.enemyAnimation.frame, enemy.getX(), enemy.getY(), null);
         }
+        repaint();
     }
 }

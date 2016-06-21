@@ -13,7 +13,7 @@ public class FrameAnimation {
     /**
      * Counts ticks for Frame Change
      */
-    private static int frameCount;
+    private int frameCount;
     /**
      * Frame delay (1-12)
      */
@@ -21,11 +21,11 @@ public class FrameAnimation {
     /**
      * Frame Array
      */
-    private static BufferedImage[] frames;
+    private BufferedImage[] frames;
     /**
      * Index of the current Frame in Array
      */
-    private static int currentFrameIndex;
+    private int currentFrameIndex;
     /**
      * Current Frame
      */
@@ -33,7 +33,7 @@ public class FrameAnimation {
     /**
      * Total amount of Frames in Array
      */
-    private static int totalFrames;
+    private int totalFrames;
 
     /**
      * Image Dimensions
@@ -44,19 +44,22 @@ public class FrameAnimation {
     private int sizeY;
     /**
      * Set of Frames to be animated
+     * TODO Frame number must (not) be 4 for better FrameAnimation
      */
-    private BufferedImage[] actionFrames = new BufferedImage[4];
+    public BufferedImage[] actionFrames = new BufferedImage[4];
+
 
     /**
-     * Constructor FrameAnimation
-     * @param frameDelay Display duration of each Frame in Array
+     * Contructor
+     * @param objectData Read ObjectData
+     * @param frameDelay How long will Frame be showed
+     * @throws IOException Load Data
      */
     FrameAnimation(String[] objectData, int frameDelay) throws IOException {
-        setActionFrames(loadFrames(objectData), 0);
+        loadFrames(objectData);
         FrameAnimation.frameDelay = frameDelay;
         totalFrames = actionFrames.length;
         frameCount = 0;
-        setActionFrames(actionFrames, 0);
         currentFrameIndex = 0;
     }
 
@@ -75,18 +78,31 @@ public class FrameAnimation {
             } else if (currentFrameIndex < 0) {
                 currentFrameIndex = totalFrames - 1;
             }
-            frame = actionFrames[currentFrameIndex];
         }
+        frame = actionFrames[currentFrameIndex];
     }
 
     /**
-     * Loads Image File and divides it into sub-images (Frames)
-     * @param imageData holds Image File name and its Dimensions
-     * @return Frame Array containing all sub-images of Image File
-     * @throws IOException
+     * TODO Animates Frame Set one time
      */
-    private BufferedImage[] loadFrames(String[] imageData) throws IOException {
-
+    void animateOnce(){
+        frameCount++;
+        if (frameCount > frameDelay) {
+            frameCount = 0;
+            currentFrameIndex++;
+            if (currentFrameIndex > totalFrames - 1) {
+                currentFrameIndex = 0;
+            }
+            frame = actionFrames[currentFrameIndex];
+        }
+    }
+    /**
+     * Loads Image File and divides it into sub-images (Frames)
+     * @param imageData ObjectData holding Image File name and its Dimensions
+     * @return Frame Array containing all sub-images of Image File
+     * @throws IOException Image File
+     */
+    private BufferedImage[] loadFrames(String[] imageData) throws IOException{
         /**
          * File name
          */
@@ -130,8 +146,8 @@ public class FrameAnimation {
      * @param rowNumber States which Row of Frames will be used for Object Action
      * @return Frames Array for Action
      */
-    private BufferedImage[] setActionFrames(BufferedImage[] frames, int rowNumber){
-        System.arraycopy(frames, rowNumber, actionFrames, 0, actionFrames.length);
+    public BufferedImage[] setActionFrames(int rowNumber){
+        System.arraycopy(frames, rowNumber * 4, actionFrames, 0, actionFrames.length);
         return actionFrames;
     }
 }

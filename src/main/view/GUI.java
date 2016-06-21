@@ -39,23 +39,22 @@ public class GUI extends JFrame implements KeyListener{
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {
-    }
+    public void keyTyped(KeyEvent e) {}
 
     @Override
-    public void keyPressed(KeyEvent e) {
-
-    }
+    public void keyPressed(KeyEvent e) {}
 
     @Override
     public void keyReleased(KeyEvent e) {
         if(e.getKeyCode() == KeyEvent.VK_SPACE){
             if(!gamePaused){
                 gamePanel.timer.stop();
+                gamePanel.enemyTimer.stop();
                 gamePaused = true;
             }
             else {
                 gamePanel.timer.start();
+                gamePanel.enemyTimer.start();
                 gamePaused = false;
             }
         }
