@@ -14,7 +14,6 @@ public class Player{
     public FrameAnimation playerAnimation;
     private int lifePoints;
     public Rectangle playerDimension;
-    boolean playerCollision;
     public int action = 0;
 
     /**

@@ -5,9 +5,7 @@ import main.model.player.Player;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
-import javax.swing.plaf.synth.SynthTextAreaUI;
 import java.awt.*;
-import java.awt.geom.Arc2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -30,7 +28,7 @@ class GamePanel extends JPanel{
     private BufferedImage bgImage = ImageIO.read(new File(file));
     private BufferedImage bgImageOff = bgImage;
     private int yPos = 0;
-    private int yPosScroll = bgImage.getHeight();
+    private int yPosScroll;
 
     /**
      * Player (wird in Control initializiert)
@@ -40,8 +38,8 @@ class GamePanel extends JPanel{
     private Player player = new Player(playerAnimation);
     private int playerXPos = (bgImage.getWidth() / 2) -8;
     private int playerYPos = bgImage.getHeight() - 80;
-    boolean transitionLeft = false;
-    boolean transitionRight = false;
+    public boolean transitionLeft = false;
+    public boolean transitionRight = false;
 
     /**
      * Enemy (wird in Control initializiert)
@@ -59,7 +57,7 @@ class GamePanel extends JPanel{
      * Sets the Enemy creation rate
      * Creates Enemies
      */
-    Timer enemyTimer = new Timer(32, e -> {
+    public Timer enemyTimer = new Timer(32, e -> {
         /**
          * Random number between 1 and 16
          */
@@ -68,6 +66,7 @@ class GamePanel extends JPanel{
             case 1:
                 enemyStartX = (int) (Math.random() * 288 + 32);
                 aliveEnemy.add(new Enemy(1, enemyAnimation, enemyStartX));
+                break;
         }
         /**
          * Delete Enemies when offscreen
@@ -83,7 +82,7 @@ class GamePanel extends JPanel{
     /**
      * GUI Timer
      */
-    Timer timer = new Timer(32, e -> {
+    public Timer timer = new Timer(32, e -> {
         /**
          * Animate Background seamlessly
          */

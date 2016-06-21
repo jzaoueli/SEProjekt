@@ -24,7 +24,7 @@ public class GUI extends JFrame implements KeyListener{
         this.add(gamePanel);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
-                System.exit(0);
+                Runtime.getRuntime().exit(0);
             }
         });
         addKeyListener(this);
@@ -39,10 +39,14 @@ public class GUI extends JFrame implements KeyListener{
     }
 
     @Override
-    public void keyTyped(KeyEvent e) {}
+    public void keyTyped(KeyEvent e) {
+        // No action
+    }
 
     @Override
-    public void keyPressed(KeyEvent e) {}
+    public void keyPressed(KeyEvent e) {
+        // No action}
+    }
 
     @Override
     public void keyReleased(KeyEvent e) {

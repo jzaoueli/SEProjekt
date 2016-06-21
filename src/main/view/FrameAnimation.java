@@ -55,7 +55,7 @@ public class FrameAnimation {
      * @param frameDelay How long will Frame be showed
      * @throws IOException Load Data
      */
-    FrameAnimation(String[] objectData, int frameDelay) throws IOException {
+    public FrameAnimation(String[] objectData, int frameDelay) throws IOException {
         loadFrames(objectData);
         FrameAnimation.frameDelay = frameDelay;
         totalFrames = actionFrames.length;
@@ -68,7 +68,7 @@ public class FrameAnimation {
      * Substitutes the current Frame for the next Frame each frameCount
      * currentFrameIndex will reset when ist reaches the end of Frame Array
      */
-    void animate() {
+    public void animate() {
         frameCount++;
         if (frameCount > frameDelay) {
             frameCount = 0;

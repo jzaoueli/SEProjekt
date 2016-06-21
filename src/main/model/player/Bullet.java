@@ -10,13 +10,13 @@ import java.awt.*;
  */
 public class Bullet {
 
-    int type;
+    private int type;
     private FrameAnimation bulletAnimation;
     private int x;
     private int y;
-    int Width;
-    int Height;
-    Rectangle boundingBox;
+    private int Width;
+    private int Height;
+    private Rectangle boundingBox;
 
     public Bullet(int bulletType, FrameAnimation animation, int x, int y){
         this.bulletAnimation = animation;

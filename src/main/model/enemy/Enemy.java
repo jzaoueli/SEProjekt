@@ -65,10 +65,7 @@ public class Enemy {
      * @param speed Enemy speed
      */
     public void setMovement(int movementType, int speed){
-        switch (movementType){
-            case 1:
-                this.setY(this.getY() + speed);
-        }
+        this.setY(this.getY() + speed);
     }
 
     /**
