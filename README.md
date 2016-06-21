@@ -5,17 +5,17 @@
 - [ ] MVC
 - [ ] Testing
 
-## Yahima TODO
+### Game TODO 
 - [ ] Mehrere Gegner implementieren
 - [ ] Enemy Zustand ändern und Frames aktualisieren
 - [ ] Control
 
 
-### Was Yahima gerade tut:
+#### gerade
 * Bullet Implementierung
 * Collision Enemy-Bullet detection
 
-### Was geht schon:
+#### fertig:
 - [x] Frame Animation
 - [x] Player Steuerung
 - [x] Enemy erzeugen
