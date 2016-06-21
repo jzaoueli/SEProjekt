@@ -1,7 +1,5 @@
 package main.model;
 
-import main.view.GUI;
-
 /**
  * Created by ordencaos on 20.06.16.
  * Game Logic
@@ -13,9 +11,7 @@ public class Game {
     public Game(){
 
     }
-    void play(){
-
-
+    public void play(){
 
     }
 }
