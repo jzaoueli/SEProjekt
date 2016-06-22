@@ -1,6 +1,7 @@
 package main.view;
 
 import main.model.enemy.Enemy;
+import main.model.player.Bullet;
 import main.model.player.Player;
 
 import javax.imageio.ImageIO;
@@ -42,14 +43,19 @@ class GamePanel extends JPanel{
     public boolean transitionRight = false;
 
     /**
+     * Bullet
+     */
+    private int bulletStartX;
+    private int bulletStartY = playerYPos;
+    private ArrayList<Bullet> bullets = new ArrayList<>();
+    private String[] bulletImageData = ObjectData.getImageFiles().get(ObjectData.imageData.indexOf(ObjectData.bullets));
+    private FrameAnimation bulletAnimation = new FrameAnimation(bulletImageData, 6);
+    /**
      * Enemy (wird in Control initializiert)
      */
     private int random;
     private int enemyStartX;
     private ArrayList<Enemy> aliveEnemy = new ArrayList<>();
-    /**
-     * Enemy creation speed
-     */
     private String[] enemyImageData = ObjectData.getEnemyData().get(ObjectData.enemyData.indexOf(ObjectData.attack));
     private FrameAnimation enemyAnimation = new FrameAnimation(enemyImageData, 6);
 
@@ -61,7 +67,7 @@ class GamePanel extends JPanel{
         /**
          * Random number between 1 and 16
          */
-        random = (int) (Math.random() * 32) + 1;
+        random = (int) (Math.random() * 20) + 1;
         switch (random){
             case 1:
                 enemyStartX = (int) (Math.random() * 288 + 32);
@@ -74,6 +80,23 @@ class GamePanel extends JPanel{
         for (Iterator<Enemy> iterator = aliveEnemy.listIterator(); iterator.hasNext(); ) {
             Enemy enemy = iterator.next();
             if (enemy.getY() > 480) {
+                iterator.remove();
+            }
+        }
+    });
+
+    /**
+     * Bullet Timer
+     */
+    public Timer bulletTimer = new Timer(192, e -> {
+        bulletStartX = playerXPos;
+        bullets.add(new Bullet(1, bulletAnimation, bulletStartX, bulletStartY));
+        /**
+         * Delete Bullets when offscreen
+         */
+        for (Iterator<Bullet> iterator = bullets.listIterator(); iterator.hasNext(); ) {
+            Bullet bullet = iterator.next();
+            if (bullet.getY() < 0) {
                 iterator.remove();
             }
         }
@@ -112,6 +135,14 @@ class GamePanel extends JPanel{
         }
         player.playerAnimation.animate();
         /**
+         * Animate Bullets
+         * Move Bullets
+         */
+        for (Bullet bullet : bullets){
+            bullet.setMovement(10);
+            bullet.bulletAnimation.animate();
+        }
+        /**
          * Animate Enemies
          * Move Enemies
          */
@@ -124,6 +155,7 @@ class GamePanel extends JPanel{
     GamePanel() throws IOException {
         timer.start();
         enemyTimer.start();
+        bulletTimer.start();
     }
 
     public void paintComponent(Graphics g) {
@@ -142,7 +174,12 @@ class GamePanel extends JPanel{
          * Draw Player
          */
         g.drawImage(player.playerAnimation.frame, playerXPos, playerYPos, null);
-
+        /**
+         * Draw Bullets
+         */
+        for (Bullet bullet: bullets) {
+            g.drawImage(bullet.bulletAnimation.frame, bullet.getX(), bullet.getY(), null);
+        }
         /**
          * Draw Enemies
          */

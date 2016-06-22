@@ -11,19 +11,25 @@ import java.awt.*;
 public class Bullet {
 
     private int type;
-    private FrameAnimation bulletAnimation;
+    public FrameAnimation bulletAnimation;
     private int x;
     private int y;
     private int Width;
     private int Height;
     private Rectangle boundingBox;
 
-    public Bullet(int bulletType, FrameAnimation animation, int x, int y){
+    public Bullet(int bulletType, FrameAnimation animation, int startX, int startY){
+        this.type = bulletType;
         this.bulletAnimation = animation;
-        this.setX(x);
-        this.setY(y);
-
+        this.bulletAnimation.setActionFrames(0);
+        this.setX(startX);
+        this.setY(startY);
     }
+
+    public void setMovement(int speed){
+        this.setY(this.getY() - speed);
+    }
+
     public int getX() {
         return x;
     }

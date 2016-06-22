@@ -54,11 +54,13 @@ public class GUI extends JFrame implements KeyListener{
             if(!gamePaused){
                 gamePanel.timer.stop();
                 gamePanel.enemyTimer.stop();
+                gamePanel.bulletTimer.stop();
                 gamePaused = true;
             }
             else {
                 gamePanel.timer.start();
                 gamePanel.enemyTimer.start();
+                gamePanel.bulletTimer.start();
                 gamePaused = false;
             }
         }

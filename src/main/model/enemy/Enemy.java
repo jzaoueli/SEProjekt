@@ -55,8 +55,8 @@ public class Enemy {
     public Enemy(int enemyType, FrameAnimation animation, int startX){
         this.type = enemyType;
         this.enemyAnimation = animation;
-        this.setX(startX);
         this.enemyAnimation.setActionFrames(0);
+        this.setX(startX);
     }
 
     /**

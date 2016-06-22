@@ -34,9 +34,7 @@ public class StringParser extends GramBaseListener {
         ParseTreeWalker walker = new ParseTreeWalker();
         GramBaseListener listener = new GramBaseListener();
         walker.walk(listener, fileContext);
-
     }
-
     public void exitFile(GramParser.FileContext ctx) {
         System.out.println("If no error outputs occurred, then file has valid format!");
         //System.out.println(ctx.getText());
