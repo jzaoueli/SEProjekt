@@ -9,7 +9,7 @@ import java.io.IOException;
 public class CodeGenerator {
 
     public static void main(String[] args) throws IOException {
-        String packageName = "view", className = "ImageDate";
+        String packageName = "main.view", className = "ObjectData";
 
         CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
 
