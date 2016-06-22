@@ -1,6 +1,8 @@
 # SEProjekt: Infinite Fight
 
 ## TODO 
+- [ ] DSL
+- [ ] Sprites
 - [ ] LOC
 - [ ] MVC
 - [ ] Testing
