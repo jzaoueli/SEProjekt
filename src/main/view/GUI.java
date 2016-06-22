@@ -35,7 +35,7 @@ public class GUI extends JFrame implements KeyListener{
                 Toolkit.getDefaultToolkit().createCustomCursor
                         (image, new Point(0, 0), "invisibleCursor");
         this.setCursor(transparentCursor);
-        setVisible(true);
+       // setVisible(true);
     }
 
     @Override
