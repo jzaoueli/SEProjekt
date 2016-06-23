@@ -28,7 +28,8 @@ public class GameStart extends JFrame implements ActionListener {
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == gameStartPanel.startButton){
             this.setVisible(false);
-            this.add(frame);
+            this.frame.setVisible(true);
+
         }
     }
 }

@@ -62,7 +62,7 @@ class GamePanel extends JPanel{
      * Sets the Enemy creation rate
      * Creates Enemies
      */
-    public Timer enemyTimer = new Timer(32, e -> {
+    public Timer enemyTimer = new Timer(16, e -> {
         /**
          * Random number between 1 and 16
          */
@@ -87,7 +87,7 @@ class GamePanel extends JPanel{
     /**
      * Bullet Timer
      */
-    public Timer bulletTimer = new Timer(150, e -> {
+    public Timer bulletTimer = new Timer(200, e -> {
         bulletStartX = playerXPos;
         bullets.add(new Bullet(1, bulletAnimation, bulletStartX, bulletStartY));
         /**
