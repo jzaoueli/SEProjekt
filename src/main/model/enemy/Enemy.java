@@ -39,13 +39,13 @@ public class Enemy {
     /**
      * Enemy Coordinates
      */
-    private int x;
-    private int y;
+    public int x;
+    public int y;
 
     /**
      * Area of Collision
      */
-    private Rectangle boundingBox;
+    public Rectangle boundingBox;
     public int state;
 
     /**
@@ -57,9 +57,7 @@ public class Enemy {
     public Enemy(int enemyType, FrameAnimation animation, int startX){
         this.type = enemyType;
         this.enemyAnimation = animation;
-        this.enemyAnimation.setActionFrames(0);
         this.setX(startX);
-        this.setBoundingBox(new Rectangle(getX(), getY(), 32, 32));
         this.enemyAnimation.setActionFrames(getState());
     }
 
@@ -70,6 +68,7 @@ public class Enemy {
      */
     public void setMovement(int movementType, int speed){
         this.setY(this.getY() + speed);
+        this.setBoundingBox(new Rectangle(this.getX(), this.getY(), 32, 32));
     }
 
     /**
@@ -100,8 +99,8 @@ public class Enemy {
         return boundingBox;
     }
 
-    public void setBoundingBox(Rectangle boundingBox) {
-        this.boundingBox = boundingBox;
+    public void setBoundingBox(Rectangle rectangle){
+        this.boundingBox = rectangle;
     }
 
     public int getState() {

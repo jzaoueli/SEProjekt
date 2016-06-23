@@ -12,10 +12,8 @@ public class Bullet {
 
     private int type;
     public FrameAnimation bulletAnimation;
-    private int x;
-    private int y;
-    private int Width;
-    private int Height;
+    public int x;
+    public int y;
     public Rectangle boundingBox;
     public int state;
 
@@ -24,14 +22,13 @@ public class Bullet {
         this.bulletAnimation = animation;
         this.setX(startX);
         this.setY(startY);
-        this.setBoundingBox(new Rectangle(getX(), getY(), 12, 12));
         this.bulletAnimation.setActionFrames(this.getState());
     }
 
     public void setMovement(int speed){
         this.setY(this.getY() - speed);
+        this.setBoundingBox(new Rectangle(this.getX(), this.getY(), 12, 12));
     }
-
     public int getX() {
         return x;
     }
@@ -49,8 +46,8 @@ public class Bullet {
         return boundingBox;
     }
 
-    public void setBoundingBox(Rectangle boundingBox) {
-        this.boundingBox = boundingBox;
+    public void setBoundingBox(Rectangle rectangle) {
+        this.boundingBox = rectangle;
     }
 
     public int getState() {

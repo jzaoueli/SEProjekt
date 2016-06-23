@@ -85,7 +85,7 @@ public class FrameAnimation {
     /**
      * TODO Animates Frame Set one time
      */
-    void animateOnce(){
+    public void animateOnce(){
         frameCount++;
         if (frameCount > frameDelay) {
             frameCount = 0;

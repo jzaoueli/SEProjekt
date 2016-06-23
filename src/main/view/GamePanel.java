@@ -3,8 +3,6 @@ package main.view;
 import main.model.enemy.Enemy;
 import main.model.player.Bullet;
 import main.model.player.Player;
-import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
-
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -76,17 +74,11 @@ class GamePanel extends JPanel{
                 break;
         }
         /**
-         * Delete Enemies when offscreen or when Bullet collision
+         * Delete Enemies when offscreen
          */
         for (Iterator<Enemy> iterator = aliveEnemy.listIterator(); iterator.hasNext(); ) {
             Enemy enemy = iterator.next();
-            for(Bullet bullet: bullets){
-                if(bullet.getBoundingBox().intersects(enemy.getBoundingBox())){
-                    System.out.println("yes");
-                    iterator.remove();
-                }
-            }
-            if (enemy.getY() > 480) {
+            if (enemy.getY() > 480 || enemy.getState() == 1){
                 iterator.remove();
             }
         }
@@ -156,6 +148,13 @@ class GamePanel extends JPanel{
         for (Enemy enemy : aliveEnemy){
             enemy.setMovement(1, 10);
             enemy.enemyAnimation.animate();
+            for(Bullet bullet : bullets){
+                if(bullet.getBoundingBox().intersects(enemy.getBoundingBox())){
+                    enemy.setMovement(1, 0);
+                    enemy.setState(1);
+                    enemy.enemyAnimation.animateOnce();
+                }
+            }
         }
     });
 
@@ -186,14 +185,12 @@ class GamePanel extends JPanel{
          */
         for (Bullet bullet: bullets) {
             g.drawImage(bullet.bulletAnimation.frame, bullet.getX(), bullet.getY(), null);
-            g.drawRect(bullet.getX(), bullet.getY(), 12, 12);
         }
         /**
          * Draw Enemies
          */
         for (Enemy enemy : aliveEnemy){
             g.drawImage(enemy.enemyAnimation.frame, enemy.getX(), enemy.getY(), null);
-            g.drawRect(enemy.getX(), enemy.getY(), 32, 32);
         }
         repaint();
     }
