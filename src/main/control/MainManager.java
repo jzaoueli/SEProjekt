@@ -15,6 +15,7 @@ public class MainManager {
 //        JFrame frame = new GUI();
 //        frame.setVisible(true);
         frame2.setVisible(true);
+
     }
 
 }

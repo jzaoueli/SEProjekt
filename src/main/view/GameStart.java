@@ -6,20 +6,26 @@ import java.awt.event.*;
 import java.awt.image.MemoryImageSource;
 import java.io.IOException;
 
+import static com.sun.java.accessibility.util.AWTEventMonitor.addActionListener;
+
 /**
  * Created by user on 21/06/2016.
  */
-public class GameStart extends JFrame {
-
-
+public class GameStart extends JFrame implements ActionListener {
 
     private GameStartPanel gameStartPanel = new GameStartPanel();
-boolean gameStart =  true;
+
+    public GameStartPanel getGameStartPanel() {
+        return gameStartPanel;
+    }
+
     public GameStart() throws IOException, InterruptedException {
         setTitle("InfiniteFight");
         setMinimumSize(new Dimension(384, 480));
         setMaximumSize(new Dimension(384, 480));
         setLocationRelativeTo(null);
+
+        gameStartPanel.startButton.addActionListener(this);
 
         this.add(gameStartPanel);
         addWindowListener(new WindowAdapter() {
@@ -28,7 +34,7 @@ boolean gameStart =  true;
             }
         });
 
-        gameStartPanel.startButton.addActionListener(new ActionListener() {
+      /*  gameStartPanel.startButton.addActionListener(new ActionListener() {
 
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -41,26 +47,33 @@ boolean gameStart =  true;
                 } catch (InterruptedException e1) {
                     e1.printStackTrace();
                 }
+
                 frame.setVisible(true);
-               // gameStart = false;
-                remove(gameStartPanel);
-
+               // remove(gameStartPanel);
             }
 
 
 
         });
-
-        gameStartPanel.highScoreButton.addActionListener(new ActionListener() {
-
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                JOptionPane.showMessageDialog(null,"High Score");
-            }
-        });
-
+*/
     }
 
 
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        if (e.getSource() == gameStartPanel.startButton){
+            this.setVisible(false);
+            this.setEnabled(false);
+            this.remove(gameStartPanel);
 
+            try {
+                JFrame frame = new GUI();
+                frame.setVisible(true);
+            } catch (IOException e1) {
+                e1.printStackTrace();
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
+            }
+        }
+    }
 }
