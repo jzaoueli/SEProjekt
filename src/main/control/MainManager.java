@@ -12,8 +12,8 @@ import java.io.IOException;
 public class MainManager {
     public static void main(String[] args) throws IOException, InterruptedException {
         JFrame frame2 = new GameStart();
-        JFrame frame = new GUI();
-        //frame.setVisible(true);
+//        JFrame frame = new GUI();
+//        frame.setVisible(true);
         frame2.setVisible(true);
     }
 

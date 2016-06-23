@@ -11,8 +11,10 @@ import java.io.IOException;
  */
 public class GameStart extends JFrame {
 
-    private GameStartPanel gameStartPanel = new GameStartPanel();
 
+
+    private GameStartPanel gameStartPanel = new GameStartPanel();
+boolean gameStart =  true;
     public GameStart() throws IOException, InterruptedException {
         setTitle("InfiniteFight");
         setMinimumSize(new Dimension(384, 480));
@@ -30,8 +32,23 @@ public class GameStart extends JFrame {
 
             @Override
             public void actionPerformed(ActionEvent e) {
-               JOptionPane.showMessageDialog(null,"Start");
+
+                JFrame frame = null;
+                try {
+                    frame = new GUI();
+                } catch (IOException e1) {
+                    e1.printStackTrace();
+                } catch (InterruptedException e1) {
+                    e1.printStackTrace();
+                }
+                frame.setVisible(true);
+//                gameStart = false;
+                remove(gameStartPanel);
+
             }
+
+
+
         });
 
         gameStartPanel.highScoreButton.addActionListener(new ActionListener() {
