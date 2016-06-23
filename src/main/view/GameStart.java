@@ -42,7 +42,7 @@ boolean gameStart =  true;
                     e1.printStackTrace();
                 }
                 frame.setVisible(true);
-//                gameStart = false;
+               // gameStart = false;
                 remove(gameStartPanel);
 
             }
