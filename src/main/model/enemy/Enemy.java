@@ -41,10 +41,12 @@ public class Enemy {
      */
     private int x;
     private int y;
+
     /**
      * Area of Collision
      */
     private Rectangle boundingBox;
+    public int state;
 
     /**
      * Enemy Constructor
@@ -57,6 +59,8 @@ public class Enemy {
         this.enemyAnimation = animation;
         this.enemyAnimation.setActionFrames(0);
         this.setX(startX);
+        this.setBoundingBox(new Rectangle(getX(), getY(), 32, 32));
+        this.enemyAnimation.setActionFrames(getState());
     }
 
     /**
@@ -90,5 +94,21 @@ public class Enemy {
     }
     private void setX(int x) {
         this.x = x;
+    }
+
+    public Rectangle getBoundingBox() {
+        return boundingBox;
+    }
+
+    public void setBoundingBox(Rectangle boundingBox) {
+        this.boundingBox = boundingBox;
+    }
+
+    public int getState() {
+        return state;
+    }
+
+    public void setState(int state) {
+        this.state = state;
     }
 }

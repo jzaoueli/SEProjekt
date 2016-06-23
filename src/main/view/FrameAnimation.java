@@ -40,8 +40,8 @@ public class FrameAnimation {
      */
     private int rows;
     private int cols;
-    private int sizeX;
-    private int sizeY;
+    public int sizeX;
+    public int sizeY;
     /**
      * Set of Frames to be animated
      * TODO Frame number must (not) be 4 for better FrameAnimation

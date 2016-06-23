@@ -6,10 +6,12 @@ package main.model;
  * TODO
  */
 public class Game {
+
     public Game(){
         // TODO
     }
     public void play(){
         // TODO
     }
+
 }

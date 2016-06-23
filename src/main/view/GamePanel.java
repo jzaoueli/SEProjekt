@@ -3,6 +3,7 @@ package main.view;
 import main.model.enemy.Enemy;
 import main.model.player.Bullet;
 import main.model.player.Player;
+import org.omg.PortableInterceptor.SYSTEM_EXCEPTION;
 
 import javax.imageio.ImageIO;
 import javax.swing.*;
@@ -75,10 +76,16 @@ class GamePanel extends JPanel{
                 break;
         }
         /**
-         * Delete Enemies when offscreen
+         * Delete Enemies when offscreen or when Bullet collision
          */
         for (Iterator<Enemy> iterator = aliveEnemy.listIterator(); iterator.hasNext(); ) {
             Enemy enemy = iterator.next();
+            for(Bullet bullet: bullets){
+                if(bullet.getBoundingBox().intersects(enemy.getBoundingBox())){
+                    System.out.println("yes");
+                    iterator.remove();
+                }
+            }
             if (enemy.getY() > 480) {
                 iterator.remove();
             }
@@ -88,7 +95,7 @@ class GamePanel extends JPanel{
     /**
      * Bullet Timer
      */
-    public Timer bulletTimer = new Timer(192, e -> {
+    public Timer bulletTimer = new Timer(150, e -> {
         bulletStartX = playerXPos;
         bullets.add(new Bullet(1, bulletAnimation, bulletStartX, bulletStartY));
         /**
@@ -179,12 +186,14 @@ class GamePanel extends JPanel{
          */
         for (Bullet bullet: bullets) {
             g.drawImage(bullet.bulletAnimation.frame, bullet.getX(), bullet.getY(), null);
+            g.drawRect(bullet.getX(), bullet.getY(), 12, 12);
         }
         /**
          * Draw Enemies
          */
         for (Enemy enemy : aliveEnemy){
             g.drawImage(enemy.enemyAnimation.frame, enemy.getX(), enemy.getY(), null);
+            g.drawRect(enemy.getX(), enemy.getY(), 32, 32);
         }
         repaint();
     }
