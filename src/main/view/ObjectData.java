@@ -1,4 +1,5 @@
 package main.view;
+
 import java.util.ArrayList;
 
 /**
@@ -11,23 +12,29 @@ class ObjectData {
     public static ArrayList<String[]> imageData = new ArrayList<>();
     public static ArrayList<String[]> enemyData = new ArrayList<>();
 
+    //TODO ImageGetterUtil imageGetterUtil = new ImageGetterUtil();
+
     public static String[] bg = {"Sheets/bground.jpg"};
-    public static String[] startBackGround = {"Sheets/gameTitel.jpg"};
+    public static String[] startBackGround = {"Sheets/logogame.jpg"};
     public static String[] player = {"Sheets/player.png", "3", "4", "32", "48"};
-    public static String[] bullets = {"Sheets/bullets.png", "1", "4","12", "12"};
-    public static String[] attack = {"Sheets/atk.png", "3", "4", "32", "32", "zigzag", "8", "2", "1", "0.5"};
+    //TODO BufferedImage[] playerImages =  imageGetterUtil.getPlayerImages();
 
+    public static String[] bullets = {"Sheets/bullets.png", "1", "4", "12", "12"};
+    //TODO BufferedImage[] bulletsImages =  imageGetterUtil.getBulletsImages();
 
+    public static String[] Enemy = {"Sheets/atk.png", "3", "4", "32", "32", "zigzag", "8", "2", "1", "0.5"};
+    //TODO BufferedImage[] enemyImages =  imageGetterUtil.getEnemyImages();
 
-    public static ArrayList<String[]> getImageFiles(){
+    public static ArrayList<String[]> getImageFiles() {
         imageData.add(bg);
         imageData.add(player);
         imageData.add(bullets);
         imageData.add(startBackGround);
         return imageData;
     }
-    public static ArrayList<String[]> getEnemyData(){
-        enemyData.add(attack);
+
+    public static ArrayList<String[]> getEnemyData() {
+        enemyData.add(Enemy);
         return enemyData;
     }
 }

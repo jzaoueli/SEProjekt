@@ -3,6 +3,7 @@ package main.view;
 import main.model.enemy.Enemy;
 import main.model.player.Bullet;
 import main.model.player.Player;
+
 import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
@@ -19,7 +20,7 @@ import java.util.Iterator;
  * Creates Enemies
  * TODO MainManager
  */
-class GamePanel extends JPanel{
+class GamePanel extends JPanel {
 
     /**
      * Background (wird in Control initializiert)
@@ -36,7 +37,7 @@ class GamePanel extends JPanel{
     private String[] playerImageData = ObjectData.getImageFiles().get(ObjectData.imageData.indexOf(ObjectData.player));
     private FrameAnimation playerAnimation = new FrameAnimation(playerImageData, 6);
     private Player player = new Player(playerAnimation);
-    private int playerXPos = (bgImage.getWidth() / 2) -8;
+    private int playerXPos = (bgImage.getWidth() / 2) - 8;
     private int playerYPos = bgImage.getHeight() - 80;
     public boolean transitionLeft = false;
     public boolean transitionRight = false;
@@ -55,7 +56,7 @@ class GamePanel extends JPanel{
     private int random;
     private int enemyStartX;
     private ArrayList<Enemy> aliveEnemy = new ArrayList<>();
-    private String[] enemyImageData = ObjectData.getEnemyData().get(ObjectData.enemyData.indexOf(ObjectData.attack));
+    private String[] enemyImageData = ObjectData.getEnemyData().get(ObjectData.enemyData.indexOf(ObjectData.Enemy));
     private FrameAnimation enemyAnimation = new FrameAnimation(enemyImageData, 6);
 
     /**
@@ -67,7 +68,7 @@ class GamePanel extends JPanel{
          * Random number between 1 and 16
          */
         random = (int) (Math.random() * 20) + 1;
-        switch (random){
+        switch (random) {
             case 1:
                 enemyStartX = (int) (Math.random() * 288 + 32);
                 aliveEnemy.add(new Enemy(1, enemyAnimation, enemyStartX));
@@ -78,7 +79,13 @@ class GamePanel extends JPanel{
          */
         for (Iterator<Enemy> iterator = aliveEnemy.listIterator(); iterator.hasNext(); ) {
             Enemy enemy = iterator.next();
-            if (enemy.getY() > 480 || enemy.getState() == 1){
+            /*for(Bullet bullet: bullets){
+                if(bullet.getBoundingBox().intersects(enemy.getBoundingBox())){
+                    System.out.println("yes");
+                    iterator.remove();
+                }
+            }*/
+            if (enemy.getY() > 480) {
                 iterator.remove();
             }
         }
@@ -114,21 +121,19 @@ class GamePanel extends JPanel{
          * Animate Player
          * Move
          */
-        if(transitionRight){
+        if (transitionRight) {
             transitionLeft = false;
-            if(playerXPos <= 320) {
+            if (playerXPos <= 320) {
                 playerXPos += 4;
-            }
-            else {
+            } else {
                 transitionRight = false;
             }
         }
-        if(transitionLeft){
+        if (transitionLeft) {
             transitionRight = false;
-            if(playerXPos >= 32){
+            if (playerXPos >= 32) {
                 playerXPos -= 4;
-            }
-            else {
+            } else {
                 transitionLeft = false;
             }
         }
@@ -137,7 +142,7 @@ class GamePanel extends JPanel{
          * Animate Bullets
          * Move Bullets
          */
-        for (Bullet bullet : bullets){
+        for (Bullet bullet : bullets) {
             bullet.setMovement(10);
             bullet.bulletAnimation.animate();
         }
@@ -145,11 +150,11 @@ class GamePanel extends JPanel{
          * Animate Enemies
          * Move Enemies
          */
-        for (Enemy enemy : aliveEnemy){
+        for (Enemy enemy : aliveEnemy) {
             enemy.setMovement(1, 10);
             enemy.enemyAnimation.animate();
-            for(Bullet bullet : bullets){
-                if(bullet.getBoundingBox().intersects(enemy.getBoundingBox())){
+            for (Bullet bullet : bullets) {
+                if (bullet.getBoundingBox().intersects(enemy.getBoundingBox())) {
                     enemy.setMovement(1, 0);
                     enemy.setState(1);
                     enemy.enemyAnimation.animateOnce();
@@ -183,13 +188,13 @@ class GamePanel extends JPanel{
         /**
          * Draw Bullets
          */
-        for (Bullet bullet: bullets) {
+        for (Bullet bullet : bullets) {
             g.drawImage(bullet.bulletAnimation.frame, bullet.getX(), bullet.getY(), null);
         }
         /**
          * Draw Enemies
          */
-        for (Enemy enemy : aliveEnemy){
+        for (Enemy enemy : aliveEnemy) {
             g.drawImage(enemy.enemyAnimation.frame, enemy.getX(), enemy.getY(), null);
         }
         repaint();

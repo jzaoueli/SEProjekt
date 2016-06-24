@@ -1,5 +1,7 @@
 Background: "Sheets/bground.jpg";
 Player: "Sheets/player.png", 3, 4, 32, 48;
+enemy: {attack.png, 3, 4, 32, 32, vertical, 8, 2, 1, 0.5;
+
 Attack: "Sheets/attack.png", 3, 4, 32, 32, "zigzag", 8, 2, 1, 0,5;
 Bullets: "Sheets/bullets.png", 1, 4, 12, 12;
 Defense: "Sheets/defense.png" 3, 4, 32, 32, "zigzag" 8, 1, 2, 0,5;

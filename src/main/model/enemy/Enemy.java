@@ -1,9 +1,10 @@
 package main.model.enemy;
-import main.view.*;
+
+import main.view.FrameAnimation;
+
 import java.awt.*;
 
 /**
- * Created by ordencaos on 19.06.16.
  * Enemy Class
  * TODO
  */
@@ -45,16 +46,17 @@ public class Enemy {
     /**
      * Area of Collision
      */
-    public Rectangle boundingBox;
+    private Rectangle boundingBox;
     public int state;
 
     /**
      * Enemy Constructor
+     *
      * @param enemyType Enemy Type
      * @param animation Enemy Animation Frames
-     * @param startX Enemy x start position
+     * @param startX    Enemy x start position
      */
-    public Enemy(int enemyType, FrameAnimation animation, int startX){
+    public Enemy(int enemyType, FrameAnimation animation, int startX) {
         this.type = enemyType;
         this.enemyAnimation = animation;
         this.setX(startX);
@@ -63,19 +65,21 @@ public class Enemy {
 
     /**
      * Sets Enemy Movement
+     *
      * @param movementType Enemy Movement Type
-     * @param speed Enemy speed
+     * @param speed        Enemy speed
      */
-    public void setMovement(int movementType, int speed){
+    public void setMovement(int movementType, int speed) {
         this.setY(this.getY() + speed);
         this.setBoundingBox(new Rectangle(this.getX(), this.getY(), 32, 32));
     }
 
     /**
      * Sets Enemy Data
+     *
      * @param enemyData String Array of loaded ObjectData
      */
-    private void setEnemyData(String[] enemyData){
+    private void setEnemyData(String[] enemyData) {
         this.speed = Integer.valueOf(enemyData[6]);
         this.attack = Integer.valueOf(enemyData[7]);
         this.defense = Integer.valueOf(enemyData[8]);
@@ -85,12 +89,15 @@ public class Enemy {
     public int getY() {
         return y;
     }
+
     private void setY(int y) {
         this.y = y;
     }
+
     public int getX() {
         return x;
     }
+
     private void setX(int x) {
         this.x = x;
     }
@@ -99,7 +106,7 @@ public class Enemy {
         return boundingBox;
     }
 
-    public void setBoundingBox(Rectangle rectangle){
+    public void setBoundingBox(Rectangle rectangle) {
         this.boundingBox = rectangle;
     }
 

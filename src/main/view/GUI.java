@@ -7,11 +7,14 @@ package main.view;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.awt.image.MemoryImageSource;
 import java.io.IOException;
 
-public class GUI extends JFrame implements KeyListener{
+public class GUI extends JFrame implements KeyListener {
 
     private boolean gamePaused = false;
     private GamePanel gamePanel = new GamePanel();
@@ -22,6 +25,7 @@ public class GUI extends JFrame implements KeyListener{
         setMaximumSize(new Dimension(384, 480));
         setLocationRelativeTo(null);
         this.add(gamePanel);
+        //this.remove();
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 Runtime.getRuntime().exit(0);
@@ -35,7 +39,7 @@ public class GUI extends JFrame implements KeyListener{
                 Toolkit.getDefaultToolkit().createCustomCursor
                         (image, new Point(0, 0), "invisibleCursor");
         this.setCursor(transparentCursor);
-       // setVisible(true);
+        setVisible(true);
     }
 
     @Override
@@ -50,25 +54,24 @@ public class GUI extends JFrame implements KeyListener{
 
     @Override
     public void keyReleased(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_SPACE){
-            if(!gamePaused){
+        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+            if (!gamePaused) {
                 gamePanel.timer.stop();
                 gamePanel.enemyTimer.stop();
                 gamePanel.bulletTimer.stop();
                 gamePaused = true;
-            }
-            else {
+            } else {
                 gamePanel.timer.start();
                 gamePanel.enemyTimer.start();
                 gamePanel.bulletTimer.start();
                 gamePaused = false;
             }
         }
-        if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
             gamePanel.transitionRight = true;
             gamePanel.transitionLeft = false;
         }
-        if(e.getKeyCode() == KeyEvent.VK_LEFT){
+        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
             gamePanel.transitionLeft = true;
             gamePanel.transitionRight = false;
         }
