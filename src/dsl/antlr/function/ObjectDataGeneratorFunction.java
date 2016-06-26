@@ -31,11 +31,11 @@ public class ObjectDataGeneratorFunction {
      * - methods of ImageData
      */
     private void setImageDataContent() {
-        this.content += getImageDataContentMemberVariable();
-        this.content += setGetImageFilesMethod();
+        this.content += getImageDataMemberVariable();
+        this.content += getImageFilesMethod();
     }
 
-    private String setGetImageFilesMethod() {
+    private String getImageFilesMethod() {
         return "    static ArrayList<String[]> getImageFiles(){\n" +
                 "        imageData.add(player);\n" +
                 "        imageData.add(backGround);\n" +
@@ -44,7 +44,7 @@ public class ObjectDataGeneratorFunction {
                 "    }\n";
     }
 
-    private String getImageDataContentMemberVariable() {
+    private String getImageDataMemberVariable() {
         String imageData = getImageDataVariableDeclaration();
         String player = getPlayerVariableDeclaration();
         String backGround = getBackGroundVariableDeclaration();
