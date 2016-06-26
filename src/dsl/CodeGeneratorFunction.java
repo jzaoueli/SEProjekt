@@ -16,7 +16,7 @@ import java.util.Calendar;
  * - instance.setClassContent()
  * - instance.setFooter
  */
-class CodeGeneratorFunction {
+public class CodeGeneratorFunction {
 
     private String workingString = "";
     private String path;
@@ -24,22 +24,21 @@ class CodeGeneratorFunction {
     private String packageName;
 
     /**
-     * the path of the generated file will be created from the packageName
+     * the path of the gen file will be created from the packageName
      *
      * @param packageName : name of class package
-     * @param className   : name of generated class
+     * @param className   : name of gen class
      */
-    CodeGeneratorFunction(String packageName, String className){
+    public CodeGeneratorFunction(String packageName, String className){
         this.packageName = packageName;
         this.className = className;
         path = "src/" + packageName.replaceAll("\\.", "/") + "/" + className + ".java";
     }
 
     /**
-     * set the header of the generated class
-
+     * set the header of the gen class
      */
-    void setHeader() {
+    public void setHeader() {
         this.workingString = "package " + packageName + ";\n\n" +
                 "import java.util.ArrayList;\n\n" +
                 "/**\n * creation : " + getTime() +
@@ -48,19 +47,16 @@ class CodeGeneratorFunction {
     }
 
     /**
-     * set the content of the class ImageData:
-     * - member variable of ImageData
-     * - methods of ImageData
+     * set the content of class
      */
-    void setImageDataContent() {
-        this.workingString += getImageDataContentMemberVariable();
-        this.workingString += setGetImageFilesMethod();
+    public void setContent(String content){
+        this.workingString += content;
     }
 
     /**
-     * set the end of generated class
+     * set the end of gen class
      */
-    void setFooter() {
+    public void setFooter() {
         this.workingString += "}";
     }
 
@@ -71,7 +67,7 @@ class CodeGeneratorFunction {
      * @path must be initialised in setHeader()
      * @workingString modified in every method
      */
-    void createAndWriteInFile() throws IOException {
+    public void createAndWriteInFile() throws IOException {
         File file = new File(path);
         FileWriter writer = new FileWriter(file);
         writer.write(workingString);
@@ -79,35 +75,6 @@ class CodeGeneratorFunction {
         writer.close();
     }
 
-    private String setGetImageFilesMethod() {
-        return "    static ArrayList<String[]> getImageFiles(){\n" +
-                "        imageData.add(player);\n" +
-                "        imageData.add(backGround);\n" +
-                "\n" +
-                "        return imageData;\n" +
-                "    }\n";
-    }
-
-    private String getImageDataContentMemberVariable() {
-        String imageData = getImageDataVariableDeclaration();
-        String player = getPlayerVariableDeclaration();
-        String backGround = getBackGroundVariableDeclaration();
-        return imageData + "\n" + player + "\n" + backGround + "\n\n";
-    }
-
-    //TODO get background file from csv file with antlr
-    private String getBackGroundVariableDeclaration() {
-        return "    private static String[] backGround = {\"Sheets/bground.jpg\"};";
-    }
-
-    //TODO get Player value from csv file with antlr
-    private String getPlayerVariableDeclaration() {
-        return "    static String[] player = {\"Sheets/player.png\", \"3\", \"4\", \"32\", \"48\"};";
-    }
-
-    private String getImageDataVariableDeclaration() {
-        return "    static ArrayList<String[]> imageData = new ArrayList<>();";
-    }
 
     private String getTime() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");

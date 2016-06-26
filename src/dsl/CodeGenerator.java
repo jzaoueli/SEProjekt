@@ -1,5 +1,7 @@
 package dsl;
 
+import dsl.antlr.function.*;
+
 import java.io.IOException;
 
 /**
@@ -9,13 +11,24 @@ import java.io.IOException;
 public class CodeGenerator {
 
     public static void main(String[] args) throws IOException {
-        String packageName = "main.view", className = "ObjectData";
 
-        CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
+        String objectDataPackage = "dsl.generation";
+        ObjectDataGeneratorFunction objectDataGeneratorFunction =new ObjectDataGeneratorFunction();
+        objectDataGeneratorFunction.run(objectDataPackage);
 
-        codeGeneratorFunction.setHeader();
-        codeGeneratorFunction.setImageDataContent();
-        codeGeneratorFunction.setFooter();
-        codeGeneratorFunction.createAndWriteInFile();
+        //generateLogo
+        LogoGeneratorFunction logoGeneratorFunction = new LogoGeneratorFunction();
+
+        //generateBackGround
+        BackGroundGeneratorFunction backGroundGeneratorFunction =new BackGroundGeneratorFunction();
+
+        //generatePlayer
+        PlayerGeneratorFunction playerGeneratorFunction = new PlayerGeneratorFunction();
+
+        //generateEnemy
+        EnemyGeneratorFunction enemyGeneratorFunction = new EnemyGeneratorFunction();
+
+        //generateBullet
+        BulletGeneratorFunction bulletGeneratorFunction = new BulletGeneratorFunction();
     }
 }
