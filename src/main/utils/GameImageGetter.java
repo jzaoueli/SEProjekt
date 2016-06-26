@@ -1,4 +1,4 @@
-package dsl.antlr.utils;
+package main.utils;
 
 
 import main.generated.*;
