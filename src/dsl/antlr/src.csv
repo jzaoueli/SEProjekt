@@ -1,2 +1,5 @@
-background;bground.jpg
+logo;logo.png
+background;background.jpg
 player;player.png;2;3;32;48
+enemy;attack.png;3;4;32;32;vertical;8;2;1;1
+bullet;bullets.png;1;4;12;12
