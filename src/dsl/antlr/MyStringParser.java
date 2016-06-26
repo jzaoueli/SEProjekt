@@ -19,7 +19,7 @@ import static java.lang.Integer.valueOf;
  * Background: path of background image file.
  * Player: player image, line, column, width, height;
  */
-public class StringParser extends GramBaseListener {
+public class MyStringParser extends GramBaseListener {
 
     private Logo logo;
     private BackGround backGround;
@@ -28,7 +28,7 @@ public class StringParser extends GramBaseListener {
     private Bullet bullet;
 
 
-    public StringParser(String path) throws IOException {
+    public MyStringParser(String path) throws IOException {
         //"src/dsl/antlr/src.csv"
         FileReader fileReader = new FileReader(path);
         ANTLRInputStream antlrInputStream = new ANTLRInputStream(fileReader);
@@ -42,7 +42,7 @@ public class StringParser extends GramBaseListener {
         FileContext fileContext = parser.file();
         // Walk it and attach our listener
         ParseTreeWalker walker = new ParseTreeWalker();
-        GramBaseListener listener = new StringParser(path);
+        GramBaseListener listener = new MyStringParser(path);
         walker.walk(listener, fileContext);
 
     }
