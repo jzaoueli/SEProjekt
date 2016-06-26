@@ -38,9 +38,9 @@ public class CodeGeneratorFunction {
     /**
      * set the header of the gen class
      */
-    public void setHeader() {
+    public void setHeader(String imported) {
         this.workingString = "package " + packageName + ";\n\n" +
-                "import java.util.ArrayList;\n\n" +
+                imported +
                 "/**\n * creation : " + getTime() +
                 "\n */\n" +
                 "class " + className + " {\n\n";
@@ -57,7 +57,7 @@ public class CodeGeneratorFunction {
      * set the end of gen class
      */
     public void setFooter() {
-        this.workingString += "}";
+        this.workingString += "\n}";
     }
 
     /**

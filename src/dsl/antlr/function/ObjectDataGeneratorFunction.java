@@ -13,8 +13,9 @@ public class ObjectDataGeneratorFunction {
 
     public void run(String packageName) throws IOException {
         String className = "ObjectData";
+        String imported = "import java.util.ArrayList;\n\n";
         CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
-        codeGeneratorFunction.setHeader();
+        codeGeneratorFunction.setHeader(imported);
 
         setImageDataContent();
 

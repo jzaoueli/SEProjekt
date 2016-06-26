@@ -12,15 +12,16 @@ public class CodeGenerator {
 
     public static void main(String[] args) throws IOException {
 
-        String objectDataPackage = "dsl.generation";
+        String packageName = "dsl.generation";
         ObjectDataGeneratorFunction objectDataGeneratorFunction =new ObjectDataGeneratorFunction();
-        objectDataGeneratorFunction.run(objectDataPackage);
+        objectDataGeneratorFunction.run(packageName);
 
         //generateLogo
         LogoGeneratorFunction logoGeneratorFunction = new LogoGeneratorFunction();
 
         //generateBackGround
         BackGroundGeneratorFunction backGroundGeneratorFunction =new BackGroundGeneratorFunction();
+        backGroundGeneratorFunction.run(packageName);
 
         //generatePlayer
         PlayerGeneratorFunction playerGeneratorFunction = new PlayerGeneratorFunction();
