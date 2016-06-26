@@ -1,15 +1,18 @@
 package dsl.antlr;
 
-import dsl.antlr.generated.GramBaseListener;
-import dsl.antlr.generated.GramLexer;
-import dsl.antlr.generated.GramParser;
+import dsl.antlr.gen.GramBaseListener;
+import dsl.antlr.gen.GramLexer;
+import dsl.antlr.gen.GramParser;
+import dsl.antlr.objects.*;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.io.FileReader;
 import java.io.IOException;
-import java.util.jar.Attributes;
+
+import static dsl.antlr.gen.GramParser.*;
+import static java.lang.Integer.valueOf;
 
 /**
  * read data from CSV file and give the necessary
@@ -18,9 +21,16 @@ import java.util.jar.Attributes;
  */
 public class StringParser extends GramBaseListener {
 
-    public static void main(String[] args) throws IOException {
+    private Logo logo;
+    private BackGround backGround;
+    private Player player;
+    private Enemy enemy;
+    private Bullet bullet;
 
-        FileReader fileReader = new FileReader("src/dsl/antlr/src.csv");
+
+    public StringParser(String path) throws IOException {
+        //"src/dsl/antlr/src.csv"
+        FileReader fileReader = new FileReader(path);
         ANTLRInputStream antlrInputStream = new ANTLRInputStream(fileReader);
         // Get CSV lexer
         GramLexer lexer = new GramLexer(antlrInputStream);
@@ -29,16 +39,92 @@ public class StringParser extends GramBaseListener {
         // Pass the tokens to the parser
         GramParser parser = new GramParser(tokens);
         // Specify our entry point
-        GramParser.FileContext fileContext = parser.file();
+        FileContext fileContext = parser.file();
         // Walk it and attach our listener
         ParseTreeWalker walker = new ParseTreeWalker();
-        GramBaseListener listener = new GramBaseListener();
+        GramBaseListener listener = new StringParser(path);
         walker.walk(listener, fileContext);
+
     }
-    public void exitFile(GramParser.FileContext ctx) {
-        System.out.println("If no error outputs occurred, then file has valid format!");
-        //System.out.println(ctx.getText());
-        System.out.println("player row : " + ctx.playerRow());
-        //System.out.println(ctx.playerRow().getChild(0).getText());
+
+    public void exitFile(FileContext ctx) {
+        System.err.println("number of objects = " + ctx.getChildCount());
+
+        setLogo(ctx.logo());
+
+        setBackGround(ctx.backGround());
+
+        setPlayer(ctx.player());
+
+        setEnemy(ctx.enemy());
+
+        setBullet(ctx.bullet());
+    }
+
+    private void setBullet(BulletContext bulletContext) {
+        String fileName = bulletContext.fileName().getText();
+        int numberLine = valueOf(bulletContext.nubmerLine().getText());
+        int numberColumn = valueOf(bulletContext.numberColumn().getText());
+        int width = valueOf(bulletContext.objectWidth().getText());
+        int height = valueOf(bulletContext.objectHeight().getText());
+
+        bullet = new Bullet(fileName, numberLine, numberColumn, width, height);
+    }
+
+    private void setEnemy(EnemyContext enemyContext) {
+        String fileName = enemyContext.fileName().getText();
+        int numberLine = valueOf(enemyContext.nubmerLine().getText());
+        int numberColumn = valueOf(enemyContext.numberColumn().getText());
+        int width = valueOf(enemyContext.objectWidth().getText());
+        int height = valueOf(enemyContext.objectHeight().getText());
+        String movingType = enemyContext.movingType().getText();
+        int speed = valueOf(enemyContext.speed().getText());
+        int offense = valueOf(enemyContext.offense().getText());
+        int defence = valueOf(enemyContext.defence().getText());
+        int probability = valueOf(enemyContext.probability().getText());
+
+        System.out.println("movingType : " + movingType);
+
+        enemy = new Enemy(fileName, numberLine, numberColumn, width, height, movingType, speed, offense, defence, probability);
+    }
+
+    private void setPlayer(PlayerContext playerContext) {
+        String fileName = playerContext.fileName().getText();
+        int numberLine = valueOf(playerContext.nubmerLine().getText());
+        int numberColumn = valueOf(playerContext.numberColumn().getText());
+        int width = valueOf(playerContext.objectWidth().getText());
+        int height = valueOf(playerContext.objectHeight().getText());
+
+        player = new Player(fileName, numberLine, numberColumn, width, height);
+    }
+
+    private void setBackGround(BackGroundContext backGroundContext) {
+        String fileName = backGroundContext.fileName().getText();
+        backGround = new BackGround(fileName);
+    }
+
+    private void setLogo(LogoContext logoContext) {
+        String fileName = logoContext.fileName().getText();
+        logo = new Logo(fileName);
+    }
+
+    public Logo getLogo() {
+        return logo;
+    }
+
+    public BackGround getBackGround() {
+        return backGround;
+    }
+
+    public Player getPlayer() {
+        return player;
+    }
+
+    public Enemy getEnemy() {
+        return enemy;
+    }
+
+    public Bullet getBullet() {
+        return bullet;
     }
 }
