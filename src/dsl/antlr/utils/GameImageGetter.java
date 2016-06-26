@@ -1,7 +1,7 @@
 package dsl.antlr.utils;
 
-import dsl.antlr.MyStringParser;
-import dsl.antlr.objects.*;
+
+import main.generated.*;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -16,15 +16,6 @@ public class GameImageGetter {
     private Enemy enemy;
     private Bullet bullet;
 
-
-    public GameImageGetter() throws IOException {
-        MyStringParser stringParser = new MyStringParser("src/dsl/antlr/src.csv");
-        logo = stringParser.getLogo();
-        backGround = stringParser.getBackGround();
-        player = stringParser.getPlayer();
-        enemy = stringParser.getEnemy();
-        bullet = stringParser.getBullet();
-    }
 
     public BufferedImage getGameStartLogo() throws IOException {
         return getBufferedImage(logo.getFileName());

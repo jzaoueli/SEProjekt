@@ -12,7 +12,7 @@ public class CodeGenerator {
 
     public static void main(String[] args) throws IOException {
 
-        String packageName = "dsl.generation";
+        String packageName = "main.generated";
         ObjectDataGeneratorFunction objectDataGeneratorFunction = new ObjectDataGeneratorFunction();
         objectDataGeneratorFunction.run(packageName);
 

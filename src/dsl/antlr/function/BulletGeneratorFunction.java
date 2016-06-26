@@ -4,7 +4,7 @@ import dsl.CodeGeneratorFunction;
 import dsl.antlr.gen.GramBaseListener;
 import dsl.antlr.gen.GramLexer;
 import dsl.antlr.gen.GramParser;
-import dsl.generation.Bullet;
+import main.generated.Bullet;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
