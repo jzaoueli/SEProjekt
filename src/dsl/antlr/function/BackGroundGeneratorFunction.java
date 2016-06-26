@@ -4,6 +4,8 @@ import dsl.CodeGeneratorFunction;
 
 import java.io.IOException;
 
+import static dsl.CodeGeneratorFunction.getGetter;
+
 /**
  * BackGround class generation
  */
@@ -36,9 +38,7 @@ public class BackGroundGeneratorFunction {
     }
 
     private String getBackGroundMethod() {
-        return "    public String getFileName() {\n" +
-                "        return fileName;\n" +
-                "    }\n\n";
+        return getGetter("FileName", "fileName", "String");
     }
 
     private String getBackGroundMemberVariable() {

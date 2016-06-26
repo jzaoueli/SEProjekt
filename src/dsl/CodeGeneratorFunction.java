@@ -29,7 +29,7 @@ public class CodeGeneratorFunction {
      * @param packageName : name of class package
      * @param className   : name of gen class
      */
-    public CodeGeneratorFunction(String packageName, String className){
+    public CodeGeneratorFunction(String packageName, String className) {
         this.packageName = packageName;
         this.className = className;
         path = "src/" + packageName.replaceAll("\\.", "/") + "/" + className + ".java";
@@ -49,7 +49,7 @@ public class CodeGeneratorFunction {
     /**
      * set the content of class
      */
-    public void setContent(String content){
+    public void setContent(String content) {
         this.workingString += content;
     }
 
@@ -75,6 +75,11 @@ public class CodeGeneratorFunction {
         writer.close();
     }
 
+    public static String getGetter(String MethodName, String fieldName, String retrunType) {
+        return "    public " + retrunType + " get" + MethodName + "() {\n" +
+                "        return " + fieldName + ";\n" +
+                "    }\n\n";
+    }
 
     private String getTime() {
         DateFormat dateFormat = new SimpleDateFormat("yyyy/MM/dd HH:mm");

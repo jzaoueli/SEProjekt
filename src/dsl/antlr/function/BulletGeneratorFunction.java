@@ -4,6 +4,8 @@ import dsl.CodeGeneratorFunction;
 
 import java.io.IOException;
 
+import static dsl.CodeGeneratorFunction.getGetter;
+
 /**
  * Bullet class generation
  */
@@ -48,12 +50,6 @@ public class BulletGeneratorFunction {
         tempString += getGetter("Height", "height", "int");
 
         return tempString;
-    }
-
-    private String getGetter(String MethodName, String fieldName, String retrunType) {
-        return "    public " + retrunType + " get" + MethodName + "() {\n" +
-                "        return " + fieldName + ";\n" +
-                "    }\n\n";
     }
 
     private String getBulletMemberVariable() {

@@ -4,6 +4,8 @@ import dsl.CodeGeneratorFunction;
 
 import java.io.IOException;
 
+import static dsl.CodeGeneratorFunction.getGetter;
+
 /**
  * Enemy class generation.
  */
@@ -58,12 +60,6 @@ public class EnemyGeneratorFunction {
         tempString += getGetter("Probability", "probability", "int");
 
         return tempString;
-    }
-
-    private String getGetter(String MethodName, String fieldName, String retrunType) {
-        return "    public " + retrunType + " get" + MethodName + "() {\n" +
-                "        return " + fieldName + ";\n" +
-                "    }\n\n";
     }
 
     private String getEnemyMemberVariable() {

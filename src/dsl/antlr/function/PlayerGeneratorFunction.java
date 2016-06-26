@@ -4,6 +4,8 @@ import dsl.CodeGeneratorFunction;
 
 import java.io.IOException;
 
+import static dsl.CodeGeneratorFunction.getGetter;
+
 /**
  * player class generation
  */
@@ -30,7 +32,7 @@ public class PlayerGeneratorFunction {
     }
 
     private String getPlayerConstructor() {
-        return  "      public Player(String fileName, int numberLine, int numberColumn, int width, int height) {\n" +
+        return "      public Player(String fileName, int numberLine, int numberColumn, int width, int height) {\n" +
                 "        this.fileName = fileName;\n" +
                 "        this.numberLine = numberLine;\n" +
                 "        this.numberColumn = numberColumn;\n" +
@@ -50,14 +52,8 @@ public class PlayerGeneratorFunction {
         return tempString;
     }
 
-    private String getGetter(String MethodName, String fieldName, String retrunType) {
-        return  "    public " + retrunType + " get" + MethodName + "() {\n" +
-                "        return " + fieldName + ";\n" +
-                "    }\n\n";
-    }
-
     private String getPlayerMemberVariable() {
-        return  "    private String fileName = \"player.png\";\n" +
+        return "    private String fileName = \"player.png\";\n" +
                 "    private int numberLine = 3;\n" +
                 "    private int numberColumn = 4;\n" +
                 "    private int width = 32;\n" +
