@@ -1,7 +1,15 @@
 package dsl.antlr.function;
 
 import dsl.CodeGeneratorFunction;
+import dsl.antlr.gen.GramBaseListener;
+import dsl.antlr.gen.GramLexer;
+import dsl.antlr.gen.GramParser;
+import dsl.generation.Logo;
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
+import java.io.FileReader;
 import java.io.IOException;
 
 import static dsl.CodeGeneratorFunction.getGetter;
@@ -9,10 +17,13 @@ import static dsl.CodeGeneratorFunction.getGetter;
 /**
  * Logo class generation
  */
-public class LogoGeneratorFunction {
+public class LogoGeneratorFunction extends GramBaseListener {
+    private static Logo logo;
     private String content = "";
 
     public void run(String packageName) throws IOException {
+        initLogo();
+
         String className = "Logo";
         CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
         codeGeneratorFunction.setHeader("");
@@ -23,6 +34,28 @@ public class LogoGeneratorFunction {
         codeGeneratorFunction.setFooter();
         codeGeneratorFunction.createAndWriteInFile();
 
+    }
+
+    private static Logo initLogo() throws IOException {
+        FileReader fileReader = new FileReader("src/dsl/antlr/src.csv");
+        ANTLRInputStream antlrInputStream = new ANTLRInputStream(fileReader);
+        // Get CSV lexer
+        GramLexer lexer = new GramLexer(antlrInputStream);
+        // Get a list of matched tokens
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        // Pass the tokens to the parser
+        GramParser parser = new GramParser(tokens);
+        // Specify our entry point
+        GramParser.FileContext fileContext = parser.file();
+        // Walk it and attach our listener
+        ParseTreeWalker walker = new ParseTreeWalker();
+        GramBaseListener listener = new LogoGeneratorFunction();
+        walker.walk(listener, fileContext);
+        return logo;
+    }
+
+    public void exitFile(GramParser.FileContext ctx) {
+        logo = new Logo(ctx.logo().fileName().getText());
     }
 
     private void setLogoContent() {
@@ -42,7 +75,7 @@ public class LogoGeneratorFunction {
     }
 
     private String getLogoMemberVariable() {
-        return "    private String fileName = \"logo.jpg\";\n\n";
+        return "    private String fileName = \""+logo.getFileName()+"\";\n\n";
     }
 
 }
