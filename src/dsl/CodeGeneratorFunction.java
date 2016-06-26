@@ -43,7 +43,7 @@ public class CodeGeneratorFunction {
                 imported +
                 "/**\n * creation : " + getTime() +
                 "\n */\n" +
-                "class " + className + " {\n\n";
+                "public class " + className + " {\n\n";
     }
 
     /**
