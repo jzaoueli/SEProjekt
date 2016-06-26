@@ -1,18 +1,29 @@
 package dsl.antlr.function;
 
 import dsl.CodeGeneratorFunction;
+import dsl.antlr.gen.GramBaseListener;
+import dsl.antlr.gen.GramLexer;
+import dsl.antlr.gen.GramParser;
+import dsl.generation.Enemy;
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
+import java.io.FileReader;
 import java.io.IOException;
 
 import static dsl.CodeGeneratorFunction.getGetter;
+import static java.lang.Integer.valueOf;
 
 /**
  * Enemy class generation.
  */
-public class EnemyGeneratorFunction {
+public class EnemyGeneratorFunction extends GramBaseListener {
+    private static Enemy enemy;
     private String content = "";
 
     public void run(String packageName) throws IOException {
+        initEnemy();
         String className = "Enemy";
         CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
         codeGeneratorFunction.setHeader("");
@@ -23,6 +34,41 @@ public class EnemyGeneratorFunction {
         codeGeneratorFunction.setFooter();
         codeGeneratorFunction.createAndWriteInFile();
 
+    }
+
+    private static Enemy initEnemy() throws IOException {
+        FileReader fileReader = new FileReader("src/dsl/antlr/src.csv");
+        ANTLRInputStream antlrInputStream = new ANTLRInputStream(fileReader);
+        // Get CSV lexer
+        GramLexer lexer = new GramLexer(antlrInputStream);
+        // Get a list of matched tokens
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        // Pass the tokens to the parser
+        GramParser parser = new GramParser(tokens);
+        // Specify our entry point
+        GramParser.FileContext fileContext = parser.file();
+        // Walk it and attach our listener
+        ParseTreeWalker walker = new ParseTreeWalker();
+        GramBaseListener listener = new EnemyGeneratorFunction();
+        walker.walk(listener, fileContext);
+        return enemy;
+    }
+
+    public void exitFile(GramParser.FileContext ctx) {
+        String fileName = ctx.enemy().fileName().getText();
+        int numberLine = valueOf(ctx.enemy().nubmerLine().getText());
+        int numberColumn = valueOf(ctx.enemy().numberColumn().getText());
+        int width = valueOf(ctx.enemy().objectWidth().getText());
+        int height = valueOf(ctx.enemy().objectHeight().getText());
+        String movingType = ctx.enemy().movingType().getText();
+        int speed = valueOf(ctx.enemy().speed().getText());
+        int offense = valueOf(ctx.enemy().offense().getText());
+        int defence = valueOf(ctx.enemy().defence().getText());
+        int probability = valueOf(ctx.enemy().probability().getText());
+
+        System.out.println("movingType : " + movingType);
+
+        enemy = new Enemy(fileName, numberLine, numberColumn, width, height, movingType, speed, offense, defence, probability);
     }
 
     private void setEnemyContent() {
@@ -63,15 +109,15 @@ public class EnemyGeneratorFunction {
     }
 
     private String getEnemyMemberVariable() {
-        return "    private String fileName = \"attack.png\";\n" +
-                "    private int numberLine = 3;\n" +
-                "    private int numberColumn = 4;\n" +
-                "    private int width = 32;\n" +
-                "    private int height = 32;\n" +
-                "    private String movingType = \"vertical\";\n" +
-                "    private int speed = 8;\n" +
-                "    private int offense = 2;\n" +
-                "    private int defence = 1;\n" +
-                "    private int probability = 1;\n\n";
+        return "    private String fileName = \"" + enemy.getFileName() + "\";\n" +
+                "    private int numberLine = " + enemy.getNumberLine() + ";\n" +
+                "    private int numberColumn = " + enemy.getNumberColumn() + ";\n" +
+                "    private int width = " + enemy.getWidth() + ";\n" +
+                "    private int height = " + enemy.getHeight() + ";\n" +
+                "    private String movingType = \"" + enemy.getMovingType() + "\";\n" +
+                "    private int speed = " + enemy.getSpeed() + ";\n" +
+                "    private int offense = " + enemy.getOffense() + ";\n" +
+                "    private int defence = " + enemy.getDefence() + ";\n" +
+                "    private int probability = " + enemy.getProbability() + ";\n\n";
     }
 }
