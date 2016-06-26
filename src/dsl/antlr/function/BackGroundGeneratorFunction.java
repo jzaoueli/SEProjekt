@@ -1,7 +1,15 @@
 package dsl.antlr.function;
 
 import dsl.CodeGeneratorFunction;
+import dsl.antlr.gen.GramBaseListener;
+import dsl.antlr.gen.GramLexer;
+import dsl.antlr.gen.GramParser;
+import dsl.generation.BackGround;
+import org.antlr.v4.runtime.ANTLRInputStream;
+import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
+import java.io.FileReader;
 import java.io.IOException;
 
 import static dsl.CodeGeneratorFunction.getGetter;
@@ -9,10 +17,13 @@ import static dsl.CodeGeneratorFunction.getGetter;
 /**
  * BackGround class generation
  */
-public class BackGroundGeneratorFunction {
+public class BackGroundGeneratorFunction extends GramBaseListener {
+    private static BackGround backGround;
     private String content = "";
 
     public void run(String packageName) throws IOException {
+        initBackGround();
+
         String className = "BackGround";
         CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
         codeGeneratorFunction.setHeader("");
@@ -23,6 +34,28 @@ public class BackGroundGeneratorFunction {
         codeGeneratorFunction.setFooter();
         codeGeneratorFunction.createAndWriteInFile();
 
+    }
+
+    private static BackGround initBackGround() throws IOException {
+        FileReader fileReader = new FileReader("src/dsl/antlr/src.csv");
+        ANTLRInputStream antlrInputStream = new ANTLRInputStream(fileReader);
+        // Get CSV lexer
+        GramLexer lexer = new GramLexer(antlrInputStream);
+        // Get a list of matched tokens
+        CommonTokenStream tokens = new CommonTokenStream(lexer);
+        // Pass the tokens to the parser
+        GramParser parser = new GramParser(tokens);
+        // Specify our entry point
+        GramParser.FileContext fileContext = parser.file();
+        // Walk it and attach our listener
+        ParseTreeWalker walker = new ParseTreeWalker();
+        GramBaseListener listener = new BackGroundGeneratorFunction();
+        walker.walk(listener, fileContext);
+        return backGround;
+    }
+
+    public void exitFile(GramParser.FileContext ctx) {
+        backGround = new BackGround(ctx.backGround().fileName().getText());
     }
 
     private void setBackGroundContent() {
@@ -42,6 +75,6 @@ public class BackGroundGeneratorFunction {
     }
 
     private String getBackGroundMemberVariable() {
-        return "    private String fileName = \"background.jpg\";\n\n";
+        return "    private String fileName = \"" + backGround.getFileName() + "\";\n\n";
     }
 }
