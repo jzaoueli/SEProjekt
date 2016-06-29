@@ -12,6 +12,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import java.io.FileReader;
 import java.io.IOException;
 
+import static dsl.CodeGeneratorFunction.getConstructor;
 import static dsl.CodeGeneratorFunction.getGetter;
 import static java.lang.Integer.valueOf;
 
@@ -73,12 +74,16 @@ public class EnemyGeneratorFunction extends GramBaseListener {
 
     private void setEnemyContent() {
         content += getEnemyMemberVariable();
-        content += getEnemyConstructor();
+        content += getConstructor("Enemy");
+        content += getEnemyConstructorWithParameters();
         content += getEnemyMethods();
     }
 
-    private String getEnemyConstructor() {
-        return "    public Enemy(String fileName, int numberLine, int numberColumn, int width, int height, String movingType, int speed, int offense,int defence, int probability) {\n" +
+    private String getEnemyConstructorWithParameters() {
+        return "    /**\n" +
+                "     * Constructor with parameters\n" +
+                "     */\n" +
+                "    public Enemy(String fileName, int numberLine, int numberColumn, int width, int height, String movingType, int speed, int offense,int defence, int probability) {\n" +
                 "        this.fileName = fileName;\n" +
                 "        this.numberLine = numberLine;\n" +
                 "        this.numberColumn = numberColumn;\n" +

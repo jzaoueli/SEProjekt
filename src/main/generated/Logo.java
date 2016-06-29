@@ -1,13 +1,22 @@
 package main.generated;
 
 /**
- * creation : 2016/06/26 18:53
+ * creation : 2016/06/29 13:52
  */
 public class Logo {
 
     private String fileName = "logo.png";
 
-    public Logo(String fileName){
+    /**
+     * Constructor without parameter
+     */
+    public Logo() {
+    }
+
+    /**
+     * Constructor with parameters
+     */
+    public Logo(String fileName) {
         this.fileName = fileName;
     }
 

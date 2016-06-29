@@ -12,6 +12,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import java.io.FileReader;
 import java.io.IOException;
 
+import static dsl.CodeGeneratorFunction.getConstructor;
 import static dsl.CodeGeneratorFunction.getGetter;
 import static java.lang.Integer.valueOf;
 
@@ -65,12 +66,16 @@ public class PlayerGeneratorFunction extends GramBaseListener{
 
     private void setPlayerContent() {
         content += getPlayerMemberVariable();
-        content += getPlayerConstructor();
+        content += getConstructor("Player");
+        content += getPlayerConstructorWithParameters();
         content += getPlayerMethods();
     }
 
-    private String getPlayerConstructor() {
-        return "      public Player(String fileName, int numberLine, int numberColumn, int width, int height) {\n" +
+    private String getPlayerConstructorWithParameters() {
+        return "    /**\n" +
+                "     * Constructor with parameters\n" +
+                "     */\n" +
+                "    public Player(String fileName, int numberLine, int numberColumn, int width, int height) {\n" +
                 "        this.fileName = fileName;\n" +
                 "        this.numberLine = numberLine;\n" +
                 "        this.numberColumn = numberColumn;\n" +

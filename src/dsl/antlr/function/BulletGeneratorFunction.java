@@ -12,13 +12,14 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import java.io.FileReader;
 import java.io.IOException;
 
+import static dsl.CodeGeneratorFunction.getConstructor;
 import static dsl.CodeGeneratorFunction.getGetter;
 import static java.lang.Integer.valueOf;
 
 /**
  * Bullet class generation
  */
-public class BulletGeneratorFunction extends GramBaseListener{
+public class BulletGeneratorFunction extends GramBaseListener {
     private static Bullet bullet;
     private String content = "";
 
@@ -66,12 +67,16 @@ public class BulletGeneratorFunction extends GramBaseListener{
 
     private void setPlayerContent() {
         content += getBulletMemberVariable();
-        content += getBulletConstructor();
+        content += getConstructor("Bullet");
+        content += getBulletConstructorWithParameters();
         content += getBulletMethods();
     }
 
-    private String getBulletConstructor() {
-        return "      public Bullet(String fileName, int numberLine, int numberColumn, int width, int height) {\n" +
+    private String getBulletConstructorWithParameters() {
+        return "    /**\n" +
+                "     * Constructor with parameters\n" +
+                "     */\n" +
+                "      public Bullet(String fileName, int numberLine, int numberColumn, int width, int height) {\n" +
                 "        this.fileName = fileName;\n" +
                 "        this.numberLine = numberLine;\n" +
                 "        this.numberColumn = numberColumn;\n" +
@@ -92,10 +97,10 @@ public class BulletGeneratorFunction extends GramBaseListener{
     }
 
     private String getBulletMemberVariable() {
-        return "    private String fileName = \""+ bullet.getFileName()+"\";\n" +
-                "    private int numberLine = "+ bullet.getNumberLine()+";\n" +
-                "    private int numberColumn = "+bullet.getNumberColumn()+";\n" +
-                "    private int width = "+bullet.getWidth()+";\n" +
-                "    private int height = "+bullet.getHeight()+";\n\n";
+        return "    private String fileName = \"" + bullet.getFileName() + "\";\n" +
+                "    private int numberLine = " + bullet.getNumberLine() + ";\n" +
+                "    private int numberColumn = " + bullet.getNumberColumn() + ";\n" +
+                "    private int width = " + bullet.getWidth() + ";\n" +
+                "    private int height = " + bullet.getHeight() + ";\n\n";
     }
 }

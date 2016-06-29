@@ -12,6 +12,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import java.io.FileReader;
 import java.io.IOException;
 
+import static dsl.CodeGeneratorFunction.getConstructor;
 import static dsl.CodeGeneratorFunction.getGetter;
 
 /**
@@ -60,12 +61,16 @@ public class LogoGeneratorFunction extends GramBaseListener {
 
     private void setLogoContent() {
         content += getLogoMemberVariable();
-        content += getLogoConstructor();
+        content += getConstructor("Logo");
+        content += getLogoConstructorWithParameters();
         content += getLogoMethod();
     }
 
-    private String getLogoConstructor() {
-        return "    public Logo(String fileName){\n" +
+    private String getLogoConstructorWithParameters() {
+        return "    /**\n" +
+                "     * Constructor with parameters\n" +
+                "     */\n" +
+                "    public Logo(String fileName) {\n" +
                 "        this.fileName = fileName;\n" +
                 "    }\n\n";
     }

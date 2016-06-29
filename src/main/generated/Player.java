@@ -1,7 +1,7 @@
 package main.generated;
 
 /**
- * creation : 2016/06/26 18:53
+ * creation : 2016/06/29 13:52
  */
 public class Player {
 
@@ -11,7 +11,16 @@ public class Player {
     private int width = 32;
     private int height = 48;
 
-      public Player(String fileName, int numberLine, int numberColumn, int width, int height) {
+    /**
+     * Constructor without parameter
+     */
+    public Player() {
+    }
+
+    /**
+     * Constructor with parameters
+     */
+    public Player(String fileName, int numberLine, int numberColumn, int width, int height) {
         this.fileName = fileName;
         this.numberLine = numberLine;
         this.numberColumn = numberColumn;

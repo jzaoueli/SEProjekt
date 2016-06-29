@@ -12,6 +12,7 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import java.io.FileReader;
 import java.io.IOException;
 
+import static dsl.CodeGeneratorFunction.getConstructor;
 import static dsl.CodeGeneratorFunction.getGetter;
 
 /**
@@ -60,12 +61,16 @@ public class BackGroundGeneratorFunction extends GramBaseListener {
 
     private void setBackGroundContent() {
         content += getBackGroundMemberVariable();
-        content += getBackGroundConstructor();
+        content += getConstructor("BackGround");
+        content += getBackGroundConstructorWithParameters();
         content += getBackGroundMethod();
     }
 
-    private String getBackGroundConstructor() {
-        return "    public BackGround(String fileName){\n" +
+    private String getBackGroundConstructorWithParameters() {
+        return "    /**\n" +
+                "     * Constructor with parameters\n" +
+                "     */\n" +
+                "    public BackGround(String fileName) {\n" +
                 "        this.fileName = fileName;\n" +
                 "    }\n\n";
     }

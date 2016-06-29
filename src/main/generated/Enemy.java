@@ -1,7 +1,7 @@
 package main.generated;
 
 /**
- * creation : 2016/06/26 18:53
+ * creation : 2016/06/29 13:52
  */
 public class Enemy {
 
@@ -16,6 +16,15 @@ public class Enemy {
     private int defence = 1;
     private int probability = 1;
 
+    /**
+     * Constructor without parameter
+     */
+    public Enemy() {
+    }
+
+    /**
+     * Constructor with parameters
+     */
     public Enemy(String fileName, int numberLine, int numberColumn, int width, int height, String movingType, int speed, int offense,int defence, int probability) {
         this.fileName = fileName;
         this.numberLine = numberLine;

@@ -75,6 +75,19 @@ public class CodeGeneratorFunction {
         writer.close();
     }
 
+    /**
+     * return the Constructor of specific class
+     *
+     * @param className name of Constructor
+     */
+    public static String getConstructor(String className) {
+        return "    /**\n" +
+                "     * Constructor without parameter\n" +
+                "     */\n" +
+                "    public " + className + "() {\n" +
+                "    }\n\n";
+    }
+
     public static String getGetter(String MethodName, String fieldName, String retrunType) {
         return "    public " + retrunType + " get" + MethodName + "() {\n" +
                 "        return " + fieldName + ";\n" +

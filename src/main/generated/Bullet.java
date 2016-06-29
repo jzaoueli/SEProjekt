@@ -1,7 +1,7 @@
 package main.generated;
 
 /**
- * creation : 2016/06/26 18:53
+ * creation : 2016/06/29 13:52
  */
 public class Bullet {
 
@@ -11,6 +11,15 @@ public class Bullet {
     private int width = 12;
     private int height = 12;
 
+    /**
+     * Constructor without parameter
+     */
+    public Bullet() {
+    }
+
+    /**
+     * Constructor with parameters
+     */
       public Bullet(String fileName, int numberLine, int numberColumn, int width, int height) {
         this.fileName = fileName;
         this.numberLine = numberLine;
