@@ -1,11 +1,11 @@
 package test.support.base;
 
 import org.apache.commons.io.FileUtils;
-import org.jetbrains.annotations.Nullable;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.*;
+import java.nio.file.DirectoryNotEmptyException;
+import java.nio.file.NoSuchFileException;
 
 import static org.junit.Assert.assertTrue;
 import static test.support.utils.Strings.TEST_FILE_PACKAGE_NAME;

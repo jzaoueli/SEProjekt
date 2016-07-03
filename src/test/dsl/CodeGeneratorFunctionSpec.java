@@ -5,13 +5,11 @@ import org.junit.Before;
 import org.junit.Test;
 import test.support.base.TestBase;
 
-import java.io.File;
 import java.io.IOException;
 
 import static dsl.CodeGeneratorFunction.getConstructor;
 import static dsl.CodeGeneratorFunction.getGetter;
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 import static test.support.utils.Strings.*;
 
 
