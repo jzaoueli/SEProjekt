@@ -18,5 +18,16 @@
       </library>
     </orderEntry>
     <orderEntry type="library" name="antlr-4.5.1-complete" level="project" />
+    <orderEntry type="library" name="antlr-4.5.3-complete" level="project" />
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$APPLICATION_HOME_DIR$/redist/annotations-java8.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="library" name="commons-io:commons-io:2.5" level="project" />
   </component>
 </module>
