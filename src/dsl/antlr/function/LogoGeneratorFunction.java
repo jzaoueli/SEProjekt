@@ -22,8 +22,8 @@ public class LogoGeneratorFunction extends GramBaseListener {
     private static Logo logo;
     private String content = "";
 
-    public void run(String packageName) throws IOException {
-        initLogo();
+    public void run(String packageName, String srcFile) throws IOException {
+        initLogo(srcFile);
 
         String className = "Logo";
         CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
@@ -37,8 +37,8 @@ public class LogoGeneratorFunction extends GramBaseListener {
 
     }
 
-    private static Logo initLogo() throws IOException {
-        FileReader fileReader = new FileReader("src/dsl/antlr/src.csv");
+    private static Logo initLogo(String srcFile) throws IOException {
+        FileReader fileReader = new FileReader(srcFile);
         ANTLRInputStream antlrInputStream = new ANTLRInputStream(fileReader);
         // Get CSV lexer
         GramLexer lexer = new GramLexer(antlrInputStream);

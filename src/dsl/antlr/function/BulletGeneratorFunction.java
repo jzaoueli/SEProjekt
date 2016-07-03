@@ -23,8 +23,8 @@ public class BulletGeneratorFunction extends GramBaseListener {
     private static Bullet bullet;
     private String content = "";
 
-    public void run(String packageName) throws IOException {
-        initBullet();
+    public void run(String packageName, String src) throws IOException {
+        initBullet(src);
         String className = "Bullet";
         CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
         codeGeneratorFunction.setHeader("");
@@ -37,8 +37,8 @@ public class BulletGeneratorFunction extends GramBaseListener {
 
     }
 
-    private static Bullet initBullet() throws IOException {
-        FileReader fileReader = new FileReader("src/dsl/antlr/src.csv");
+    private static Bullet initBullet(String src) throws IOException {
+        FileReader fileReader = new FileReader(src);
         ANTLRInputStream antlrInputStream = new ANTLRInputStream(fileReader);
         // Get CSV lexer
         GramLexer lexer = new GramLexer(antlrInputStream);

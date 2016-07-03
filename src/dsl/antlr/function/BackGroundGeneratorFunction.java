@@ -22,8 +22,8 @@ public class BackGroundGeneratorFunction extends GramBaseListener {
     private static BackGround backGround;
     private String content = "";
 
-    public void run(String packageName) throws IOException {
-        initBackGround();
+    public void run(String packageName,String src) throws IOException {
+        initBackGround(src);
 
         String className = "BackGround";
         CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
@@ -37,8 +37,8 @@ public class BackGroundGeneratorFunction extends GramBaseListener {
 
     }
 
-    private static BackGround initBackGround() throws IOException {
-        FileReader fileReader = new FileReader("src/dsl/antlr/src.csv");
+    private static BackGround initBackGround(String src) throws IOException {
+        FileReader fileReader = new FileReader(src);
         ANTLRInputStream antlrInputStream = new ANTLRInputStream(fileReader);
         // Get CSV lexer
         GramLexer lexer = new GramLexer(antlrInputStream);

@@ -19,12 +19,12 @@ import static java.lang.Integer.valueOf;
 /**
  * player class generation
  */
-public class PlayerGeneratorFunction extends GramBaseListener{
+public class PlayerGeneratorFunction extends GramBaseListener {
     private static Player player;
     private String content = "";
 
-    public void run(String packageName) throws IOException {
-        initPlayer();
+    public void run(String packageName, String src) throws IOException {
+        initPlayer(src);
         String className = "Player";
         CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
         codeGeneratorFunction.setHeader("");
@@ -37,8 +37,8 @@ public class PlayerGeneratorFunction extends GramBaseListener{
 
     }
 
-    private static Player initPlayer() throws IOException {
-        FileReader fileReader = new FileReader("src/dsl/antlr/src.csv");
+    private static Player initPlayer(String src) throws IOException {
+        FileReader fileReader = new FileReader(src);
         ANTLRInputStream antlrInputStream = new ANTLRInputStream(fileReader);
         // Get CSV lexer
         GramLexer lexer = new GramLexer(antlrInputStream);
@@ -54,6 +54,7 @@ public class PlayerGeneratorFunction extends GramBaseListener{
         walker.walk(listener, fileContext);
         return player;
     }
+
     public void exitFile(GramParser.FileContext ctx) {
         String fileName = ctx.player().fileName().getText();
         int numberLine = valueOf(ctx.player().nubmerLine().getText());
@@ -96,10 +97,10 @@ public class PlayerGeneratorFunction extends GramBaseListener{
     }
 
     private String getPlayerMemberVariable() {
-        return "    private String fileName = \""+ player.getFileName()+"\";\n" +
-                "    private int numberLine = "+ player.getNumberLine()+";\n" +
-                "    private int numberColumn = "+player.getNumberColumn()+";\n" +
-                "    private int width = "+player.getWidth()+";\n" +
-                "    private int height = "+ player.getHeight()+";\n\n";
+        return "    private String fileName = \"" + player.getFileName() + "\";\n" +
+                "    private int numberLine = " + player.getNumberLine() + ";\n" +
+                "    private int numberColumn = " + player.getNumberColumn() + ";\n" +
+                "    private int width = " + player.getWidth() + ";\n" +
+                "    private int height = " + player.getHeight() + ";\n\n";
     }
 }

@@ -23,8 +23,8 @@ public class EnemyGeneratorFunction extends GramBaseListener {
     private static Enemy enemy;
     private String content = "";
 
-    public void run(String packageName) throws IOException {
-        initEnemy();
+    public void run(String packageName, String src) throws IOException {
+        initEnemy(src);
         String className = "Enemy";
         CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
         codeGeneratorFunction.setHeader("");
@@ -37,8 +37,8 @@ public class EnemyGeneratorFunction extends GramBaseListener {
 
     }
 
-    private static Enemy initEnemy() throws IOException {
-        FileReader fileReader = new FileReader("src/dsl/antlr/src.csv");
+    private static Enemy initEnemy(String src) throws IOException {
+        FileReader fileReader = new FileReader(src);
         ANTLRInputStream antlrInputStream = new ANTLRInputStream(fileReader);
         // Get CSV lexer
         GramLexer lexer = new GramLexer(antlrInputStream);
