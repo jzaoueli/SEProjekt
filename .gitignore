@@ -9,3 +9,6 @@ out/
 *.iml
 *.iws
 .idea/workspace.xml
+
+# generated Test files
+src/test/java/support/
