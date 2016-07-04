@@ -20,22 +20,43 @@ public class CodeGenerator {
 
         //generateLogo
         LogoGeneratorFunction logoGeneratorFunction = new LogoGeneratorFunction();
-        logoGeneratorFunction.run(packageName,srcFile);
+        if (logoGeneratorFunction.run(packageName, srcFile)) {
+            System.out.println("- Logo class generated");
+        } else {
+            System.out.println("- Logo class not generated");
+        }
 
         //generateBackGround
         BackGroundGeneratorFunction backGroundGeneratorFunction = new BackGroundGeneratorFunction();
-        backGroundGeneratorFunction.run(packageName,srcFile);
+        if (backGroundGeneratorFunction.run(packageName, srcFile)) {
+            System.out.println("- BackGround class generated");
+        } else {
+            System.out.println("- BackGround class not generated");
+        }
+
 
         //generatePlayer
         PlayerGeneratorFunction playerGeneratorFunction = new PlayerGeneratorFunction();
-        playerGeneratorFunction.run(packageName,srcFile);
+        if (playerGeneratorFunction.run(packageName, srcFile)) {
+            System.out.println("- Player class generated");
+        } else {
+            System.out.println("- Player class not generated");
+        }
 
         //generateEnemy
         EnemyGeneratorFunction enemyGeneratorFunction = new EnemyGeneratorFunction();
-        enemyGeneratorFunction.run(packageName,srcFile);
+        if (enemyGeneratorFunction.run(packageName, srcFile)) {
+            System.out.println("- Enemy class generated");
+        } else {
+            System.out.println("- Enemy class not generated");
+        }
 
         //generateBullet
         BulletGeneratorFunction bulletGeneratorFunction = new BulletGeneratorFunction();
-        bulletGeneratorFunction.run(packageName,srcFile);
+        if (bulletGeneratorFunction.run(packageName, srcFile)) {
+            System.out.println("- Bullet class generated");
+        } else {
+            System.out.println("- Bullet class not generated");
+        }
     }
 }

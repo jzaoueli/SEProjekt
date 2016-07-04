@@ -15,6 +15,7 @@ import java.io.IOException;
 import static dsl.CodeGeneratorFunction.getConstructor;
 import static dsl.CodeGeneratorFunction.getGetter;
 import static java.lang.Integer.valueOf;
+import static java.util.Objects.isNull;
 
 /**
  * Bullet class generation
@@ -23,10 +24,14 @@ public class BulletGeneratorFunction extends GramBaseListener {
     private static Bullet bullet;
     private String content = "";
 
-    public void run(String packageName, String src) throws IOException {
+    public boolean run(String packageName, String src) throws IOException {
         initBullet(src);
         String className = "Bullet";
         CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
+
+        if (isNull(bullet)) {
+            return false;
+        }
         codeGeneratorFunction.setHeader("");
 
         setPlayerContent();
@@ -35,6 +40,7 @@ public class BulletGeneratorFunction extends GramBaseListener {
         codeGeneratorFunction.setFooter();
         codeGeneratorFunction.createAndWriteInFile();
 
+        return true;
     }
 
     private static Bullet initBullet(String src) throws IOException {
@@ -56,13 +62,24 @@ public class BulletGeneratorFunction extends GramBaseListener {
     }
 
     public void exitFile(GramParser.FileContext ctx) {
-        String fileName = ctx.bullet().fileName().getText();
-        int numberLine = valueOf(ctx.bullet().nubmerLine().getText());
-        int numberColumn = valueOf(ctx.bullet().numberColumn().getText());
-        int width = valueOf(ctx.bullet().objectWidth().getText());
-        int height = valueOf(ctx.bullet().objectHeight().getText());
+        if (isNull(ctx.bullet().fileName().exception) &&
+                isNull(ctx.bullet().nubmerLine().exception) &&
+                isNull(ctx.bullet().numberColumn().exception) &&
+                isNull(ctx.bullet().objectWidth().exception) &&
+                isNull(ctx.bullet().objectHeight().exception)) {
 
-        bullet = new Bullet(fileName, numberLine, numberColumn, width, height);
+            String fileName = ctx.bullet().fileName().getText();
+            int numberLine = valueOf(ctx.bullet().nubmerLine().getText());
+            int numberColumn = valueOf(ctx.bullet().numberColumn().getText());
+            int width = valueOf(ctx.bullet().objectWidth().getText());
+            int height = valueOf(ctx.bullet().objectHeight().getText());
+
+            bullet = new Bullet(fileName, numberLine, numberColumn, width, height);
+        } else {
+            bullet = null;
+        }
+
+
     }
 
     private void setPlayerContent() {

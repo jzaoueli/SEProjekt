@@ -14,6 +14,7 @@ import java.io.IOException;
 
 import static dsl.CodeGeneratorFunction.getConstructor;
 import static dsl.CodeGeneratorFunction.getGetter;
+import static java.util.Objects.isNull;
 
 /**
  * BackGround class generation
@@ -22,11 +23,16 @@ public class BackGroundGeneratorFunction extends GramBaseListener {
     private static BackGround backGround;
     private String content = "";
 
-    public void run(String packageName,String src) throws IOException {
+    public boolean run(String packageName, String src) throws IOException {
         initBackGround(src);
 
         String className = "BackGround";
         CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
+
+        if (isNull(backGround)) {
+            return false;
+        }
+
         codeGeneratorFunction.setHeader("");
 
         setBackGroundContent();
@@ -34,7 +40,7 @@ public class BackGroundGeneratorFunction extends GramBaseListener {
         codeGeneratorFunction.setContent(content);
         codeGeneratorFunction.setFooter();
         codeGeneratorFunction.createAndWriteInFile();
-
+        return true;
     }
 
     private static BackGround initBackGround(String src) throws IOException {
@@ -56,7 +62,11 @@ public class BackGroundGeneratorFunction extends GramBaseListener {
     }
 
     public void exitFile(GramParser.FileContext ctx) {
-        backGround = new BackGround(ctx.backGround().fileName().getText());
+        if (isNull(ctx.backGround().fileName().exception)) {
+            backGround = new BackGround(ctx.backGround().fileName().getText());
+        } else {
+            backGround = null;
+        }
     }
 
     private void setBackGroundContent() {

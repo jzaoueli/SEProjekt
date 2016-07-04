@@ -15,6 +15,7 @@ import java.io.IOException;
 import static dsl.CodeGeneratorFunction.getConstructor;
 import static dsl.CodeGeneratorFunction.getGetter;
 import static java.lang.Integer.valueOf;
+import static java.util.Objects.isNull;
 
 /**
  * Enemy class generation.
@@ -23,10 +24,13 @@ public class EnemyGeneratorFunction extends GramBaseListener {
     private static Enemy enemy;
     private String content = "";
 
-    public void run(String packageName, String src) throws IOException {
+    public boolean run(String packageName, String src) throws IOException {
         initEnemy(src);
         String className = "Enemy";
         CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
+        if (isNull(enemy)) {
+            return false;
+        }
         codeGeneratorFunction.setHeader("");
 
         setEnemyContent();
@@ -35,6 +39,7 @@ public class EnemyGeneratorFunction extends GramBaseListener {
         codeGeneratorFunction.setFooter();
         codeGeneratorFunction.createAndWriteInFile();
 
+        return true;
     }
 
     private static Enemy initEnemy(String src) throws IOException {
@@ -56,20 +61,33 @@ public class EnemyGeneratorFunction extends GramBaseListener {
     }
 
     public void exitFile(GramParser.FileContext ctx) {
-        String fileName = ctx.enemy().fileName().getText();
-        int numberLine = valueOf(ctx.enemy().nubmerLine().getText());
-        int numberColumn = valueOf(ctx.enemy().numberColumn().getText());
-        int width = valueOf(ctx.enemy().objectWidth().getText());
-        int height = valueOf(ctx.enemy().objectHeight().getText());
-        String movingType = ctx.enemy().movingType().getText();
-        int speed = valueOf(ctx.enemy().speed().getText());
-        int offense = valueOf(ctx.enemy().offense().getText());
-        int defence = valueOf(ctx.enemy().defence().getText());
-        int probability = valueOf(ctx.enemy().probability().getText());
+        if (isNull(ctx.enemy().fileName().exception) &&
+                isNull(ctx.enemy().nubmerLine().exception) &&
+                isNull(ctx.enemy().numberColumn().exception) &&
+                isNull(ctx.enemy().objectWidth().exception) &&
+                isNull(ctx.enemy().objectHeight().exception) &&
+                isNull(ctx.enemy().movingType().exception) &&
+                isNull(ctx.enemy().speed().exception) &&
+                isNull(ctx.enemy().offense().exception) &&
+                isNull(ctx.enemy().defence().exception) &&
+                isNull(ctx.enemy().probability().exception)) {
 
-        System.out.println("movingType : " + movingType);
+            String fileName = ctx.enemy().fileName().getText();
+            int numberLine = valueOf(ctx.enemy().nubmerLine().getText());
+            int numberColumn = valueOf(ctx.enemy().numberColumn().getText());
+            int width = valueOf(ctx.enemy().objectWidth().getText());
+            int height = valueOf(ctx.enemy().objectHeight().getText());
+            String movingType = ctx.enemy().movingType().getText();
+            int speed = valueOf(ctx.enemy().speed().getText());
+            int offense = valueOf(ctx.enemy().offense().getText());
+            int defence = valueOf(ctx.enemy().defence().getText());
+            int probability = valueOf(ctx.enemy().probability().getText());
 
-        enemy = new Enemy(fileName, numberLine, numberColumn, width, height, movingType, speed, offense, defence, probability);
+            enemy = new Enemy(fileName, numberLine, numberColumn, width, height, movingType, speed, offense, defence, probability);
+        } else {
+            enemy = null;
+        }
+
     }
 
     private void setEnemyContent() {

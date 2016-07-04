@@ -15,6 +15,7 @@ import java.io.IOException;
 import static dsl.CodeGeneratorFunction.getConstructor;
 import static dsl.CodeGeneratorFunction.getGetter;
 import static java.lang.Integer.valueOf;
+import static java.util.Objects.isNull;
 
 /**
  * player class generation
@@ -23,10 +24,14 @@ public class PlayerGeneratorFunction extends GramBaseListener {
     private static Player player;
     private String content = "";
 
-    public void run(String packageName, String src) throws IOException {
+    public boolean run(String packageName, String src) throws IOException {
         initPlayer(src);
         String className = "Player";
         CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
+
+        if (isNull(player)) {
+            return false;
+        }
         codeGeneratorFunction.setHeader("");
 
         setPlayerContent();
@@ -35,6 +40,7 @@ public class PlayerGeneratorFunction extends GramBaseListener {
         codeGeneratorFunction.setFooter();
         codeGeneratorFunction.createAndWriteInFile();
 
+        return true;
     }
 
     private static Player initPlayer(String src) throws IOException {
@@ -56,13 +62,23 @@ public class PlayerGeneratorFunction extends GramBaseListener {
     }
 
     public void exitFile(GramParser.FileContext ctx) {
-        String fileName = ctx.player().fileName().getText();
-        int numberLine = valueOf(ctx.player().nubmerLine().getText());
-        int numberColumn = valueOf(ctx.player().numberColumn().getText());
-        int width = valueOf(ctx.player().objectWidth().getText());
-        int height = valueOf(ctx.player().objectHeight().getText());
 
-        player = new Player(fileName, numberLine, numberColumn, width, height);
+        if (isNull(ctx.player().fileName().exception) &&
+                isNull(ctx.player().nubmerLine().exception) &&
+                isNull(ctx.player().numberColumn().exception) &&
+                isNull(ctx.player().objectWidth().exception) &&
+                isNull(ctx.player().objectHeight().exception)) {
+
+            String fileName = ctx.player().fileName().getText();
+            int numberLine = valueOf(ctx.player().nubmerLine().getText());
+            int numberColumn = valueOf(ctx.player().numberColumn().getText());
+            int width = valueOf(ctx.player().objectWidth().getText());
+            int height = valueOf(ctx.player().objectHeight().getText());
+
+            player = new Player(fileName, numberLine, numberColumn, width, height);
+        } else {
+            player = null;
+        }
     }
 
     private void setPlayerContent() {

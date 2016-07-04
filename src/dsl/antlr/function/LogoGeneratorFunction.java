@@ -11,9 +11,11 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.io.FileReader;
 import java.io.IOException;
+import java.util.concurrent.TimeoutException;
 
 import static dsl.CodeGeneratorFunction.getConstructor;
 import static dsl.CodeGeneratorFunction.getGetter;
+import static java.util.Objects.isNull;
 
 /**
  * Logo class generation
@@ -22,11 +24,16 @@ public class LogoGeneratorFunction extends GramBaseListener {
     private static Logo logo;
     private String content = "";
 
-    public void run(String packageName, String srcFile) throws IOException {
+    public boolean run(String packageName, String srcFile) throws IOException {
         initLogo(srcFile);
 
         String className = "Logo";
         CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
+
+        if(isNull(logo)){
+            return false;
+        }
+
         codeGeneratorFunction.setHeader("");
 
         setLogoContent();
@@ -34,7 +41,7 @@ public class LogoGeneratorFunction extends GramBaseListener {
         codeGeneratorFunction.setContent(content);
         codeGeneratorFunction.setFooter();
         codeGeneratorFunction.createAndWriteInFile();
-
+        return true;
     }
 
     private static Logo initLogo(String srcFile) throws IOException {
@@ -56,7 +63,11 @@ public class LogoGeneratorFunction extends GramBaseListener {
     }
 
     public void exitFile(GramParser.FileContext ctx) {
-        logo = new Logo(ctx.logo().fileName().getText());
+        if (isNull(ctx.logo().fileName().exception)) {
+            logo = new Logo(ctx.logo().fileName().getText());
+        } else {
+            logo = null;
+        }
     }
 
     private void setLogoContent() {
