@@ -7,6 +7,7 @@ import java.io.IOException;
 import java.nio.file.DirectoryNotEmptyException;
 import java.nio.file.NoSuchFileException;
 
+import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
 import static test.support.utils.Strings.TEST_FILE_PACKAGE_NAME;
 import static test.support.utils.Strings.TEST_FILE_PACKAGE_PATH;
@@ -35,5 +36,11 @@ public abstract class TestBase {
     protected void thenFileIsGenerated(String fileName) {
         File file = new File(TEST_FILE_PACKAGE_PATH + "/" + fileName);
         assertTrue(file.exists());
+        //assertFalse(file.exists());
+    }
+
+    protected void thenFileIsNotGenerated(String fileName){
+        File file = new File(TEST_FILE_PACKAGE_PATH + "/" + fileName);
+        assertFalse(file.exists());
     }
 }

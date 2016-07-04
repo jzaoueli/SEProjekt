@@ -15,6 +15,7 @@ public class Strings {
 
     public static String TEST_FILE_PACKAGE_PATH = "src/test/support/files";
     public static String TEST_CSV_FILE_PATH = "src/test/support/utils/test.csv";
+    public static String TEST_WRONG_DATA_CSV_FILE_PATH = "src/test/support/utils/wrongdata.csv";
 
     public static String TEST_FILE_PACKAGE_NAME = "test.support.files";
 

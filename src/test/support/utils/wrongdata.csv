@@ -1,0 +1,5 @@
+logo;test
+background;.jpg
+player;test.png;a;2;b;4
+enemy;test.png;1;2;3;4;ver;5;6;7;8
+bullet;testpng;1;2;3;abc
