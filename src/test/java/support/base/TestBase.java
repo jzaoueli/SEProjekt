@@ -1,4 +1,4 @@
-package test.support.base;
+package test.java.support.base;
 
 import org.apache.commons.io.FileUtils;
 
@@ -9,8 +9,8 @@ import java.nio.file.NoSuchFileException;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
-import static test.support.utils.Strings.TEST_FILE_PACKAGE_NAME;
-import static test.support.utils.Strings.TEST_FILE_PACKAGE_PATH;
+import static test.java.support.utils.Strings.TEST_FILE_PACKAGE_NAME;
+import static test.java.support.utils.Strings.TEST_FILE_PACKAGE_PATH;
 
 /**
  * base class for test contains shared method

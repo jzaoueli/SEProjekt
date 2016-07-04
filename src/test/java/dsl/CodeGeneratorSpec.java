@@ -1,13 +1,13 @@
-package test.dsl;
+package test.java.dsl;
 
 import dsl.antlr.function.*;
 import org.junit.Before;
 import org.junit.Test;
-import test.support.base.TestBase;
+import test.java.support.base.TestBase;
 
 import java.io.IOException;
 
-import static test.support.utils.Strings.*;
+import static test.java.support.utils.Strings.*;
 
 
 /**

@@ -1,16 +1,16 @@
-package test.dsl;
+package test.java.dsl;
 
 import dsl.CodeGeneratorFunction;
 import org.junit.Before;
 import org.junit.Test;
-import test.support.base.TestBase;
+import test.java.support.base.TestBase;
 
 import java.io.IOException;
 
 import static dsl.CodeGeneratorFunction.getConstructor;
 import static dsl.CodeGeneratorFunction.getGetter;
 import static org.junit.Assert.assertEquals;
-import static test.support.utils.Strings.*;
+import static test.java.support.utils.Strings.*;
 
 
 /**
@@ -24,7 +24,7 @@ public class CodeGeneratorFunctionSpec extends TestBase {
     @Before
     public void setUp() {
         cleanOldGeneratedFiles();
-        codeGeneratorFunction = new CodeGeneratorFunction("test.support.files", "TestFile");
+        codeGeneratorFunction = new CodeGeneratorFunction("test.java.support.files", "TestFile");
     }
 
     @Test

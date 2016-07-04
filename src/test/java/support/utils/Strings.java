@@ -1,4 +1,4 @@
-package test.support.utils;
+package test.java.support.utils;
 
 /**
  * string class for test contains used strings
@@ -13,11 +13,11 @@ public class Strings {
 
     public static String TEST_JAVA_FILE_NAME = "TestFile.java";
 
-    public static String TEST_FILE_PACKAGE_PATH = "src/test/support/files";
-    public static String TEST_CSV_FILE_PATH = "src/test/support/utils/test.csv";
-    public static String TEST_WRONG_DATA_CSV_FILE_PATH = "src/test/support/utils/wrongdata.csv";
+    public static String TEST_FILE_PACKAGE_PATH = "src/test/java/support/files";
+    public static String TEST_CSV_FILE_PATH = "src/test/assets/test.csv";
+    public static String TEST_WRONG_DATA_CSV_FILE_PATH = "src/test/assets/wrongdata.csv";
 
-    public static String TEST_FILE_PACKAGE_NAME = "test.support.files";
+    public static String TEST_FILE_PACKAGE_NAME = "test.java.support.files";
 
     public static String EXPECTED_GET_METHOD =
             "    public returnType getFieldName() {\n" +
