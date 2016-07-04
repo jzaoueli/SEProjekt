@@ -16,7 +16,7 @@ bullet : objectName Separator fileName Separator nubmerLine Separator numberColu
          Separator objectHeight EOF;
 
 objectName   : LETTERS;
-fileName     : LETTERS;
+fileName     : LETTERS '.' LETTERS;
 nubmerLine   : DIGIT;
 numberColumn : DIGIT;
 objectWidth  : DIGIT+;
@@ -28,7 +28,7 @@ defence      : DIGIT;
 probability  : DIGIT;
 
 Type     : (ZIGZAG | VERTICAL | CONTINUE);
-LETTERS  : ('a'..'z' | '.')+;
+LETTERS  : ('a'..'z')+;
 DIGIT    : ('0'..'9');
 ZIGZAG   : 'zigzag';
 VERTICAL : 'vertical';
