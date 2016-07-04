@@ -1,6 +1,7 @@
 package test.java.dsl;
 
 import dsl.antlr.function.*;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 import test.java.support.base.TestBase;
@@ -18,6 +19,11 @@ public class CodeGeneratorSpec extends TestBase {
 
     @Before
     public void setUp(){
+        cleanOldGeneratedFiles();
+    }
+
+    @After
+    public void cleanUp(){
         cleanOldGeneratedFiles();
     }
 
