@@ -7,6 +7,7 @@ import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.io.IOException;
 import java.util.ArrayList;
 
 
@@ -15,11 +16,11 @@ import java.util.ArrayList;
  */
 public class GamePanel extends JPanel implements KeyListener {
 
+    public Player player;
     /**
      * The actual game
      */
     private Game game;
-    public Player player;
     private ArrayList<Bullet> onScreenBullet;
     private ArrayList<Enemy> aliveEnemy;
     private ArrayList<Item> leftItem;
@@ -45,6 +46,7 @@ public class GamePanel extends JPanel implements KeyListener {
      */
     private boolean playerLeft = false;
     private boolean playerRight = false;
+
     /**
      * GUI Timer
      * Animates Objects on Screen
@@ -97,17 +99,24 @@ public class GamePanel extends JPanel implements KeyListener {
         for (Enemy enemy : aliveEnemy) {
             for(Bullet bullet : onScreenBullet){
                 if(bullet.getBoundingBox().intersects(enemy.getBoundingBox())){
+                    enemy.enemyAnimation.setActionFrames(1);
                     enemy.setDefense(enemy.getDefense() - bullet.getAttack());
+                    if (enemy.getDefense() == 0) {
+                        enemy.enemyAnimation.setActionFrames(2);
+                        enemy.setState(2);
+                        break;
+                    }
                     bullet.setY(0);
                 }
             }
             enemy.setMovement(enemy.movement);
             enemy.enemyAnimation.animate();
+            enemy.enemyAnimation.setActionFrames(0);
         }
         repaint();
     });
 
-    public GamePanel(BufferedImage backgroundImage, Game game) {
+    public GamePanel(BufferedImage backgroundImage, Game game) throws IOException {
 
         this.backgroundImage = backgroundImage;
         this.backgroundImageOff = backgroundImage;

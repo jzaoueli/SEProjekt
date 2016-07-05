@@ -54,7 +54,7 @@ public class Game {
                     }
                 }
             case 2:
-                if (randomRate > 4) {
+                if (randomRate > 5) {
                     try {
                         aliveEnemy.add(new Enemy(enemyClass.get(randomType), randomStartX));
                     } catch (IOException e1) {
@@ -62,7 +62,7 @@ public class Game {
                     }
                 }
             case 3:
-                if (randomRate > 5) {
+                if (randomRate > 6) {
                     try {
                         aliveEnemy.add(new Enemy(enemyClass.get(randomType), randomStartX));
                     } catch (IOException e1) {
