@@ -1,194 +1,146 @@
 package main.view;
 
-import main.model.enemy.Enemy;
-import main.model.player.Bullet;
-import main.model.player.Player;
+import main.model.*;
 
-import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Iterator;
+
 
 /**
- * Realizes Backgrounds Vertical Scroll Movement
- * Holds and updates Players Image Frames
- * Realizes Players Horizontal Movement
- * Creates Enemies
- * TODO MainManager
+ * Created by Pi on 04.07.2016.
  */
-class GamePanel extends JPanel {
+public class GamePanel extends JPanel implements KeyListener {
 
     /**
-     * Background (wird in Control initializiert)
+     * The actual game
      */
-    private String file = ObjectData.getImageFiles().get(0)[0];
-    private BufferedImage bgImage = ImageIO.read(new File(file));
-    private BufferedImage bgImageOff = bgImage;
-    private int yPos = 0;
-    private int yPosScroll;
-
+    private Game game;
+    public Player player;
+    private ArrayList<Bullet> onScreenBullet;
+    private ArrayList<Enemy> aliveEnemy;
+    private ArrayList<Item> leftItem;
     /**
-     * Player (wird in Control initializiert)
+     * BACKGROUND
+     * Background Image
      */
-    private String[] playerImageData = ObjectData.getImageFiles().get(ObjectData.imageData.indexOf(ObjectData.player));
-    private FrameAnimation playerAnimation = new FrameAnimation(playerImageData, 6);
-    private Player player = new Player(playerAnimation);
-    private int playerXPos = (bgImage.getWidth() / 2) - 8;
-    private int playerYPos = bgImage.getHeight() - 80;
-    public boolean transitionLeft = false;
-    public boolean transitionRight = false;
-
+    private BufferedImage backgroundImage;
     /**
-     * Bullet
+     * Background Image Copy for seamless Scrolling
      */
-    private int bulletStartX;
-    private int bulletStartY = playerYPos;
-    private ArrayList<Bullet> bullets = new ArrayList<>();
-    private String[] bulletImageData = ObjectData.getImageFiles().get(ObjectData.imageData.indexOf(ObjectData.bullets));
-    private FrameAnimation bulletAnimation = new FrameAnimation(bulletImageData, 6);
+    private BufferedImage backgroundImageOff;
     /**
-     * Enemy (wird in Control initializiert)
+     * Background Image Y Position
      */
-    private int random;
-    private int enemyStartX;
-    private ArrayList<Enemy> aliveEnemy = new ArrayList<>();
-    private String[] enemyImageData = ObjectData.getEnemyData().get(ObjectData.enemyData.indexOf(ObjectData.Enemy));
-    private FrameAnimation enemyAnimation = new FrameAnimation(enemyImageData, 6);
-
+    private int backgroundY;
     /**
-     * Sets the Enemy creation rate
-     * Creates Enemies
+     * Background Image Copy Y Position
      */
-    public Timer enemyTimer = new Timer(16, e -> {
-        /**
-         * Random number between 1 and 16
-         */
-        random = (int) (Math.random() * 20) + 1;
-        switch (random) {
-            case 1:
-                enemyStartX = (int) (Math.random() * 288 + 32);
-                aliveEnemy.add(new Enemy(1, enemyAnimation, enemyStartX));
-                break;
-        }
-        /**
-         * Delete Enemies when offscreen
-         */
-        for (Iterator<Enemy> iterator = aliveEnemy.listIterator(); iterator.hasNext(); ) {
-            Enemy enemy = iterator.next();
-            /*for(Bullet bullet: bullets){
-                if(bullet.getBoundingBox().intersects(enemy.getBoundingBox())){
-                    System.out.println("yes");
-                    iterator.remove();
-                }
-            }*/
-            if (enemy.getY() > 480) {
-                iterator.remove();
-            }
-        }
-    });
-
+    private int backgroundOffY;
     /**
-     * Bullet Timer
+     * true if Player is moving in that direction
      */
-    public Timer bulletTimer = new Timer(200, e -> {
-        bulletStartX = playerXPos;
-        bullets.add(new Bullet(1, bulletAnimation, bulletStartX, bulletStartY));
-        /**
-         * Delete Bullets when offscreen
-         */
-        for (Iterator<Bullet> iterator = bullets.listIterator(); iterator.hasNext(); ) {
-            Bullet bullet = iterator.next();
-            if (bullet.getY() < 0) {
-                iterator.remove();
-            }
-        }
-    });
-
+    private boolean playerLeft = false;
+    private boolean playerRight = false;
     /**
      * GUI Timer
+     * Animates Objects on Screen
      */
-    public Timer timer = new Timer(32, e -> {
+    private Timer guiTimer = new Timer(32, e -> {
         /**
          * Animate Background seamlessly
          */
-        yPos++;
-        yPosScroll = yPos - bgImage.getHeight();
+        backgroundY++;
+        backgroundOffY = backgroundY - backgroundImage.getHeight();
+        if (backgroundY == backgroundImage.getHeight()) {
+            backgroundY = 0;
+        }
+
         /**
          * Animate Player
          * Move
          */
-        if (transitionRight) {
-            transitionLeft = false;
-            if (playerXPos <= 320) {
-                playerXPos += 4;
+        if (playerRight) {
+            playerLeft = false;
+            if (player.getX() <= backgroundImage.getWidth() - 64) {
+                player.setX(player.getX() + 3);
             } else {
-                transitionRight = false;
+                playerRight = false;
             }
         }
-        if (transitionLeft) {
-            transitionRight = false;
-            if (playerXPos >= 32) {
-                playerXPos -= 4;
+        if (playerLeft) {
+            playerRight = false;
+            if (player.getX() >= 32) {
+                player.setX(player.getX() - 3);
             } else {
-                transitionLeft = false;
+                playerLeft = false;
             }
         }
-        player.playerAnimation.animate();
+        this.player.playerAnimation.animate();
+
         /**
          * Animate Bullets
          * Move Bullets
          */
-        for (Bullet bullet : bullets) {
-            bullet.setMovement(10);
+        for (Bullet bullet : onScreenBullet) {
+            bullet.setMovement();
             bullet.bulletAnimation.animate();
         }
+
         /**
          * Animate Enemies
          * Move Enemies
          */
         for (Enemy enemy : aliveEnemy) {
-            enemy.setMovement(1, 10);
-            enemy.enemyAnimation.animate();
-            for (Bullet bullet : bullets) {
-                if (bullet.getBoundingBox().intersects(enemy.getBoundingBox())) {
-                    enemy.setMovement(1, 0);
-                    enemy.setState(1);
-                    enemy.enemyAnimation.animateOnce();
+            for(Bullet bullet : onScreenBullet){
+                if(bullet.getBoundingBox().intersects(enemy.getBoundingBox())){
+                    enemy.setDefense(enemy.getDefense() - bullet.getAttack());
+                    bullet.setY(0);
                 }
             }
+            enemy.setMovement(enemy.movement);
+            enemy.enemyAnimation.animate();
         }
+        repaint();
     });
 
-    GamePanel() throws IOException {
-        timer.start();
-        enemyTimer.start();
-        bulletTimer.start();
+    public GamePanel(BufferedImage backgroundImage, Game game) {
+
+        this.backgroundImage = backgroundImage;
+        this.backgroundImageOff = backgroundImage;
+        this.backgroundY = 0;
+
+        this.game = game;
+
+        this.onScreenBullet = this.game.onScreenBullet;
+        this.aliveEnemy = this.game.aliveEnemy;
+        this.leftItem = this.game.leftItem;
+        this.player = this.game.player;
+
+        this.guiTimer.start();
+
+        this.setFocusable(true);
+        addKeyListener(this);
     }
 
-    public void paintComponent(Graphics g) {
-        super.paintComponent(g);
+    public void paint(Graphics g) {
+        super.paint(g);
         /**
          * Draw Background seamlessly
          */
-        g.drawImage(bgImage, 0, yPos, null);
-        g.drawImage(bgImageOff, 0, yPosScroll, null);
-        if (yPos == bgImage.getHeight()) {
-            g.clearRect(0, bgImage.getHeight(), bgImage.getWidth(), bgImage.getHeight() * 2);
-            yPos = 0;
-            yPosScroll = bgImage.getHeight();
-        }
+        g.drawImage(backgroundImage, 0, backgroundY, null);
+        g.drawImage(backgroundImageOff, 0, backgroundOffY, null);
         /**
          * Draw Player
          */
-        g.drawImage(player.playerAnimation.frame, playerXPos, playerYPos, null);
+        g.drawImage(this.player.playerAnimation.frame, player.getX(), player.getY(), null);
         /**
          * Draw Bullets
          */
-        for (Bullet bullet : bullets) {
+        for (Bullet bullet : onScreenBullet) {
             g.drawImage(bullet.bulletAnimation.frame, bullet.getX(), bullet.getY(), null);
         }
         /**
@@ -197,6 +149,35 @@ class GamePanel extends JPanel {
         for (Enemy enemy : aliveEnemy) {
             g.drawImage(enemy.enemyAnimation.frame, enemy.getX(), enemy.getY(), null);
         }
-        repaint();
+    }
+
+    @Override
+    public void keyTyped(KeyEvent e) {
+        // No action
+    }
+
+    @Override
+    public void keyPressed(KeyEvent e) {
+        // No action}
+    }
+
+    @Override
+    public void keyReleased(KeyEvent e) {
+/*        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+
+
+        }
+*/
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            playerRight = true;
+            playerLeft = false;
+        }
+        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            playerLeft = true;
+            playerRight = false;
+        }
     }
 }
+
+
+

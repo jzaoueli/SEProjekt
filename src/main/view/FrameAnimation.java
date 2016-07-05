@@ -27,10 +27,6 @@ public class FrameAnimation {
      */
     private int currentFrameIndex;
     /**
-     * Current Frame
-     */
-    BufferedImage frame;
-    /**
      * Total amount of Frames in Array
      */
     private int totalFrames;
@@ -42,20 +38,19 @@ public class FrameAnimation {
     private int cols;
     public int sizeX;
     public int sizeY;
+
+    /**
+     * Current Frame in the Animation
+     */
+    BufferedImage frame;
+
     /**
      * Set of Frames to be animated
-     * TODO Frame number must (not) be 4 for better FrameAnimation
+     * TODO Die Länge des Bild-Arrays sollte nicht hardgecoded sein!!
      */
-    public BufferedImage[] actionFrames = new BufferedImage[4];
+    private BufferedImage[] actionFrames = new BufferedImage[4];
 
-
-    /**
-     * Contructor
-     * @param objectData Read ObjectData
-     * @param frameDelay How long will Frame be showed
-     * @throws IOException Load Data
-     */
-    public FrameAnimation(String[] objectData, int frameDelay) throws IOException {
+    public FrameAnimation(Object[] objectData, int frameDelay) throws IOException {
         loadFrames(objectData);
         FrameAnimation.frameDelay = frameDelay;
         totalFrames = actionFrames.length;
@@ -68,7 +63,7 @@ public class FrameAnimation {
      * Substitutes the current Frame for the next Frame each frameCount
      * currentFrameIndex will reset when ist reaches the end of Frame Array
      */
-    public void animate() {
+    void animate() {
         frameCount++;
         if (frameCount > frameDelay) {
             frameCount = 0;
@@ -83,7 +78,7 @@ public class FrameAnimation {
     }
 
     /**
-     * TODO Animates Frame Set one time
+     * Animate Frames once
      */
     public void animateOnce(){
         frameCount++;
@@ -96,33 +91,34 @@ public class FrameAnimation {
             frame = actionFrames[currentFrameIndex];
         }
     }
+
     /**
      * Loads Image File and divides it into sub-images (Frames)
      * @param imageData ObjectData holding Image File name and its Dimensions
      * @return Frame Array containing all sub-images of Image File
      * @throws IOException Image File
      */
-    private BufferedImage[] loadFrames(String[] imageData) throws IOException{
+    private BufferedImage[] loadFrames(Object[] imageData) throws IOException{
         /**
          * File name
          */
-        String file = imageData[0];
+        String file = imageData[0].toString();
         /**
          * Number of Frame Rows in Image File
          */
-        rows = Integer.parseInt(imageData[1]);
+        rows = (int) (imageData[1]);
         /**
          * Number of Frame Columns in Image File
          */
-        cols = Integer.parseInt(imageData[2]);
+        cols = (int) imageData[2];
         /**
          * Frame Width
          */
-        sizeX = Integer.parseInt(imageData[3]);
+        sizeX = (int) imageData[3];
         /**
          * Frame Height
          */
-        sizeY = Integer.parseInt(imageData[4]);
+        sizeY = (int) imageData[4];
         /**
          * Set Length of Array
          */
@@ -141,6 +137,7 @@ public class FrameAnimation {
         }
         return frames;
     }
+
     /**
      * Sets Frames for an Action
      * @param rowNumber States which Row of Frames will be used for Object Action

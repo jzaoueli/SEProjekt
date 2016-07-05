@@ -1,7 +1,11 @@
 package main.utils;
 
 
-import main.generated.*;
+import main.generated.enemy.CommonAttackEnemyData;
+import main.generated.image.ImageBackground;
+import main.generated.image.ImageBullet;
+import main.generated.image.ImageLogo;
+import main.generated.image.ImagePlayer;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
@@ -10,19 +14,19 @@ import java.io.IOException;
 
 public class GameImageGetter {
 
-    private Logo logo;
-    private BackGround backGround;
-    private Player player;
-    private Enemy enemy;
-    private Bullet bullet;
+    private ImageLogo imageLogo;
+    private ImageBackground imageBackground;
+    private ImagePlayer player;
+    private CommonAttackEnemyData enemy;
+    private ImageBullet bullet;
 
 
     public BufferedImage getGameStartLogo() throws IOException {
-        return getBufferedImage(logo.getFileName());
+        return getBufferedImage(imageLogo.getFileName());
     }
 
     public BufferedImage getGameBackGround() throws IOException {
-        return getBufferedImage(backGround.getFileName());
+        return getBufferedImage(imageBackground.getFileName());
     }
 
     public BufferedImage[] getPlayerImages() throws IOException {
