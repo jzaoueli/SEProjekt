@@ -3,7 +3,6 @@ package main.utils;
 
 import main.generated.enemy.CommonAttackEnemyData;
 import main.generated.image.ImageBackground;
-import main.generated.image.ImageBullet;
 import main.generated.image.ImageLogo;
 import main.generated.image.ImagePlayer;
 
@@ -18,7 +17,7 @@ public class GameImageGetter {
     private ImageBackground imageBackground;
     private ImagePlayer player;
     private CommonAttackEnemyData enemy;
-    private ImageBullet bullet;
+
 
 
     public BufferedImage getGameStartLogo() throws IOException {
@@ -35,10 +34,6 @@ public class GameImageGetter {
 
     public BufferedImage[] getEnemyImages() throws IOException {
         return getFrames(enemy.getFileName(), enemy.getNumberLine(), enemy.getNumberColumn(), enemy.getWidth(), enemy.getHeight());
-    }
-
-    public BufferedImage[] getBulletImages() throws IOException {
-        return getFrames(bullet.getFileName(), bullet.getNumberLine(), bullet.getNumberColumn(), bullet.getWidth(), bullet.getHeight());
     }
 
     private BufferedImage[] getFrames(String fileName, int line, int column, int width, int height) throws IOException {

@@ -35,7 +35,7 @@ public class Game {
     private Timer enemyTimer = new Timer(enemyRate, e -> {
         randomType = (int) (Math.random() * 6);
         randomRate = (int) (Math.random() * 10);
-        randomStartX = (int) (Math.random() * 256) + 80;
+        randomStartX = (int) (Math.random() * 272) + 32;
         switch (randomType) {
             case 0:
                 if (randomRate > 0) {
