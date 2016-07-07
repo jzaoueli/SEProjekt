@@ -1,11 +1,46 @@
 generated
-bullet
-BulletNormal(images/bulletnormal.png, 1, 4, 12, 12, 1, 1) //{datei, zeilen, reihen, breite, höhe, attacke, geschwindigkeit}
-(... Alle Bullets ...)
-enemy
-CommonAttackEnemy(images/e_commonattack.png, 3, 4, 32, 32, vertical, 8, 2, 1) //{datei, zeilen, reihen, breite, höhe, attacke, verteidigung}
-(... Alle Enemies ...)
+
 image
-(... Alle Images ...)
+ImageLogo{
+file:gamelogo.jpg}
+ImageBackground{
+file:background.jpg}
+ImagePlayer{
+file:player.png
+row:3
+col:4
+width:32
+height:48}
+
+bullet
+BulletNormal{
+file:bullet.png
+row:1
+col:4
+width:12
+height:12
+attack:1
+speed:1}
+
+enemy
+CommonAttackEnemy{
+file:e_commonattack.png
+row:3
+col:4
+width:32
+height:32
+movement:vertical
+attack:2
+defense:1
+speed:8}
+
 item
-(... Alle Items ...)
+WeakAttack{
+file:i_weakdefense.png
+row:1
+col:4
+width:32
+height:32
+effect:lifepoints+10}
+
+
