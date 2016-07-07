@@ -7,7 +7,7 @@ import main.model.Enemy;
  */
 public class RareDefenseEnemyData extends Enemy {
 
-    private String fileName = "images/e_raredefense.png";
+    private String fileName = "e_raredefense.png";
     private int numberLine = 3;
     private int numberColumn = 4;
     private int width = 64;

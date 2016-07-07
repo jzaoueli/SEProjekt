@@ -23,7 +23,7 @@ public class MainManager {
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
-        BufferedImage backgroundImage = ImageIO.read(new File(new ImageBackground().getFileName()));
+        BufferedImage backgroundImage = ImageIO.read(new File("images/" + new ImageBackground().getFileName()));
         Player player = new Player(new ImagePlayer().getPlayerImage());
 
         ArrayList<Object[]> bulletClass = new ArrayList<>();

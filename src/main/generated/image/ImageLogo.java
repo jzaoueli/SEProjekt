@@ -5,7 +5,7 @@ package main.generated.image;
  */
 public class ImageLogo {
 
-    private String fileName = "images/gamelogo.jpg";
+    private String fileName = "gamelogo.jpg";
     public String getFileName() {
         return fileName;
     }

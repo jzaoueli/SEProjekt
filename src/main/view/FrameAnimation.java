@@ -126,7 +126,7 @@ public class FrameAnimation {
         /**
          * Read Image File
          */
-        BufferedImage spriteSheet = ImageIO.read(new File(file));
+        BufferedImage spriteSheet = ImageIO.read(new File("images/"+file));
         /**
          * Divide Image into Frames
          */
