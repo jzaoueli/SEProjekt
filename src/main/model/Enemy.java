@@ -89,17 +89,6 @@ public class Enemy {
         switch (movementType){
             case "vertical":
                 this.setY(this.getY() + this.getSpeed());
-/*            //case "zigzag":
-                if(steps < this.enemyAnimation.sizeX){
-                    steps = steps + this.getSpeed();
-                    this.setX(this.getX() + (this.getSpeed() / 2));
-                    this.setY(this.getY() + this.getSpeed());
-                }
-                if(steps > (- this.enemyAnimation.sizeX)){
-                    steps = steps + this.getSpeed();
-                    this.setX(this.getX() - (this.getSpeed() / 2));
-                    this.setY(this.getY() + this.getSpeed());
-                }*/
         }
         this.setBoundingBox(new Rectangle(this.getX(), this.getY(), this.enemyAnimation.sizeX, this.enemyAnimation.sizeY));
     }

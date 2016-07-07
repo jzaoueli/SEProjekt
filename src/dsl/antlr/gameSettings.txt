@@ -1,7 +1,11 @@
-image,
-ImageLogo{images/gamelogo.jpg},
-ImageBackground{images/background.jpg},
-ImagePlayer{images/player.png;3;4;32;48},
-item,
-WeakAttackItem{images/i_weakattack;12;12;attack;2;bullet01},
-StrongAttackItem{images/i_strongattack;12;12;attack;4;bullet02},
+generated
+bullet
+BulletNormal(images/bulletnormal.png, 1, 4, 12, 12, 1, 1) //{datei, zeilen, reihen, breite, höhe, attacke, geschwindigkeit}
+(... Alle Bullets ...)
+enemy
+CommonAttackEnemy(images/e_commonattack.png, 3, 4, 32, 32, vertical, 8, 2, 1) //{datei, zeilen, reihen, breite, höhe, attacke, verteidigung}
+(... Alle Enemies ...)
+image
+(... Alle Images ...)
+item
+(... Alle Items ...)
