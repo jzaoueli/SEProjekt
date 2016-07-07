@@ -49,14 +49,13 @@ public class CodeGenerator {
         } else {
             System.out.println("- Enemy class not generated");
         }
-
+        */
         //generateBullet
         BulletGeneratorFunction bulletGeneratorFunction = new BulletGeneratorFunction();
-        if (bulletGeneratorFunction.run(packageName, srcFile)) {
+        if (bulletGeneratorFunction.run("main.generated.bullet", srcFile)) {
             System.out.println("- Bullet class generated");
         } else {
             System.out.println("- Bullet class not generated");
         }
-        */
     }
 }

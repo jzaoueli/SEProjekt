@@ -1,11 +1,11 @@
 package main.generated.bullet;
 
 import main.model.Bullet;
-
 /**
- * Created by Pi on 04.07.2016.
+ * creation : 2016/07/07 18:23
  */
-public class BulletNormal extends Bullet {
+public class BulletNormal {
+
     private String fileName = "bullets.png";
     private int numberLine = 1;
     private int numberColumn = 4;
@@ -13,9 +13,7 @@ public class BulletNormal extends Bullet {
     private int height = 12;
     private int attack = 1;
 
-    private Object[] bulletImage = {fileName, numberLine, numberColumn, width, height, attack};
-
     public Object[] getBulletImage(){
-        return bulletImage;
+        return new Object[]{fileName, numberLine, numberColumn, width, height, attack};
     }
 }

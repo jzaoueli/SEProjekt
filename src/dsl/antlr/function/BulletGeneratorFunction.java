@@ -26,13 +26,13 @@ public class BulletGeneratorFunction extends GramBaseListener {
 
     public boolean run(String packageName, String src) throws IOException {
         initBullet(src);
-        String className = "Bullet";
+        String className = "BulletNormal";
         CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
 
         if (isNull(bullet)) {
             return false;
         }
-        codeGeneratorFunction.setHeader("");
+        codeGeneratorFunction.setHeader("import main.model.Bullet;");
 
         setPlayerContent();
 
@@ -84,33 +84,13 @@ public class BulletGeneratorFunction extends GramBaseListener {
 
     private void setPlayerContent() {
         content += getBulletMemberVariable();
-        content += getConstructor("Bullet");
-        content += getBulletConstructorWithParameters();
         content += getBulletMethods();
     }
 
-    private String getBulletConstructorWithParameters() {
-        return "    /**\n" +
-                "     * Constructor with parameters\n" +
-                "     */\n" +
-                "      public Bullet(String fileName, int numberLine, int numberColumn, int width, int height) {\n" +
-                "        this.fileName = fileName;\n" +
-                "        this.numberLine = numberLine;\n" +
-                "        this.numberColumn = numberColumn;\n" +
-                "        this.width = width;\n" +
-                "        this.height = height;\n" +
-                "    }\n\n";
-    }
-
     private String getBulletMethods() {
-        String tempString = "";
-        tempString += getGetter("FileName", "fileName", "String");
-        tempString += getGetter("NumberLine", "numberLine", "int");
-        tempString += getGetter("NumberColumn", "numberColumn", "int");
-        tempString += getGetter("Width", "width", "int");
-        tempString += getGetter("Height", "height", "int");
-
-        return tempString;
+        return "    public Object[] getBulletImage(){\n" +
+                "        return new Object[]{fileName, numberLine, numberColumn, width, height, attack};\n" +
+                "    }";
     }
 
     private String getBulletMemberVariable() {
@@ -118,6 +98,7 @@ public class BulletGeneratorFunction extends GramBaseListener {
                 "    private int numberLine = " + bullet.getNumberLine() + ";\n" +
                 "    private int numberColumn = " + bullet.getNumberColumn() + ";\n" +
                 "    private int width = " + bullet.getWidth() + ";\n" +
-                "    private int height = " + bullet.getHeight() + ";\n\n";
+                "    private int height = " + bullet.getHeight() + ";\n" +
+                "    private int attack = 1;\n\n";
     }
 }

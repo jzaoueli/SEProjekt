@@ -41,7 +41,7 @@ public class CodeGeneratorFunction {
     public void setHeader(String imported) {
         this.workingString = "package " + packageName + ";\n\n" +
                 imported +
-                "/**\n * creation : " + getTime() +
+                "\n/**\n * creation : " + getTime() +
                 "\n */\n" +
                 "public class " + className + " {\n\n";
     }
