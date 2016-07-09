@@ -28,17 +28,15 @@ public class CodeGeneratorSpec extends TestBase {
         cleanOldGeneratedFiles();
     }
 
-    @Ignore
     @Test
     public void testLogoClassGeneration() {
         whenRunLogoGeneratorFunction(TEST_TXT_FILE_PATH);
         thenFileIsGenerated(LOGO_CLASS_FILE_NAME);
     }
 
-    @Ignore
     @Test
     public void testLogoClassGenerationWithWrongCSVData(){
-        whenRunLogoGeneratorFunction(TEST_WRONG_DATA_CSV_FILE_PATH);
+        whenRunLogoGeneratorFunction(TEST_WRONG_DATA_TXT_FILE_PATH);
         thenFileIsNotGenerated(LOGO_CLASS_FILE_NAME);
     }
 
@@ -97,10 +95,10 @@ public class CodeGeneratorSpec extends TestBase {
         thenFileIsNotGenerated(BULLET_CLASS_FILE_NAME);
     }
 
-    private void whenRunLogoGeneratorFunction(String csvPath) {
+    private void whenRunLogoGeneratorFunction(String srcFilePath) {
         LogoGeneratorFunction logoGeneratorFunction = new LogoGeneratorFunction();
         try {
-            logoGeneratorFunction.run(TEST_FILE_PACKAGE_NAME, csvPath);
+            logoGeneratorFunction.run(TEST_FILE_PACKAGE_NAME, srcFilePath);
         } catch (IOException e) {
             e.printStackTrace();
         }

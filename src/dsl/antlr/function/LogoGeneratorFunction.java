@@ -25,12 +25,12 @@ public class LogoGeneratorFunction extends MyGramBaseListener {
     public boolean run(String packageName, String srcFile) throws IOException {
         initLogo(srcFile);
 
-        String className = "ImageLogo";
-        CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
-
         if (isNull(logo)) {
             return false;
         }
+
+        String className = "ImageLogo";
+        CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
 
         codeGeneratorFunction.setHeader("");
 
