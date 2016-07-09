@@ -12,7 +12,7 @@ public class CodeGenerator {
 
     public static void main(String[] args) throws IOException {
 
-        String srcFile = "src/dsl/antlr/srcjson.txt";
+        String srcFile = "src/dsl/srcjson.txt";
 
         //generateLogo
         LogoGeneratorFunction logoGeneratorFunction = new LogoGeneratorFunction();
