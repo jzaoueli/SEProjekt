@@ -7,7 +7,6 @@ import test.java.support.base.TestBase;
 
 import java.io.IOException;
 
-import static dsl.CodeGeneratorFunction.getConstructor;
 import static dsl.CodeGeneratorFunction.getGetter;
 import static org.junit.Assert.assertEquals;
 import static test.java.support.utils.Strings.*;
@@ -32,19 +31,6 @@ public class CodeGeneratorFunctionSpec extends TestBase {
         whenGenerateFile();
         thenFileIsGenerated(TEST_JAVA_FILE_NAME);
     }
-
-    @Test
-    public void getGetterShouldReturnGetter() throws Exception {
-        String getterMethod = getGetter("FieldName", "fieldName", "returnType");
-        assertEquals(getterMethod, EXPECTED_GET_METHOD);
-    }
-
-    @Test
-    public void getConstructorShouldReturnConstructor() throws Exception {
-        String constructor = getConstructor("ClassName");
-        assertEquals(constructor, EXPECTED_CONSTRUCTOR);
-    }
-
 
     private void whenGenerateFile() throws IOException {
         codeGeneratorFunction.setHeader(null,null);

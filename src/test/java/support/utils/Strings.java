@@ -20,16 +20,4 @@ public class Strings {
     public static String TEST_WRONG_DATA_TXT_FILE_PATH = "src/test/assets/wrongdata.txt";
 
     public static String TEST_FILE_PACKAGE_NAME = "test.java.support.files";
-
-    public static String EXPECTED_GET_METHOD =
-            "    public returnType getFieldName() {\n" +
-                    "        return fieldName;\n" +
-                    "    }\n\n";
-
-    public static String EXPECTED_CONSTRUCTOR =
-            "    /**\n" +
-                    "     * Constructor without parameter\n" +
-                    "     */\n" +
-                    "    public ClassName() {\n" +
-                    "    }\n\n";
 }
