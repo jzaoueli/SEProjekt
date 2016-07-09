@@ -1,4 +1,4 @@
-package dsl.antlr.function;
+package dsl.function;
 
 import dsl.CodeGeneratorFunction;
 import dsl.antlr.model.Logo;

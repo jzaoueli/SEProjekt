@@ -1,6 +1,6 @@
 package test.java.dsl;
 
-import dsl.antlr.function.*;
+import dsl.function.*;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Ignore;

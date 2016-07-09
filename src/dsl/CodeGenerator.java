@@ -1,6 +1,6 @@
 package dsl;
 
-import dsl.antlr.function.*;
+import dsl.function.*;
 
 import java.io.IOException;
 
