@@ -23,9 +23,7 @@ public class LogoGeneratorFunction extends MyGramBaseListener {
     private String content = "";
 
     public boolean run(String packageName, String srcFile) throws IOException {
-        initLogo(srcFile);
-
-        if (isNull(logo)) {
+        if (isNull(initLogo(srcFile))) {
             return false;
         }
 

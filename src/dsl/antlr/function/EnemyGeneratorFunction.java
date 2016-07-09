@@ -19,19 +19,21 @@ import static java.util.Objects.isNull;
 
 /**
  * Enemy class generation.
+ * TODO read input from srcjson.txt with MyGram instead Gram
  */
 public class EnemyGeneratorFunction extends GramBaseListener {
     private static Enemy enemy;
     private String content = "";
 
     public boolean run(String packageName, String src) throws IOException {
-        initEnemy(src);
-        String className = "Enemy";
-        CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
-        if (isNull(enemy)) {
+        if (isNull(initEnemy(src))) {
             return false;
         }
-        codeGeneratorFunction.setHeader(null,null);
+
+        String className = "Enemy";
+        CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
+
+        codeGeneratorFunction.setHeader(null, null);
 
         setEnemyContent();
 
@@ -61,6 +63,7 @@ public class EnemyGeneratorFunction extends GramBaseListener {
     }
 
     public void exitFile(GramParser.FileContext ctx) {
+        //TODO : check exception and get value single
         if (isNull(ctx.enemy().fileName().exception) &&
                 isNull(ctx.enemy().nubmerLine().exception) &&
                 isNull(ctx.enemy().numberColumn().exception) &&

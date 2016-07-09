@@ -23,16 +23,14 @@ public class PlayerGeneratorFunction extends MyGramBaseListener {
     private String content = "";
 
     public boolean run(String packageName, String src) throws IOException {
-        initPlayer(src);
-
-        if (isNull(player)) {
+        if (isNull(initPlayer(src))) {
             return false;
         }
 
         String className = "ImagePlayer";
         CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
 
-        codeGeneratorFunction.setHeader(null,null);
+        codeGeneratorFunction.setHeader(null, null);
 
         setPlayerContent();
 
@@ -62,7 +60,7 @@ public class PlayerGeneratorFunction extends MyGramBaseListener {
     }
 
     public void exitGram(MyGramParser.GramContext ctx) {
-
+        //TODO : check exception and get value single
         if (isNull(ctx.images().player().spriteObject().imageObject().fileName().exception) &&
                 isNull(ctx.images().player().spriteObject().numberLine().exception) &&
                 isNull(ctx.images().player().spriteObject().numberColumn().exception) &&

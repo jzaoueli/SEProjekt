@@ -18,22 +18,21 @@ import static java.util.Objects.isNull;
 
 /**
  * BackGround class generation
+ * TODO read input from srcjson.txt with MyGram instead Gram
  */
 public class BackGroundGeneratorFunction extends GramBaseListener {
     private static BackGround backGround;
     private String content = "";
 
     public boolean run(String packageName, String src) throws IOException {
-        initBackGround(src);
+        if (isNull(initBackGround(src))) {
+            return false;
+        }
 
         String className = "BackGround";
         CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
 
-        if (isNull(backGround)) {
-            return false;
-        }
-
-        codeGeneratorFunction.setHeader(null,null);
+        codeGeneratorFunction.setHeader(null, null);
 
         setBackGroundContent();
 
