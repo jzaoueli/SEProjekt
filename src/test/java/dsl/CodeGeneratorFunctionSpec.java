@@ -47,7 +47,7 @@ public class CodeGeneratorFunctionSpec extends TestBase {
 
 
     private void whenGenerateFile() throws IOException {
-        codeGeneratorFunction.setHeader("");
+        codeGeneratorFunction.setHeader(null,null);
         codeGeneratorFunction.setContent("");
         codeGeneratorFunction.setFooter();
         codeGeneratorFunction.createAndWriteInFile();
