@@ -12,21 +12,22 @@ enemy : 'CommonAttackEnemy' '{' spriteObject movement attack defense speed '}';
 
 spriteObject : imageObject numberLine numberColumn width height ;
 
-imageObject : 'file' ':' STRING '.' STRING;
-numberLine : 'row' ':' DIGIT;
-numberColumn : 'column' ':' DIGIT;
-width : 'width' ':' DIGIT+;
-height : 'height' ':' DIGIT+;
-attack : 'attack' ':' DIGIT;
-defense : 'defense' ':' DIGIT;
-speed : 'speed' ':' DIGIT;
+imageObject : 'file' ':' fileName;
+fileName : STRING '.' STRING;
+numberLine : 'row' ':' value;
+numberColumn : 'column' ':' value;
+width : 'width' ':' value;
+height : 'height' ':' value;
+attack : 'attack' ':' value;
+defense : 'defense' ':' value;
+speed : 'speed' ':' value;
 movement : 'movement:' movingType;
-
+value : DIGIT;
 movingType : Type;
 Type : (ZIGZAG | VERTICAL | CONTINUE);
 
 STRING : ('a'..'z')+;
-DIGIT  : ('0'..'9');
+DIGIT  : ('0'..'9')+;
 ZIGZAG   : 'zigzag';
 VERTICAL : 'vertical';
 CONTINUE : 'continue';
