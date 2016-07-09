@@ -1,7 +1,8 @@
 package main.generated.image;
 
+
 /**
- * creation : 2016/06/29 13:52
+ * creation : 2016/07/09 13:07
  */
 public class ImageLogo {
 
@@ -10,7 +11,6 @@ public class ImageLogo {
     public String getFileName() {
         return fileName;
     }
-
 
 
 }

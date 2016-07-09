@@ -1,9 +1,6 @@
 package dsl.antlr.function;
 
 import dsl.CodeGeneratorFunction;
-import dsl.antlr.gen.GramBaseListener;
-import dsl.antlr.gen.GramLexer;
-import dsl.antlr.gen.GramParser;
 import dsl.antlr.model.Logo;
 import dsl.antlr.recognition.MyGramBaseListener;
 import dsl.antlr.recognition.MyGramLexer;
@@ -15,7 +12,6 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import java.io.FileReader;
 import java.io.IOException;
 
-import static dsl.CodeGeneratorFunction.getConstructor;
 import static dsl.CodeGeneratorFunction.getGetter;
 import static java.util.Objects.isNull;
 
@@ -29,10 +25,10 @@ public class LogoGeneratorFunction extends MyGramBaseListener {
     public boolean run(String packageName, String srcFile) throws IOException {
         initLogo(srcFile);
 
-        String className = "Logo";
+        String className = "ImageLogo";
         CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
 
-        if(isNull(logo)){
+        if (isNull(logo)) {
             return false;
         }
 
@@ -74,18 +70,7 @@ public class LogoGeneratorFunction extends MyGramBaseListener {
 
     private void setLogoContent() {
         content += getLogoMemberVariable();
-        content += getConstructor("Logo");
-        content += getLogoConstructorWithParameters();
         content += getLogoMethod();
-    }
-
-    private String getLogoConstructorWithParameters() {
-        return "    /**\n" +
-                "     * Constructor with parameters\n" +
-                "     */\n" +
-                "    public Logo(String fileName) {\n" +
-                "        this.fileName = fileName;\n" +
-                "    }\n\n";
     }
 
     private String getLogoMethod() {
@@ -93,7 +78,7 @@ public class LogoGeneratorFunction extends MyGramBaseListener {
     }
 
     private String getLogoMemberVariable() {
-        return "    private String fileName = \""+logo.getFileName()+"\";\n\n";
+        return "    private String fileName = \"" + logo.getFileName() + "\";\n\n";
     }
 
 }
