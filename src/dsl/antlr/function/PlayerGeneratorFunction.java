@@ -1,10 +1,10 @@
 package dsl.antlr.function;
 
 import dsl.CodeGeneratorFunction;
-import dsl.antlr.gen.GramBaseListener;
-import dsl.antlr.gen.GramLexer;
-import dsl.antlr.gen.GramParser;
 import dsl.antlr.model.Player;
+import dsl.antlr.recognition.MyGramBaseListener;
+import dsl.antlr.recognition.MyGramLexer;
+import dsl.antlr.recognition.MyGramParser;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
@@ -12,26 +12,26 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import java.io.FileReader;
 import java.io.IOException;
 
-import static dsl.CodeGeneratorFunction.getConstructor;
-import static dsl.CodeGeneratorFunction.getGetter;
 import static java.lang.Integer.valueOf;
 import static java.util.Objects.isNull;
 
 /**
  * player class generation
  */
-public class PlayerGeneratorFunction extends GramBaseListener {
+public class PlayerGeneratorFunction extends MyGramBaseListener {
     private static Player player;
     private String content = "";
 
     public boolean run(String packageName, String src) throws IOException {
         initPlayer(src);
-        String className = "ImagePlayer";
-        CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
 
         if (isNull(player)) {
             return false;
         }
+
+        String className = "ImagePlayer";
+        CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
+
         codeGeneratorFunction.setHeader("");
 
         setPlayerContent();
@@ -47,33 +47,33 @@ public class PlayerGeneratorFunction extends GramBaseListener {
         FileReader fileReader = new FileReader(src);
         ANTLRInputStream antlrInputStream = new ANTLRInputStream(fileReader);
         // Get CSV lexer
-        GramLexer lexer = new GramLexer(antlrInputStream);
+        MyGramLexer lexer = new MyGramLexer(antlrInputStream);
         // Get a list of matched tokens
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         // Pass the tokens to the parser
-        GramParser parser = new GramParser(tokens);
+        MyGramParser parser = new MyGramParser(tokens);
         // Specify our entry point
-        GramParser.FileContext fileContext = parser.file();
+        MyGramParser.GramContext fileContext = parser.gram();
         // Walk it and attach our listener
         ParseTreeWalker walker = new ParseTreeWalker();
-        GramBaseListener listener = new PlayerGeneratorFunction();
+        MyGramBaseListener listener = new PlayerGeneratorFunction();
         walker.walk(listener, fileContext);
         return player;
     }
 
-    public void exitFile(GramParser.FileContext ctx) {
+    public void exitGram(MyGramParser.GramContext ctx) {
 
-        if (isNull(ctx.player().fileName().exception) &&
-                isNull(ctx.player().nubmerLine().exception) &&
-                isNull(ctx.player().numberColumn().exception) &&
-                isNull(ctx.player().objectWidth().exception) &&
-                isNull(ctx.player().objectHeight().exception)) {
+        if (isNull(ctx.images().player().spriteObject().imageObject().fileName().exception) &&
+                isNull(ctx.images().player().spriteObject().numberLine().exception) &&
+                isNull(ctx.images().player().spriteObject().numberColumn().exception) &&
+                isNull(ctx.images().player().spriteObject().width().exception) &&
+                isNull(ctx.images().player().spriteObject().height().exception)) {
 
-            String fileName = ctx.player().fileName().getText();
-            int numberLine = valueOf(ctx.player().nubmerLine().getText());
-            int numberColumn = valueOf(ctx.player().numberColumn().getText());
-            int width = valueOf(ctx.player().objectWidth().getText());
-            int height = valueOf(ctx.player().objectHeight().getText());
+            String fileName = ctx.images().player().spriteObject().imageObject().fileName().getText();
+            int numberLine = valueOf(ctx.images().player().spriteObject().numberLine().value().getText());
+            int numberColumn = valueOf(ctx.images().player().spriteObject().numberColumn().value().getText());
+            int width = valueOf(ctx.images().player().spriteObject().width().value().getText());
+            int height = valueOf(ctx.images().player().spriteObject().height().value().getText());
 
             player = new Player(fileName, numberLine, numberColumn, width, height);
         } else {
