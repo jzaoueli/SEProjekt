@@ -99,7 +99,7 @@ public class EnemyGeneratorFunction extends MyGramBaseListener {
         if (isNull(ctx.enemy().spriteObject().height().value().exception)) {
             height = valueOf(ctx.enemy().spriteObject().height().value().getText());
         } else {
-            System.out.println("please verify value of enemy height:");
+            System.out.println("please verify height of enemy:");
             System.out.println("        Ex: height:[int]");
             enemy = null;
             return;
@@ -108,7 +108,7 @@ public class EnemyGeneratorFunction extends MyGramBaseListener {
         if (isNull(ctx.enemy().movement().movingType().exception)) {
             movingType = ctx.enemy().movement().movingType().getText();
         } else {
-            System.out.println("please verify value of enemy movingType:");
+            System.out.println("please verify movingType of enemy:");
             System.out.println("        Ex: movingType:[zigzag,vertical,continue]");
             enemy = null;
             return;
@@ -116,7 +116,7 @@ public class EnemyGeneratorFunction extends MyGramBaseListener {
         if (isNull(ctx.enemy().attack().value().exception)) {
             attack = valueOf(ctx.enemy().attack().value().getText());
         } else {
-            System.out.println("please verify value of enemy attack:");
+            System.out.println("please verify attack of enemy :");
             System.out.println("        Ex: attack:[int]");
             enemy = null;
             return;
@@ -124,7 +124,7 @@ public class EnemyGeneratorFunction extends MyGramBaseListener {
         if (isNull(ctx.enemy().defense().value().exception)) {
             defence = valueOf(ctx.enemy().defense().value().getText());
         } else {
-            System.out.println("please verify value of enemy defence:");
+            System.out.println("please verify value defence of enemy:");
             System.out.println("        Ex: defence:[int]");
             enemy = null;
             return;
@@ -132,7 +132,7 @@ public class EnemyGeneratorFunction extends MyGramBaseListener {
         if (isNull(ctx.enemy().speed().value().exception)) {
             speed = valueOf(ctx.enemy().speed().value().getText());
         } else {
-            System.out.println("please verify value of enemy speed:");
+            System.out.println("please verify value speed of enemy :");
             System.out.println("        Ex: speed:[int]");
             enemy = null;
             return;
@@ -140,7 +140,7 @@ public class EnemyGeneratorFunction extends MyGramBaseListener {
         if (isNull(ctx.enemy().probability().value().exception)) {
             probability = valueOf(ctx.enemy().probability().value().getText());
         } else {
-            System.out.println("please verify value of enemy probability:");
+            System.out.println("please verify probability of enemy :");
             System.out.println("        Ex: probability:[int]");
             enemy = null;
             return;
