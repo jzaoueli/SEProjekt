@@ -1,5 +1,5 @@
 // Generated from C:/Users/Jihed/IdeaProjects/SEProjekt/src/dsl/antlr/jsonparser\MyGram.g4 by ANTLR 4.5.3
-package dsl.antlr.tempjsonparser.gen;
+package dsl.tempjsonparser.gen;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**

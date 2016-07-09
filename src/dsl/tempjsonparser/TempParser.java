@@ -1,9 +1,9 @@
-package dsl.antlr.tempjsonparser;
+package dsl.tempjsonparser;
 
 import dsl.CodeGeneratorFunction;
-import dsl.antlr.tempjsonparser.gen.MyGramBaseListener;
-import dsl.antlr.tempjsonparser.gen.MyGramLexer;
-import dsl.antlr.tempjsonparser.gen.MyGramParser;
+import dsl.tempjsonparser.gen.MyGramBaseListener;
+import dsl.tempjsonparser.gen.MyGramLexer;
+import dsl.tempjsonparser.gen.MyGramParser;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
@@ -20,8 +20,8 @@ import static java.util.Objects.isNull;
 public class TempParser extends MyGramBaseListener {
 
     private static String globalString;
-    private static String packageName = "dsl.antlr.jsonparser";
-    private static String srcFile = "src/dsl/antlr/jsonparser/srcjson.txt";
+    private static String packageName = "dsl.tempjsonparser";
+    private static String srcFile = "src/dsl/tempjsonparser/srcjson.txt";
     public static void main(String[] args) throws IOException {
 
         init();
