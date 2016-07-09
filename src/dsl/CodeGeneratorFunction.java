@@ -1,12 +1,16 @@
 package dsl;
 
 
+import com.sun.istack.internal.Nullable;
+
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
+
+import static java.util.Objects.isNull;
 
 /**
  * set up and generate java class
@@ -37,13 +41,26 @@ public class CodeGeneratorFunction {
 
     /**
      * set the header of the gen class
+     * @param imported imported classes, example :"import main.model.class;"
+     * @param extra extended or implemented class
+     * given null if nothing to import or no extra
      */
-    public void setHeader(String imported) {
+    public void setHeader(@Nullable String imported, @Nullable String extra) {
+        if (isNull(extra)){
+            extra = "";
+        } else {
+            extra = " " + extra;
+        }
+        if (isNull(imported)){
+            imported = "";
+        }else {
+            imported += "\n";
+        }
         this.workingString = "package " + packageName + ";\n\n" +
                 imported +
-                "\n/**\n * creation : " + getTime() +
+                "/**\n * creation : " + getTime() +
                 "\n */\n" +
-                "public class " + className + " {\n\n";
+                "public class " + className + extra + " {\n\n";
     }
 
     /**
