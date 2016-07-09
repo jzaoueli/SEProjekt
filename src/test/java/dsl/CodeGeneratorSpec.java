@@ -35,22 +35,20 @@ public class CodeGeneratorSpec extends TestBase {
     }
 
     @Test
-    public void testLogoClassGenerationWithWrongCSVData(){
+    public void testLogoClassGenerationWithWrongData(){
         whenRunLogoGeneratorFunction(TEST_WRONG_DATA_TXT_FILE_PATH);
         thenFileIsNotGenerated(LOGO_CLASS_FILE_NAME);
     }
 
-    @Ignore
     @Test
     public void testBackGroundClassGeneration() {
-        whenRunBackGroundGeneratorFunction(TEST_CSV_FILE_PATH);
+        whenRunBackGroundGeneratorFunction(TEST_TXT_FILE_PATH);
         thenFileIsGenerated(BACKGROUND_CLASS_FILE_NAME);
     }
 
-    @Ignore
     @Test
-    public void testBackGroundClassGenerationWithWrongCSVData(){
-        whenRunBackGroundGeneratorFunction(TEST_WRONG_DATA_CSV_FILE_PATH);
+    public void testBackGroundClassGenerationWithWrongData(){
+        whenRunBackGroundGeneratorFunction(TEST_WRONG_DATA_TXT_FILE_PATH);
         thenFileIsNotGenerated(BACKGROUND_CLASS_FILE_NAME);
     }
 
@@ -62,7 +60,7 @@ public class CodeGeneratorSpec extends TestBase {
     }
 
     @Test
-    public void testPlayerClassGenerationWithWrongCSVData() {
+    public void testPlayerClassGenerationWithWrongData() {
         whenRunPlayerGeneratorFunction(TEST_WRONG_DATA_TXT_FILE_PATH);
         thenFileIsNotGenerated(PLAYER_FILE_NAME);
     }
@@ -102,10 +100,10 @@ public class CodeGeneratorSpec extends TestBase {
         }
     }
 
-    private void whenRunBackGroundGeneratorFunction(String csvPath) {
+    private void whenRunBackGroundGeneratorFunction(String srcFilePath) {
         BackGroundGeneratorFunction backGroundGeneratorFunction = new BackGroundGeneratorFunction();
         try {
-            backGroundGeneratorFunction.run(TEST_FILE_PACKAGE_NAME, csvPath);
+            backGroundGeneratorFunction.run(TEST_FILE_PACKAGE_NAME, srcFilePath);
         } catch (IOException e) {
             e.printStackTrace();
         }
