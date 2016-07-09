@@ -178,6 +178,16 @@ public interface MyGramListener extends ParseTreeListener {
 	 */
 	void exitSpeed(MyGramParser.SpeedContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MyGramParser#probability}.
+	 * @param ctx the parse tree
+	 */
+	void enterProbability(MyGramParser.ProbabilityContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyGramParser#probability}.
+	 * @param ctx the parse tree
+	 */
+	void exitProbability(MyGramParser.ProbabilityContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MyGramParser#movement}.
 	 * @param ctx the parse tree
 	 */

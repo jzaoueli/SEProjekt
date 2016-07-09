@@ -220,6 +220,18 @@ public class MyGramBaseListener implements MyGramListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterProbability(MyGramParser.ProbabilityContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitProbability(MyGramParser.ProbabilityContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterMovement(MyGramParser.MovementContext ctx) { }
 	/**
 	 * {@inheritDoc}

@@ -8,7 +8,7 @@ logo : 'ImageLogo' '{' imageObject '}';
 background : 'ImageBackground' '{' imageObject '}';
 player : 'ImagePlayer' '{' spriteObject '}';
 bullet : 'BulletNormal' '{' spriteObject attack speed '}';
-enemy : 'CommonAttackEnemy' '{' spriteObject movement attack defense speed '}';
+enemy : 'CommonAttackEnemy' '{' spriteObject movement attack defense speed probability '}';
 
 spriteObject : imageObject numberLine numberColumn width height ;
 
@@ -21,6 +21,7 @@ height : 'height' ':' value;
 attack : 'attack' ':' value;
 defense : 'defense' ':' value;
 speed : 'speed' ':' value;
+probability : 'probability' ':' value;
 movement : 'movement:' movingType;
 value : DIGIT;
 movingType : Type;

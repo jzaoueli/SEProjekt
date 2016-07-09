@@ -113,6 +113,12 @@ public interface MyGramVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitSpeed(MyGramParser.SpeedContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MyGramParser#probability}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitProbability(MyGramParser.ProbabilityContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MyGramParser#movement}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
