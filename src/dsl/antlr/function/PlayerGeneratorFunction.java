@@ -32,7 +32,7 @@ public class PlayerGeneratorFunction extends MyGramBaseListener {
         String className = "ImagePlayer";
         CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
 
-        codeGeneratorFunction.setHeader("");
+        codeGeneratorFunction.setHeader(null,null);
 
         setPlayerContent();
 

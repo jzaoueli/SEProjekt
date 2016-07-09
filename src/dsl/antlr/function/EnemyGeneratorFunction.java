@@ -31,7 +31,7 @@ public class EnemyGeneratorFunction extends GramBaseListener {
         if (isNull(enemy)) {
             return false;
         }
-        codeGeneratorFunction.setHeader("");
+        codeGeneratorFunction.setHeader(null,null);
 
         setEnemyContent();
 

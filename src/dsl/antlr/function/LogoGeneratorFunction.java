@@ -32,7 +32,7 @@ public class LogoGeneratorFunction extends MyGramBaseListener {
         String className = "ImageLogo";
         CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
 
-        codeGeneratorFunction.setHeader("");
+        codeGeneratorFunction.setHeader(null,null);
 
         setLogoContent();
 

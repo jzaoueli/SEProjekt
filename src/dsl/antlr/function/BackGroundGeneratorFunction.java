@@ -33,7 +33,7 @@ public class BackGroundGeneratorFunction extends GramBaseListener {
             return false;
         }
 
-        codeGeneratorFunction.setHeader("");
+        codeGeneratorFunction.setHeader(null,null);
 
         setBackGroundContent();
 
