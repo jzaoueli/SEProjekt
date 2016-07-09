@@ -2,11 +2,11 @@ package main.generated.bullet;
 
 import main.model.Bullet;
 /**
- * creation : 2016/07/07 18:23
+ * creation : 2016/07/09 14:18
  */
-public class BulletNormal {
+public class BulletNormal extends Bullet {
 
-    private String fileName = "bullets.png";
+    private String fileName = "bullet.png";
     private int numberLine = 1;
     private int numberColumn = 4;
     private int width = 12;
