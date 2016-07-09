@@ -1,5 +1,5 @@
 // Generated from C:/Users/Jihed/IdeaProjects/SEProjekt/src/dsl/antlr\Gram.g4 by ANTLR 4.5.3
-package dsl.antlr.gen;
+package dsl.oldgram.gen;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
