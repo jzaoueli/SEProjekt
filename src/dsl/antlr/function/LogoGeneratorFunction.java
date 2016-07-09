@@ -5,6 +5,9 @@ import dsl.antlr.gen.GramBaseListener;
 import dsl.antlr.gen.GramLexer;
 import dsl.antlr.gen.GramParser;
 import dsl.antlr.model.Logo;
+import dsl.antlr.recognition.MyGramBaseListener;
+import dsl.antlr.recognition.MyGramLexer;
+import dsl.antlr.recognition.MyGramParser;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
@@ -19,7 +22,7 @@ import static java.util.Objects.isNull;
 /**
  * Logo class generation
  */
-public class LogoGeneratorFunction extends GramBaseListener {
+public class LogoGeneratorFunction extends MyGramBaseListener {
     private static Logo logo;
     private String content = "";
 
@@ -47,23 +50,23 @@ public class LogoGeneratorFunction extends GramBaseListener {
         FileReader fileReader = new FileReader(srcFile);
         ANTLRInputStream antlrInputStream = new ANTLRInputStream(fileReader);
         // Get CSV lexer
-        GramLexer lexer = new GramLexer(antlrInputStream);
+        MyGramLexer lexer = new MyGramLexer(antlrInputStream);
         // Get a list of matched tokens
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         // Pass the tokens to the parser
-        GramParser parser = new GramParser(tokens);
+        MyGramParser parser = new MyGramParser(tokens);
         // Specify our entry point
-        GramParser.FileContext fileContext = parser.file();
+        MyGramParser.GramContext fileContext = parser.gram();
         // Walk it and attach our listener
         ParseTreeWalker walker = new ParseTreeWalker();
-        GramBaseListener listener = new LogoGeneratorFunction();
+        MyGramBaseListener listener = new LogoGeneratorFunction();
         walker.walk(listener, fileContext);
         return logo;
     }
 
-    public void exitFile(GramParser.FileContext ctx) {
-        if (isNull(ctx.logo().fileName().exception)) {
-            logo = new Logo(ctx.logo().fileName().getText());
+    public void exitGram(MyGramParser.GramContext ctx) {
+        if (isNull(ctx.images().logo().imageObject().fileName().exception)) {
+            logo = new Logo(ctx.images().logo().imageObject().fileName().getText());
         } else {
             logo = null;
         }

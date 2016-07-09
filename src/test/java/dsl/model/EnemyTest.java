@@ -1,4 +1,4 @@
-package test.java.main;
+package test.java.dsl.model;
 
 import dsl.antlr.model.Enemy;
 import org.junit.Test;

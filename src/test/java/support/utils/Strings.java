@@ -7,7 +7,7 @@ public class Strings {
 
     public static String LOGO_CLASS_FILE_NAME = "Logo.java";
     public static String BACKGROUND_CLASS_FILE_NAME = "BackGround.java";
-    public static String PLAYER_FILE_NAME = "Player.java";
+    public static String PLAYER_FILE_NAME = "ImagePlayer.java";
     public static String BULLET_CLASS_FILE_NAME = "Bullet.java";
     public static String ENEMY_CLASS_FILE_NAME = "Enemy.java";
 
@@ -15,7 +15,9 @@ public class Strings {
 
     public static String TEST_FILE_PACKAGE_PATH = "src/test/java/support/files";
     public static String TEST_CSV_FILE_PATH = "src/test/assets/test.csv";
+    public static String TEST_TXT_FILE_PATH = "src/test/assets/test.txt";
     public static String TEST_WRONG_DATA_CSV_FILE_PATH = "src/test/assets/wrongdata.csv";
+    public static String TEST_WRONG_DATA_TXT_FILE_PATH = "src/test/assets/wrongdata.txt";
 
     public static String TEST_FILE_PACKAGE_NAME = "test.java.support.files";
 
