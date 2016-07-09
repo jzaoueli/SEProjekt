@@ -15,24 +15,6 @@ public class EnemyTest extends TestBase{
     private Enemy enemy;
 
     @Test
-    public void testConstructor(){
-        enemy = new Enemy();
-
-        assertNotNull(enemy);
-
-        assertNotNull(enemy.getFileName());
-        assertNotNull(enemy.getNumberLine());
-        assertNotNull(enemy.getNumberColumn());
-        assertNotNull(enemy.getWidth());
-        assertNotNull(enemy.getHeight());
-        assertNotNull(enemy.getMovingType());
-        assertNotNull(enemy.getSpeed());
-        assertNotNull(enemy.getOffense());
-        assertNotNull(enemy.getDefence());
-        assertNotNull(enemy.getProbability());
-    }
-
-    @Test
     public void testParametrizedConstructor(){
         enemy = new Enemy(TEST_JAVA_FILE_NAME,1,2,3,4,"vertical",5,6,7,8);
 

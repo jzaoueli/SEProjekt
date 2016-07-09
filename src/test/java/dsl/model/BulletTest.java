@@ -15,22 +15,10 @@ public class BulletTest extends TestBase {
 
     private Bullet bullet;
 
-    @Test
-    public void testConstructor() {
-        bullet = new Bullet();
-
-        assertNotNull(bullet);
-
-        assertNotNull(bullet.getFileName());
-        assertNotNull(bullet.getNumberLine());
-        assertNotNull(bullet.getNumberColumn());
-        assertNotNull(bullet.getWidth());
-        assertNotNull(bullet.getHeight());
-    }
 
     @Test
     public void testParametrizedConstructor() {
-        bullet = new Bullet(TEST_JAVA_FILE_NAME, 1, 2, 3, 4);
+        bullet = new Bullet(TEST_JAVA_FILE_NAME, 1, 2, 3, 4, 5, 6);
 
         assertNotNull(bullet);
 

@@ -16,15 +16,6 @@ public class BackGroundTest extends TestBase {
     private BackGround backGround;
 
     @Test
-    public void testConstructor() {
-        backGround = new BackGround();
-
-        assertNotNull(backGround);
-
-        assertNotNull(backGround.getFileName());
-    }
-
-    @Test
     public void testParametrizedConstructor() {
         backGround = new BackGround(TEST_JAVA_FILE_NAME);
 
