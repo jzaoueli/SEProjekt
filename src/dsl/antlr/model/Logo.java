@@ -5,13 +5,8 @@ package dsl.antlr.model;
  */
 public class Logo {
 
-    private String fileName = "logo.png";
+    private String fileName;
 
-    /**
-     * Constructor without parameter
-     */
-    public Logo() {
-    }
 
     /**
      * Constructor with parameters

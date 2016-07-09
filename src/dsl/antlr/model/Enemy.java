@@ -5,27 +5,21 @@ package dsl.antlr.model;
  */
 public class Enemy {
 
-    private String fileName = "attack.png";
-    private int numberLine = 3;
-    private int numberColumn = 4;
-    private int width = 32;
-    private int height = 32;
-    private String movingType = "vertical";
-    private int speed = 8;
-    private int offense = 2;
-    private int defence = 1;
-    private int probability = 1;
-
-    /**
-     * Constructor without parameter
-     */
-    public Enemy() {
-    }
+    private String fileName;
+    private int numberLine;
+    private int numberColumn;
+    private int width;
+    private int height;
+    private String movingType;
+    private int speed;
+    private int offense;
+    private int defence;
+    private int probability;
 
     /**
      * Constructor with parameters
      */
-    public Enemy(String fileName, int numberLine, int numberColumn, int width, int height, String movingType, int speed, int offense,int defence, int probability) {
+    public Enemy(String fileName, int numberLine, int numberColumn, int width, int height, String movingType, int speed, int offense, int defence, int probability) {
         this.fileName = fileName;
         this.numberLine = numberLine;
         this.numberColumn = numberColumn;

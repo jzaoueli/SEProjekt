@@ -5,11 +5,11 @@ package dsl.antlr.model;
  */
 public class Player {
 
-    private String fileName = "player.png";
-    private int numberLine = 2;
-    private int numberColumn = 3;
-    private int width = 32;
-    private int height = 48;
+    private String fileName;
+    private int numberLine;
+    private int numberColumn;
+    private int width;
+    private int height;
 
 
     /**

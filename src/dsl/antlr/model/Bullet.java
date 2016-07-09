@@ -5,27 +5,25 @@ package dsl.antlr.model;
  */
 public class Bullet {
 
-    private String fileName = "bullets.png";
-    private int numberLine = 1;
-    private int numberColumn = 4;
-    private int width = 12;
-    private int height = 12;
-
-    /**
-     * Constructor without parameter
-     */
-    public Bullet() {
-    }
+    private String fileName;
+    private int numberLine;
+    private int numberColumn;
+    private int width;
+    private int height;
+    private int attack;
+    private int speed;
 
     /**
      * Constructor with parameters
      */
-      public Bullet(String fileName, int numberLine, int numberColumn, int width, int height) {
+    public Bullet(String fileName, int numberLine, int numberColumn, int width, int height, int attack, int speed) {
         this.fileName = fileName;
         this.numberLine = numberLine;
         this.numberColumn = numberColumn;
         this.width = width;
         this.height = height;
+        this.attack = attack;
+        this.speed = speed;
     }
 
     public String getFileName() {
@@ -48,5 +46,11 @@ public class Bullet {
         return height;
     }
 
+    public int getAttack() {
+        return attack;
+    }
 
+    public int getSpeed() {
+        return speed;
+    }
 }

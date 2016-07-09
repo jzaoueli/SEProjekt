@@ -5,13 +5,7 @@ package dsl.antlr.model;
  */
 public class BackGround {
 
-    private String fileName = "background.jpg";
-
-    /**
-     * Constructor without parameter
-     */
-    public BackGround() {
-    }
+    private String fileName;
 
     /**
      * Constructor with parameters
