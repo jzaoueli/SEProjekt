@@ -8,7 +8,7 @@ public class Strings {
     public static String LOGO_CLASS_FILE_NAME = "ImageLogo.java";
     public static String BACKGROUND_CLASS_FILE_NAME = "BackGround.java";
     public static String PLAYER_FILE_NAME = "ImagePlayer.java";
-    public static String BULLET_CLASS_FILE_NAME = "Bullet.java";
+    public static String BULLET_CLASS_FILE_NAME = "BulletNormal.java";
     public static String ENEMY_CLASS_FILE_NAME = "Enemy.java";
 
     public static String TEST_JAVA_FILE_NAME = "TestFile.java";

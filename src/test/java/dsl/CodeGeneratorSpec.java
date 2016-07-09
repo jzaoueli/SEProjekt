@@ -81,17 +81,15 @@ public class CodeGeneratorSpec extends TestBase {
         thenFileIsNotGenerated(ENEMY_CLASS_FILE_NAME);
     }
 
-    @Ignore
     @Test
     public void testBulletClassGeneration() {
-        whenRunBulletGeneratorFunction(TEST_CSV_FILE_PATH);
+        whenRunBulletGeneratorFunction(TEST_TXT_FILE_PATH);
         thenFileIsGenerated(BULLET_CLASS_FILE_NAME);
     }
 
-    @Ignore
     @Test
-    public void testBulletClassGenerationWithWrongCSVData() {
-        whenRunBulletGeneratorFunction(TEST_WRONG_DATA_CSV_FILE_PATH);
+    public void testBulletClassGenerationWithWrongData() {
+        whenRunBulletGeneratorFunction(TEST_WRONG_DATA_TXT_FILE_PATH);
         thenFileIsNotGenerated(BULLET_CLASS_FILE_NAME);
     }
 
@@ -132,10 +130,10 @@ public class CodeGeneratorSpec extends TestBase {
 
     }
 
-    private void whenRunBulletGeneratorFunction(String csvPath) {
+    private void whenRunBulletGeneratorFunction(String srcFilePath) {
         BulletGeneratorFunction bulletGeneratorFunction = new BulletGeneratorFunction();
         try {
-            bulletGeneratorFunction.run(TEST_FILE_PACKAGE_NAME,csvPath);
+            bulletGeneratorFunction.run(TEST_FILE_PACKAGE_NAME,srcFilePath);
         } catch (IOException e) {
             e.printStackTrace();
         }

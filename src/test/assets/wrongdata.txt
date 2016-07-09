@@ -14,9 +14,9 @@ height:48
 }
 BulletNormal{
 file:bullet.jpg
-rown:1
+row:1
 column:4
-width:12
+width:nothing
 height:12
 attack:1
 speed:1
