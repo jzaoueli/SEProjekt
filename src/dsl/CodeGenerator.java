@@ -38,15 +38,13 @@ public class CodeGenerator {
             System.out.println("- Player class not generated");
         }
 
-        /*
         //generateEnemy
         EnemyGeneratorFunction enemyGeneratorFunction = new EnemyGeneratorFunction();
-        if (enemyGeneratorFunction.run(packageName, srcFile)) {
+        if (enemyGeneratorFunction.run("main.generated.enemy", srcFile)) {
             System.out.println("- Enemy class generated");
         } else {
             System.out.println("- Enemy class not generated");
         }
-        */
 
         //generateBullet
         BulletGeneratorFunction bulletGeneratorFunction = new BulletGeneratorFunction();

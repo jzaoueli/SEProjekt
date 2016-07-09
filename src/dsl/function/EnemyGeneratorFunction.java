@@ -1,10 +1,10 @@
 package dsl.function;
 
 import dsl.CodeGeneratorFunction;
-import dsl.antlr.gen.GramBaseListener;
-import dsl.antlr.gen.GramLexer;
-import dsl.antlr.gen.GramParser;
 import dsl.antlr.model.Enemy;
+import dsl.antlr.recognition.MyGramBaseListener;
+import dsl.antlr.recognition.MyGramLexer;
+import dsl.antlr.recognition.MyGramParser;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
@@ -12,16 +12,13 @@ import org.antlr.v4.runtime.tree.ParseTreeWalker;
 import java.io.FileReader;
 import java.io.IOException;
 
-import static dsl.CodeGeneratorFunction.getConstructor;
-import static dsl.CodeGeneratorFunction.getGetter;
 import static java.lang.Integer.valueOf;
 import static java.util.Objects.isNull;
 
 /**
  * Enemy class generation.
- * TODO read input from srcjson.txt with MyGram instead Gram
  */
-public class EnemyGeneratorFunction extends GramBaseListener {
+public class EnemyGeneratorFunction extends MyGramBaseListener {
     private static Enemy enemy;
     private String content = "";
 
@@ -30,10 +27,12 @@ public class EnemyGeneratorFunction extends GramBaseListener {
             return false;
         }
 
-        String className = "Enemy";
+        String className = "CommonAttackEnemyData";
         CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
 
-        codeGeneratorFunction.setHeader(null, null);
+        String importClass = "import main.model.Enemy;";
+        String extendsClass = "extends Enemy";
+        codeGeneratorFunction.setHeader(importClass, extendsClass);
 
         setEnemyContent();
 
@@ -48,90 +47,117 @@ public class EnemyGeneratorFunction extends GramBaseListener {
         FileReader fileReader = new FileReader(src);
         ANTLRInputStream antlrInputStream = new ANTLRInputStream(fileReader);
         // Get CSV lexer
-        GramLexer lexer = new GramLexer(antlrInputStream);
+        MyGramLexer lexer = new MyGramLexer(antlrInputStream);
         // Get a list of matched tokens
         CommonTokenStream tokens = new CommonTokenStream(lexer);
         // Pass the tokens to the parser
-        GramParser parser = new GramParser(tokens);
+        MyGramParser parser = new MyGramParser(tokens);
         // Specify our entry point
-        GramParser.FileContext fileContext = parser.file();
+        MyGramParser.GramContext fileContext = parser.gram();
         // Walk it and attach our listener
         ParseTreeWalker walker = new ParseTreeWalker();
-        GramBaseListener listener = new EnemyGeneratorFunction();
+        MyGramBaseListener listener = new EnemyGeneratorFunction();
         walker.walk(listener, fileContext);
         return enemy;
     }
 
-    public void exitFile(GramParser.FileContext ctx) {
-        //TODO : check exception and get value single
-        if (isNull(ctx.enemy().fileName().exception) &&
-                isNull(ctx.enemy().nubmerLine().exception) &&
-                isNull(ctx.enemy().numberColumn().exception) &&
-                isNull(ctx.enemy().objectWidth().exception) &&
-                isNull(ctx.enemy().objectHeight().exception) &&
-                isNull(ctx.enemy().movingType().exception) &&
-                isNull(ctx.enemy().speed().exception) &&
-                isNull(ctx.enemy().offense().exception) &&
-                isNull(ctx.enemy().defence().exception) &&
-                isNull(ctx.enemy().probability().exception)) {
-
-            String fileName = ctx.enemy().fileName().getText();
-            int numberLine = valueOf(ctx.enemy().nubmerLine().getText());
-            int numberColumn = valueOf(ctx.enemy().numberColumn().getText());
-            int width = valueOf(ctx.enemy().objectWidth().getText());
-            int height = valueOf(ctx.enemy().objectHeight().getText());
-            String movingType = ctx.enemy().movingType().getText();
-            int speed = valueOf(ctx.enemy().speed().getText());
-            int offense = valueOf(ctx.enemy().offense().getText());
-            int defence = valueOf(ctx.enemy().defence().getText());
-            int probability = valueOf(ctx.enemy().probability().getText());
-
-            enemy = new Enemy(fileName, numberLine, numberColumn, width, height, movingType, speed, offense, defence, probability);
+    public void exitGram(MyGramParser.GramContext ctx) {
+        String fileName, movingType;
+        int numberLine, numberColumn, width, height, attack, defence, speed, probability;
+        if (isNull(ctx.enemy().spriteObject().imageObject().fileName().exception)) {
+            fileName = ctx.enemy().spriteObject().imageObject().fileName().getText();
         } else {
+            System.out.println("please verify filename of enemy:");
+            System.out.println("        Ex: file:[filename].[extension]");
             enemy = null;
+            return;
+        }
+        if (isNull(ctx.enemy().spriteObject().numberLine().value().exception)) {
+            numberLine = valueOf(ctx.enemy().spriteObject().numberLine().value().getText());
+        } else {
+            System.out.println("please verify numberLine 'row' of enemy:");
+            System.out.println("        Ex: row:[int]");
+            enemy = null;
+            return;
+        }
+        if (isNull(ctx.enemy().spriteObject().numberColumn().value().exception)) {
+            numberColumn = valueOf(ctx.enemy().spriteObject().numberColumn().value().getText());
+        } else {
+            System.out.println("please verify numberColumn 'column' of enemy:");
+            System.out.println("        Ex: column:[int]");
+            enemy = null;
+            return;
+        }
+        if (isNull(ctx.enemy().spriteObject().width().value().exception)) {
+            width = valueOf(ctx.enemy().spriteObject().width().value().getText());
+        } else {
+            System.out.println("please verify width of enemy:");
+            System.out.println("        Ex: width:[int]");
+            enemy = null;
+            return;
+        }
+        if (isNull(ctx.enemy().spriteObject().height().value().exception)) {
+            height = valueOf(ctx.enemy().spriteObject().height().value().getText());
+        } else {
+            System.out.println("please verify value of enemy height:");
+            System.out.println("        Ex: height:[int]");
+            enemy = null;
+            return;
         }
 
+        if (isNull(ctx.enemy().movement().movingType().exception)) {
+            movingType = ctx.enemy().movement().movingType().getText();
+        } else {
+            System.out.println("please verify value of enemy movingType:");
+            System.out.println("        Ex: movingType:[zigzag,vertical,continue]");
+            enemy = null;
+            return;
+        }
+        if (isNull(ctx.enemy().attack().value().exception)) {
+            attack = valueOf(ctx.enemy().attack().value().getText());
+        } else {
+            System.out.println("please verify value of enemy attack:");
+            System.out.println("        Ex: attack:[int]");
+            enemy = null;
+            return;
+        }
+        if (isNull(ctx.enemy().defense().value().exception)) {
+            defence = valueOf(ctx.enemy().defense().value().getText());
+        } else {
+            System.out.println("please verify value of enemy defence:");
+            System.out.println("        Ex: defence:[int]");
+            enemy = null;
+            return;
+        }
+        if (isNull(ctx.enemy().speed().value().exception)) {
+            speed = valueOf(ctx.enemy().speed().value().getText());
+        } else {
+            System.out.println("please verify value of enemy speed:");
+            System.out.println("        Ex: speed:[int]");
+            enemy = null;
+            return;
+        }
+        if (isNull(ctx.enemy().probability().value().exception)) {
+            probability = valueOf(ctx.enemy().probability().value().getText());
+        } else {
+            System.out.println("please verify value of enemy probability:");
+            System.out.println("        Ex: probability:[int]");
+            enemy = null;
+            return;
+        }
+        enemy = new Enemy(fileName, numberLine, numberColumn, width, height, movingType, speed, attack, defence, probability);
     }
 
     private void setEnemyContent() {
         content += getEnemyMemberVariable();
-        content += getConstructor("Enemy");
-        content += getEnemyConstructorWithParameters();
         content += getEnemyMethods();
     }
 
-    private String getEnemyConstructorWithParameters() {
-        return "    /**\n" +
-                "     * Constructor with parameters\n" +
-                "     */\n" +
-                "    public Enemy(String fileName, int numberLine, int numberColumn, int width, int height, String movingType, int speed, int offense,int defence, int probability) {\n" +
-                "        this.fileName = fileName;\n" +
-                "        this.numberLine = numberLine;\n" +
-                "        this.numberColumn = numberColumn;\n" +
-                "        this.width = width;\n" +
-                "        this.height = height;\n" +
-                "        this.movingType = movingType;\n" +
-                "        this.speed = speed;\n" +
-                "        this.offense = offense;\n" +
-                "        this.defence = defence;\n" +
-                "        this.probability = probability;\n" +
-                "    }\n\n";
-    }
-
     private String getEnemyMethods() {
-        String tempString = "";
-        tempString += getGetter("FileName", "fileName", "String");
-        tempString += getGetter("NumberLine", "numberLine", "int");
-        tempString += getGetter("NumberColumn", "numberColumn", "int");
-        tempString += getGetter("Width", "width", "int");
-        tempString += getGetter("Height", "height", "int");
-        tempString += getGetter("MovingType", "movingType", "String");
-        tempString += getGetter("Speed", "speed", "int");
-        tempString += getGetter("Offense", "offense", "int");
-        tempString += getGetter("Defence", "defence", "int");
-        tempString += getGetter("Probability", "probability", "int");
-
-        return tempString;
+        return "    public Object[] getCommonAttackEnemyData() {\n" +
+                "        return new Object[]{fileName, numberLine, numberColumn, width, height,\n" +
+                "                movingType, speed, offense, defence, probability};\n" +
+                "    }\n";
     }
 
     private String getEnemyMemberVariable() {
