@@ -1,5 +1,5 @@
-// Generated from C:/Users/Jihed/IdeaProjects/SEProjekt/src/dsl/antlr/jsonparser\MyGram.g4 by ANTLR 4.5.3
-package dsl.tempjsonparser.gen;
+// Generated from C:/Users/Jihed/IdeaProjects/SEProjekt/src/dsl/antlr\MyGram.g4 by ANTLR 4.5.3
+package dsl.antlr.recognition;
 import org.antlr.v4.runtime.tree.ParseTreeListener;
 
 /**
@@ -98,6 +98,16 @@ public interface MyGramListener extends ParseTreeListener {
 	 */
 	void exitImageObject(MyGramParser.ImageObjectContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MyGramParser#fileName}.
+	 * @param ctx the parse tree
+	 */
+	void enterFileName(MyGramParser.FileNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyGramParser#fileName}.
+	 * @param ctx the parse tree
+	 */
+	void exitFileName(MyGramParser.FileNameContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MyGramParser#numberLine}.
 	 * @param ctx the parse tree
 	 */
@@ -177,6 +187,16 @@ public interface MyGramListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMovement(MyGramParser.MovementContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyGramParser#value}.
+	 * @param ctx the parse tree
+	 */
+	void enterValue(MyGramParser.ValueContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyGramParser#value}.
+	 * @param ctx the parse tree
+	 */
+	void exitValue(MyGramParser.ValueContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MyGramParser#movingType}.
 	 * @param ctx the parse tree

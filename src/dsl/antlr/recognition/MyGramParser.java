@@ -1,10 +1,13 @@
-// Generated from C:/Users/Jihed/IdeaProjects/SEProjekt/src/dsl/antlr/jsonparser\MyGram.g4 by ANTLR 4.5.3
-package dsl.tempjsonparser.gen;
+// Generated from C:/Users/Jihed/IdeaProjects/SEProjekt/src/dsl/antlr\MyGram.g4 by ANTLR 4.5.3
+package dsl.antlr.recognition;
 import org.antlr.v4.runtime.atn.*;
 import org.antlr.v4.runtime.dfa.DFA;
 import org.antlr.v4.runtime.*;
+import org.antlr.v4.runtime.misc.*;
 import org.antlr.v4.runtime.tree.*;
 import java.util.List;
+import java.util.Iterator;
+import java.util.ArrayList;
 
 @SuppressWarnings({"all", "warnings", "unchecked", "unused", "cast"})
 public class MyGramParser extends Parser {
@@ -21,13 +24,13 @@ public class MyGramParser extends Parser {
 	public static final int
 		RULE_gram = 0, RULE_images = 1, RULE_logo = 2, RULE_background = 3, RULE_player = 4, 
 		RULE_bullet = 5, RULE_enemy = 6, RULE_spriteObject = 7, RULE_imageObject = 8, 
-		RULE_numberLine = 9, RULE_numberColumn = 10, RULE_width = 11, RULE_height = 12, 
-		RULE_attack = 13, RULE_defense = 14, RULE_speed = 15, RULE_movement = 16, 
-		RULE_movingType = 17;
+		RULE_fileName = 9, RULE_numberLine = 10, RULE_numberColumn = 11, RULE_width = 12, 
+		RULE_height = 13, RULE_attack = 14, RULE_defense = 15, RULE_speed = 16, 
+		RULE_movement = 17, RULE_value = 18, RULE_movingType = 19;
 	public static final String[] ruleNames = {
 		"gram", "images", "logo", "background", "player", "bullet", "enemy", "spriteObject", 
-		"imageObject", "numberLine", "numberColumn", "width", "height", "attack", 
-		"defense", "speed", "movement", "movingType"
+		"imageObject", "fileName", "numberLine", "numberColumn", "width", "height", 
+		"attack", "defense", "speed", "movement", "value", "movingType"
 	};
 
 	private static final String[] _LITERAL_NAMES = {
@@ -126,13 +129,13 @@ public class MyGramParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(36);
+			setState(40);
 			images();
-			setState(37);
+			setState(41);
 			bullet();
-			setState(38);
+			setState(42);
 			enemy();
-			setState(39);
+			setState(43);
 			match(EOF);
 			}
 		}
@@ -182,13 +185,13 @@ public class MyGramParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(41);
+			setState(45);
 			match(T__0);
-			setState(42);
+			setState(46);
 			logo();
-			setState(43);
+			setState(47);
 			background();
-			setState(44);
+			setState(48);
 			player();
 			}
 		}
@@ -232,13 +235,13 @@ public class MyGramParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(46);
+			setState(50);
 			match(T__1);
-			setState(47);
+			setState(51);
 			match(T__2);
-			setState(48);
+			setState(52);
 			imageObject();
-			setState(49);
+			setState(53);
 			match(T__3);
 			}
 		}
@@ -282,13 +285,13 @@ public class MyGramParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(51);
+			setState(55);
 			match(T__4);
-			setState(52);
+			setState(56);
 			match(T__2);
-			setState(53);
+			setState(57);
 			imageObject();
-			setState(54);
+			setState(58);
 			match(T__3);
 			}
 		}
@@ -332,13 +335,13 @@ public class MyGramParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(56);
+			setState(60);
 			match(T__5);
-			setState(57);
+			setState(61);
 			match(T__2);
-			setState(58);
+			setState(62);
 			spriteObject();
-			setState(59);
+			setState(63);
 			match(T__3);
 			}
 		}
@@ -388,17 +391,17 @@ public class MyGramParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(61);
-			match(T__6);
-			setState(62);
-			match(T__2);
-			setState(63);
-			spriteObject();
-			setState(64);
-			attack();
 			setState(65);
-			speed();
+			match(T__6);
 			setState(66);
+			match(T__2);
+			setState(67);
+			spriteObject();
+			setState(68);
+			attack();
+			setState(69);
+			speed();
+			setState(70);
 			match(T__3);
 			}
 		}
@@ -454,21 +457,21 @@ public class MyGramParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(68);
-			match(T__7);
-			setState(69);
-			match(T__2);
-			setState(70);
-			spriteObject();
-			setState(71);
-			movement();
 			setState(72);
-			attack();
+			match(T__7);
 			setState(73);
-			defense();
+			match(T__2);
 			setState(74);
-			speed();
+			spriteObject();
 			setState(75);
+			movement();
+			setState(76);
+			attack();
+			setState(77);
+			defense();
+			setState(78);
+			speed();
+			setState(79);
 			match(T__3);
 			}
 		}
@@ -524,15 +527,15 @@ public class MyGramParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(77);
-			imageObject();
-			setState(78);
-			numberLine();
-			setState(79);
-			numberColumn();
-			setState(80);
-			width();
 			setState(81);
+			imageObject();
+			setState(82);
+			numberLine();
+			setState(83);
+			numberColumn();
+			setState(84);
+			width();
+			setState(85);
 			height();
 			}
 		}
@@ -548,9 +551,8 @@ public class MyGramParser extends Parser {
 	}
 
 	public static class ImageObjectContext extends ParserRuleContext {
-		public List<TerminalNode> STRING() { return getTokens(MyGramParser.STRING); }
-		public TerminalNode STRING(int i) {
-			return getToken(MyGramParser.STRING, i);
+		public FileNameContext fileName() {
+			return getRuleContext(FileNameContext.class,0);
 		}
 		public ImageObjectContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -577,15 +579,60 @@ public class MyGramParser extends Parser {
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(83);
-			match(T__8);
-			setState(84);
-			match(T__9);
-			setState(85);
-			match(STRING);
-			setState(86);
-			match(T__10);
 			setState(87);
+			match(T__8);
+			setState(88);
+			match(T__9);
+			setState(89);
+			fileName();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class FileNameContext extends ParserRuleContext {
+		public List<TerminalNode> STRING() { return getTokens(MyGramParser.STRING); }
+		public TerminalNode STRING(int i) {
+			return getToken(MyGramParser.STRING, i);
+		}
+		public FileNameContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_fileName; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof MyGramListener ) ((MyGramListener)listener).enterFileName(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof MyGramListener ) ((MyGramListener)listener).exitFileName(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGramVisitor ) return ((MyGramVisitor<? extends T>)visitor).visitFileName(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final FileNameContext fileName() throws RecognitionException {
+		FileNameContext _localctx = new FileNameContext(_ctx, getState());
+		enterRule(_localctx, 18, RULE_fileName);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(91);
+			match(STRING);
+			setState(92);
+			match(T__10);
+			setState(93);
 			match(STRING);
 			}
 		}
@@ -601,7 +648,9 @@ public class MyGramParser extends Parser {
 	}
 
 	public static class NumberLineContext extends ParserRuleContext {
-		public TerminalNode DIGIT() { return getToken(MyGramParser.DIGIT, 0); }
+		public ValueContext value() {
+			return getRuleContext(ValueContext.class,0);
+		}
 		public NumberLineContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -623,16 +672,16 @@ public class MyGramParser extends Parser {
 
 	public final NumberLineContext numberLine() throws RecognitionException {
 		NumberLineContext _localctx = new NumberLineContext(_ctx, getState());
-		enterRule(_localctx, 18, RULE_numberLine);
+		enterRule(_localctx, 20, RULE_numberLine);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(89);
+			setState(95);
 			match(T__11);
-			setState(90);
+			setState(96);
 			match(T__9);
-			setState(91);
-			match(DIGIT);
+			setState(97);
+			value();
 			}
 		}
 		catch (RecognitionException re) {
@@ -647,7 +696,9 @@ public class MyGramParser extends Parser {
 	}
 
 	public static class NumberColumnContext extends ParserRuleContext {
-		public TerminalNode DIGIT() { return getToken(MyGramParser.DIGIT, 0); }
+		public ValueContext value() {
+			return getRuleContext(ValueContext.class,0);
+		}
 		public NumberColumnContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -669,16 +720,16 @@ public class MyGramParser extends Parser {
 
 	public final NumberColumnContext numberColumn() throws RecognitionException {
 		NumberColumnContext _localctx = new NumberColumnContext(_ctx, getState());
-		enterRule(_localctx, 20, RULE_numberColumn);
+		enterRule(_localctx, 22, RULE_numberColumn);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(93);
+			setState(99);
 			match(T__12);
-			setState(94);
+			setState(100);
 			match(T__9);
-			setState(95);
-			match(DIGIT);
+			setState(101);
+			value();
 			}
 		}
 		catch (RecognitionException re) {
@@ -693,9 +744,8 @@ public class MyGramParser extends Parser {
 	}
 
 	public static class WidthContext extends ParserRuleContext {
-		public List<TerminalNode> DIGIT() { return getTokens(MyGramParser.DIGIT); }
-		public TerminalNode DIGIT(int i) {
-			return getToken(MyGramParser.DIGIT, i);
+		public ValueContext value() {
+			return getRuleContext(ValueContext.class,0);
 		}
 		public WidthContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -718,29 +768,16 @@ public class MyGramParser extends Parser {
 
 	public final WidthContext width() throws RecognitionException {
 		WidthContext _localctx = new WidthContext(_ctx, getState());
-		enterRule(_localctx, 22, RULE_width);
-		int _la;
+		enterRule(_localctx, 24, RULE_width);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(97);
+			setState(103);
 			match(T__13);
-			setState(98);
+			setState(104);
 			match(T__9);
-			setState(100); 
-			_errHandler.sync(this);
-			_la = _input.LA(1);
-			do {
-				{
-				{
-				setState(99);
-				match(DIGIT);
-				}
-				}
-				setState(102); 
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-			} while ( _la==DIGIT );
+			setState(105);
+			value();
 			}
 		}
 		catch (RecognitionException re) {
@@ -755,9 +792,8 @@ public class MyGramParser extends Parser {
 	}
 
 	public static class HeightContext extends ParserRuleContext {
-		public List<TerminalNode> DIGIT() { return getTokens(MyGramParser.DIGIT); }
-		public TerminalNode DIGIT(int i) {
-			return getToken(MyGramParser.DIGIT, i);
+		public ValueContext value() {
+			return getRuleContext(ValueContext.class,0);
 		}
 		public HeightContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
@@ -780,29 +816,16 @@ public class MyGramParser extends Parser {
 
 	public final HeightContext height() throws RecognitionException {
 		HeightContext _localctx = new HeightContext(_ctx, getState());
-		enterRule(_localctx, 24, RULE_height);
-		int _la;
+		enterRule(_localctx, 26, RULE_height);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(104);
+			setState(107);
 			match(T__14);
-			setState(105);
+			setState(108);
 			match(T__9);
-			setState(107); 
-			_errHandler.sync(this);
-			_la = _input.LA(1);
-			do {
-				{
-				{
-				setState(106);
-				match(DIGIT);
-				}
-				}
-				setState(109); 
-				_errHandler.sync(this);
-				_la = _input.LA(1);
-			} while ( _la==DIGIT );
+			setState(109);
+			value();
 			}
 		}
 		catch (RecognitionException re) {
@@ -817,7 +840,9 @@ public class MyGramParser extends Parser {
 	}
 
 	public static class AttackContext extends ParserRuleContext {
-		public TerminalNode DIGIT() { return getToken(MyGramParser.DIGIT, 0); }
+		public ValueContext value() {
+			return getRuleContext(ValueContext.class,0);
+		}
 		public AttackContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -839,7 +864,7 @@ public class MyGramParser extends Parser {
 
 	public final AttackContext attack() throws RecognitionException {
 		AttackContext _localctx = new AttackContext(_ctx, getState());
-		enterRule(_localctx, 26, RULE_attack);
+		enterRule(_localctx, 28, RULE_attack);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
@@ -848,7 +873,7 @@ public class MyGramParser extends Parser {
 			setState(112);
 			match(T__9);
 			setState(113);
-			match(DIGIT);
+			value();
 			}
 		}
 		catch (RecognitionException re) {
@@ -863,7 +888,9 @@ public class MyGramParser extends Parser {
 	}
 
 	public static class DefenseContext extends ParserRuleContext {
-		public TerminalNode DIGIT() { return getToken(MyGramParser.DIGIT, 0); }
+		public ValueContext value() {
+			return getRuleContext(ValueContext.class,0);
+		}
 		public DefenseContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -885,7 +912,7 @@ public class MyGramParser extends Parser {
 
 	public final DefenseContext defense() throws RecognitionException {
 		DefenseContext _localctx = new DefenseContext(_ctx, getState());
-		enterRule(_localctx, 28, RULE_defense);
+		enterRule(_localctx, 30, RULE_defense);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
@@ -894,7 +921,7 @@ public class MyGramParser extends Parser {
 			setState(116);
 			match(T__9);
 			setState(117);
-			match(DIGIT);
+			value();
 			}
 		}
 		catch (RecognitionException re) {
@@ -909,7 +936,9 @@ public class MyGramParser extends Parser {
 	}
 
 	public static class SpeedContext extends ParserRuleContext {
-		public TerminalNode DIGIT() { return getToken(MyGramParser.DIGIT, 0); }
+		public ValueContext value() {
+			return getRuleContext(ValueContext.class,0);
+		}
 		public SpeedContext(ParserRuleContext parent, int invokingState) {
 			super(parent, invokingState);
 		}
@@ -931,7 +960,7 @@ public class MyGramParser extends Parser {
 
 	public final SpeedContext speed() throws RecognitionException {
 		SpeedContext _localctx = new SpeedContext(_ctx, getState());
-		enterRule(_localctx, 30, RULE_speed);
+		enterRule(_localctx, 32, RULE_speed);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
@@ -940,7 +969,7 @@ public class MyGramParser extends Parser {
 			setState(120);
 			match(T__9);
 			setState(121);
-			match(DIGIT);
+			value();
 			}
 		}
 		catch (RecognitionException re) {
@@ -979,7 +1008,7 @@ public class MyGramParser extends Parser {
 
 	public final MovementContext movement() throws RecognitionException {
 		MovementContext _localctx = new MovementContext(_ctx, getState());
-		enterRule(_localctx, 32, RULE_movement);
+		enterRule(_localctx, 34, RULE_movement);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
@@ -987,6 +1016,48 @@ public class MyGramParser extends Parser {
 			match(T__18);
 			setState(124);
 			movingType();
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			_errHandler.reportError(this, re);
+			_errHandler.recover(this, re);
+		}
+		finally {
+			exitRule();
+		}
+		return _localctx;
+	}
+
+	public static class ValueContext extends ParserRuleContext {
+		public TerminalNode DIGIT() { return getToken(MyGramParser.DIGIT, 0); }
+		public ValueContext(ParserRuleContext parent, int invokingState) {
+			super(parent, invokingState);
+		}
+		@Override public int getRuleIndex() { return RULE_value; }
+		@Override
+		public void enterRule(ParseTreeListener listener) {
+			if ( listener instanceof MyGramListener ) ((MyGramListener)listener).enterValue(this);
+		}
+		@Override
+		public void exitRule(ParseTreeListener listener) {
+			if ( listener instanceof MyGramListener ) ((MyGramListener)listener).exitValue(this);
+		}
+		@Override
+		public <T> T accept(ParseTreeVisitor<? extends T> visitor) {
+			if ( visitor instanceof MyGramVisitor ) return ((MyGramVisitor<? extends T>)visitor).visitValue(this);
+			else return visitor.visitChildren(this);
+		}
+	}
+
+	public final ValueContext value() throws RecognitionException {
+		ValueContext _localctx = new ValueContext(_ctx, getState());
+		enterRule(_localctx, 36, RULE_value);
+		try {
+			enterOuterAlt(_localctx, 1);
+			{
+			setState(126);
+			match(DIGIT);
 			}
 		}
 		catch (RecognitionException re) {
@@ -1023,11 +1094,11 @@ public class MyGramParser extends Parser {
 
 	public final MovingTypeContext movingType() throws RecognitionException {
 		MovingTypeContext _localctx = new MovingTypeContext(_ctx, getState());
-		enterRule(_localctx, 34, RULE_movingType);
+		enterRule(_localctx, 38, RULE_movingType);
 		try {
 			enterOuterAlt(_localctx, 1);
 			{
-			setState(126);
+			setState(128);
 			match(Type);
 			}
 		}
@@ -1043,35 +1114,35 @@ public class MyGramParser extends Parser {
 	}
 
 	public static final String _serializedATN =
-		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\34\u0083\4\2\t\2"+
+		"\3\u0430\ud6d1\u8206\uad2d\u4417\uaef1\u8d80\uaadd\3\34\u0085\4\2\t\2"+
 		"\4\3\t\3\4\4\t\4\4\5\t\5\4\6\t\6\4\7\t\7\4\b\t\b\4\t\t\t\4\n\t\n\4\13"+
 		"\t\13\4\f\t\f\4\r\t\r\4\16\t\16\4\17\t\17\4\20\t\20\4\21\t\21\4\22\t\22"+
-		"\4\23\t\23\3\2\3\2\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3\3\4\3\4\3\4\3\4\3\4"+
-		"\3\5\3\5\3\5\3\5\3\5\3\6\3\6\3\6\3\6\3\6\3\7\3\7\3\7\3\7\3\7\3\7\3\7\3"+
-		"\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\t\3\t\3\t\3\t\3\t\3\t\3\n\3\n\3\n"+
-		"\3\n\3\n\3\n\3\13\3\13\3\13\3\13\3\f\3\f\3\f\3\f\3\r\3\r\3\r\6\rg\n\r"+
-		"\r\r\16\rh\3\16\3\16\3\16\6\16n\n\16\r\16\16\16o\3\17\3\17\3\17\3\17\3"+
-		"\20\3\20\3\20\3\20\3\21\3\21\3\21\3\21\3\22\3\22\3\22\3\23\3\23\3\23\2"+
-		"\2\24\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$\2\2r\2&\3\2\2\2\4+\3"+
-		"\2\2\2\6\60\3\2\2\2\b\65\3\2\2\2\n:\3\2\2\2\f?\3\2\2\2\16F\3\2\2\2\20"+
-		"O\3\2\2\2\22U\3\2\2\2\24[\3\2\2\2\26_\3\2\2\2\30c\3\2\2\2\32j\3\2\2\2"+
-		"\34q\3\2\2\2\36u\3\2\2\2 y\3\2\2\2\"}\3\2\2\2$\u0080\3\2\2\2&\'\5\4\3"+
-		"\2\'(\5\f\7\2()\5\16\b\2)*\7\2\2\3*\3\3\2\2\2+,\7\3\2\2,-\5\6\4\2-.\5"+
-		"\b\5\2./\5\n\6\2/\5\3\2\2\2\60\61\7\4\2\2\61\62\7\5\2\2\62\63\5\22\n\2"+
-		"\63\64\7\6\2\2\64\7\3\2\2\2\65\66\7\7\2\2\66\67\7\5\2\2\678\5\22\n\28"+
-		"9\7\6\2\29\t\3\2\2\2:;\7\b\2\2;<\7\5\2\2<=\5\20\t\2=>\7\6\2\2>\13\3\2"+
-		"\2\2?@\7\t\2\2@A\7\5\2\2AB\5\20\t\2BC\5\34\17\2CD\5 \21\2DE\7\6\2\2E\r"+
-		"\3\2\2\2FG\7\n\2\2GH\7\5\2\2HI\5\20\t\2IJ\5\"\22\2JK\5\34\17\2KL\5\36"+
-		"\20\2LM\5 \21\2MN\7\6\2\2N\17\3\2\2\2OP\5\22\n\2PQ\5\24\13\2QR\5\26\f"+
-		"\2RS\5\30\r\2ST\5\32\16\2T\21\3\2\2\2UV\7\13\2\2VW\7\f\2\2WX\7\27\2\2"+
-		"XY\7\r\2\2YZ\7\27\2\2Z\23\3\2\2\2[\\\7\16\2\2\\]\7\f\2\2]^\7\30\2\2^\25"+
-		"\3\2\2\2_`\7\17\2\2`a\7\f\2\2ab\7\30\2\2b\27\3\2\2\2cd\7\20\2\2df\7\f"+
-		"\2\2eg\7\30\2\2fe\3\2\2\2gh\3\2\2\2hf\3\2\2\2hi\3\2\2\2i\31\3\2\2\2jk"+
-		"\7\21\2\2km\7\f\2\2ln\7\30\2\2ml\3\2\2\2no\3\2\2\2om\3\2\2\2op\3\2\2\2"+
-		"p\33\3\2\2\2qr\7\22\2\2rs\7\f\2\2st\7\30\2\2t\35\3\2\2\2uv\7\23\2\2vw"+
-		"\7\f\2\2wx\7\30\2\2x\37\3\2\2\2yz\7\24\2\2z{\7\f\2\2{|\7\30\2\2|!\3\2"+
-		"\2\2}~\7\25\2\2~\177\5$\23\2\177#\3\2\2\2\u0080\u0081\7\26\2\2\u0081%"+
-		"\3\2\2\2\4ho";
+		"\4\23\t\23\4\24\t\24\4\25\t\25\3\2\3\2\3\2\3\2\3\2\3\3\3\3\3\3\3\3\3\3"+
+		"\3\4\3\4\3\4\3\4\3\4\3\5\3\5\3\5\3\5\3\5\3\6\3\6\3\6\3\6\3\6\3\7\3\7\3"+
+		"\7\3\7\3\7\3\7\3\7\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\b\3\t\3\t\3\t\3\t"+
+		"\3\t\3\t\3\n\3\n\3\n\3\n\3\13\3\13\3\13\3\13\3\f\3\f\3\f\3\f\3\r\3\r\3"+
+		"\r\3\r\3\16\3\16\3\16\3\16\3\17\3\17\3\17\3\17\3\20\3\20\3\20\3\20\3\21"+
+		"\3\21\3\21\3\21\3\22\3\22\3\22\3\22\3\23\3\23\3\23\3\24\3\24\3\25\3\25"+
+		"\3\25\2\2\26\2\4\6\b\n\f\16\20\22\24\26\30\32\34\36 \"$&(\2\2p\2*\3\2"+
+		"\2\2\4/\3\2\2\2\6\64\3\2\2\2\b9\3\2\2\2\n>\3\2\2\2\fC\3\2\2\2\16J\3\2"+
+		"\2\2\20S\3\2\2\2\22Y\3\2\2\2\24]\3\2\2\2\26a\3\2\2\2\30e\3\2\2\2\32i\3"+
+		"\2\2\2\34m\3\2\2\2\36q\3\2\2\2 u\3\2\2\2\"y\3\2\2\2$}\3\2\2\2&\u0080\3"+
+		"\2\2\2(\u0082\3\2\2\2*+\5\4\3\2+,\5\f\7\2,-\5\16\b\2-.\7\2\2\3.\3\3\2"+
+		"\2\2/\60\7\3\2\2\60\61\5\6\4\2\61\62\5\b\5\2\62\63\5\n\6\2\63\5\3\2\2"+
+		"\2\64\65\7\4\2\2\65\66\7\5\2\2\66\67\5\22\n\2\678\7\6\2\28\7\3\2\2\29"+
+		":\7\7\2\2:;\7\5\2\2;<\5\22\n\2<=\7\6\2\2=\t\3\2\2\2>?\7\b\2\2?@\7\5\2"+
+		"\2@A\5\20\t\2AB\7\6\2\2B\13\3\2\2\2CD\7\t\2\2DE\7\5\2\2EF\5\20\t\2FG\5"+
+		"\36\20\2GH\5\"\22\2HI\7\6\2\2I\r\3\2\2\2JK\7\n\2\2KL\7\5\2\2LM\5\20\t"+
+		"\2MN\5$\23\2NO\5\36\20\2OP\5 \21\2PQ\5\"\22\2QR\7\6\2\2R\17\3\2\2\2ST"+
+		"\5\22\n\2TU\5\26\f\2UV\5\30\r\2VW\5\32\16\2WX\5\34\17\2X\21\3\2\2\2YZ"+
+		"\7\13\2\2Z[\7\f\2\2[\\\5\24\13\2\\\23\3\2\2\2]^\7\27\2\2^_\7\r\2\2_`\7"+
+		"\27\2\2`\25\3\2\2\2ab\7\16\2\2bc\7\f\2\2cd\5&\24\2d\27\3\2\2\2ef\7\17"+
+		"\2\2fg\7\f\2\2gh\5&\24\2h\31\3\2\2\2ij\7\20\2\2jk\7\f\2\2kl\5&\24\2l\33"+
+		"\3\2\2\2mn\7\21\2\2no\7\f\2\2op\5&\24\2p\35\3\2\2\2qr\7\22\2\2rs\7\f\2"+
+		"\2st\5&\24\2t\37\3\2\2\2uv\7\23\2\2vw\7\f\2\2wx\5&\24\2x!\3\2\2\2yz\7"+
+		"\24\2\2z{\7\f\2\2{|\5&\24\2|#\3\2\2\2}~\7\25\2\2~\177\5(\25\2\177%\3\2"+
+		"\2\2\u0080\u0081\7\30\2\2\u0081\'\3\2\2\2\u0082\u0083\7\26\2\2\u0083)"+
+		"\3\2\2\2\2";
 	public static final ATN _ATN =
 		new ATNDeserializer().deserialize(_serializedATN.toCharArray());
 	static {

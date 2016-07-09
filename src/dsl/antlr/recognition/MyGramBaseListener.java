@@ -1,5 +1,5 @@
-// Generated from C:/Users/Jihed/IdeaProjects/SEProjekt/src/dsl/antlr/jsonparser\MyGram.g4 by ANTLR 4.5.3
-package dsl.tempjsonparser.gen;
+// Generated from C:/Users/Jihed/IdeaProjects/SEProjekt/src/dsl/antlr\MyGram.g4 by ANTLR 4.5.3
+package dsl.antlr.recognition;
 
 import org.antlr.v4.runtime.ParserRuleContext;
 import org.antlr.v4.runtime.tree.ErrorNode;
@@ -124,6 +124,18 @@ public class MyGramBaseListener implements MyGramListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterFileName(MyGramParser.FileNameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitFileName(MyGramParser.FileNameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterNumberLine(MyGramParser.NumberLineContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -215,6 +227,18 @@ public class MyGramBaseListener implements MyGramListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitMovement(MyGramParser.MovementContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterValue(MyGramParser.ValueContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitValue(MyGramParser.ValueContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

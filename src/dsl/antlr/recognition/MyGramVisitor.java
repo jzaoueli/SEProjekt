@@ -1,5 +1,5 @@
-// Generated from C:/Users/Jihed/IdeaProjects/SEProjekt/src/dsl/antlr/jsonparser\MyGram.g4 by ANTLR 4.5.3
-package dsl.tempjsonparser.gen;
+// Generated from C:/Users/Jihed/IdeaProjects/SEProjekt/src/dsl/antlr\MyGram.g4 by ANTLR 4.5.3
+package dsl.antlr.recognition;
 import org.antlr.v4.runtime.tree.ParseTreeVisitor;
 
 /**
@@ -65,6 +65,12 @@ public interface MyGramVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitImageObject(MyGramParser.ImageObjectContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MyGramParser#fileName}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitFileName(MyGramParser.FileNameContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MyGramParser#numberLine}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -112,6 +118,12 @@ public interface MyGramVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitMovement(MyGramParser.MovementContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyGramParser#value}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitValue(MyGramParser.ValueContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MyGramParser#movingType}.
 	 * @param ctx the parse tree
