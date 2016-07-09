@@ -65,15 +65,15 @@ public class BulletGeneratorFunction extends MyGramBaseListener {
         if (isNull(ctx.bullet().spriteObject().imageObject().fileName().exception)) {
             fileName = ctx.bullet().spriteObject().imageObject().fileName().getText();
         } else {
-            System.err.println("please verify filename of bullet:");
-            System.err.println("        Ex: file:[filename].[extension]");
+            System.out.println("please verify filename of bullet:");
+            System.out.println("        Ex: file:[filename].[extension]");
             bullet = null;
             return;
         }
         if (isNull(ctx.bullet().spriteObject().numberLine().value().exception)) {
             numberLine = valueOf(ctx.bullet().spriteObject().numberLine().value().getText());
         } else {
-            System.err.println("please verify numberLine 'row' of bullet:");
+            System.out.println("please verify numberLine 'row' of bullet:");
             System.out.println("        Ex: row:[int]");
             bullet = null;
             return;
@@ -81,7 +81,7 @@ public class BulletGeneratorFunction extends MyGramBaseListener {
         if (isNull(ctx.bullet().spriteObject().numberColumn().value().exception)) {
             numberColumn = valueOf(ctx.bullet().spriteObject().numberColumn().value().getText());
         } else {
-            System.err.println("please verify numberColumn 'column' of bullet:");
+            System.out.println("please verify numberColumn 'column' of bullet:");
             System.out.println("        Ex: column:[int]");
             bullet = null;
             return;
@@ -89,7 +89,7 @@ public class BulletGeneratorFunction extends MyGramBaseListener {
         if (isNull(ctx.bullet().spriteObject().width().value().exception)) {
             width = valueOf(ctx.bullet().spriteObject().width().value().getText());
         } else {
-            System.err.println("please verify width of bullet:");
+            System.out.println("please verify width of bullet:");
             System.out.println("        Ex: width:[int]");
             bullet = null;
             return;
@@ -97,7 +97,7 @@ public class BulletGeneratorFunction extends MyGramBaseListener {
         if (isNull(ctx.bullet().spriteObject().height().value().exception)) {
             height = valueOf(ctx.bullet().spriteObject().height().value().getText());
         } else {
-            System.err.println("please verify value of bullet height:");
+            System.out.println("please verify value of bullet height:");
             System.out.println("        Ex: height:[int]");
             bullet = null;
             return;
@@ -105,7 +105,7 @@ public class BulletGeneratorFunction extends MyGramBaseListener {
         if (isNull(ctx.bullet().attack().value().exception)) {
             attack = valueOf(ctx.bullet().attack().value().getText());
         } else {
-            System.err.println("please verify value of ballet attack:");
+            System.out.println("please verify value of ballet attack:");
             System.out.println("        Ex: attack:[int]");
             bullet = null;
             return;
@@ -113,7 +113,7 @@ public class BulletGeneratorFunction extends MyGramBaseListener {
         if (isNull(ctx.bullet().speed().value().exception)) {
             speed = valueOf(ctx.bullet().speed().value().getText());
         } else {
-            System.err.println("please verify value of ballet speed:");
+            System.out.println("please verify value of ballet speed:");
             System.out.println("        Ex: speed:[int]");
             bullet = null;
             return;
