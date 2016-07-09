@@ -60,23 +60,49 @@ public class PlayerGeneratorFunction extends MyGramBaseListener {
     }
 
     public void exitGram(MyGramParser.GramContext ctx) {
-        //TODO : check exception and get value single
-        if (isNull(ctx.images().player().spriteObject().imageObject().fileName().exception) &&
-                isNull(ctx.images().player().spriteObject().numberLine().exception) &&
-                isNull(ctx.images().player().spriteObject().numberColumn().exception) &&
-                isNull(ctx.images().player().spriteObject().width().exception) &&
-                isNull(ctx.images().player().spriteObject().height().exception)) {
-
-            String fileName = ctx.images().player().spriteObject().imageObject().fileName().getText();
-            int numberLine = valueOf(ctx.images().player().spriteObject().numberLine().value().getText());
-            int numberColumn = valueOf(ctx.images().player().spriteObject().numberColumn().value().getText());
-            int width = valueOf(ctx.images().player().spriteObject().width().value().getText());
-            int height = valueOf(ctx.images().player().spriteObject().height().value().getText());
-
-            player = new Player(fileName, numberLine, numberColumn, width, height);
+        String fileName;
+        int numberLine, numberColumn, width, height;
+        if (isNull(ctx.images().player().spriteObject().imageObject().fileName().exception)) {
+            fileName = ctx.images().player().spriteObject().imageObject().fileName().getText();
         } else {
+            System.out.println("please verify filename of player:");
+            System.out.println("        Ex: file:[filename].[extension]");
             player = null;
+            return;
         }
+        if (isNull(ctx.images().player().spriteObject().numberLine().value().exception)) {
+            numberLine = valueOf(ctx.images().player().spriteObject().numberLine().value().getText());
+        } else {
+            System.out.println("please verify numberLine 'row' of player");
+            System.out.println("        Ex: row:[int]");
+            player = null;
+            return;
+        }
+        if (isNull(ctx.images().player().spriteObject().numberColumn().value().exception)) {
+            numberColumn = valueOf(ctx.images().player().spriteObject().numberColumn().value().getText());
+        } else {
+            System.out.println("please verify numberColumn 'column' of player");
+            System.out.println("        Ex: column:[int]");
+            player = null;
+            return;
+        }
+        if (isNull(ctx.images().player().spriteObject().width().value().exception)) {
+            width = valueOf(ctx.images().player().spriteObject().width().value().getText());
+        } else {
+            System.out.println("please verify width of player");
+            System.out.println("        Ex: width:[int]");
+            player = null;
+            return;
+        }
+        if (isNull(ctx.images().player().spriteObject().height().value().exception)) {
+            height = valueOf(ctx.images().player().spriteObject().height().value().getText());
+        } else {
+            System.out.println("please verify value of player height:");
+            System.out.println("        Ex: height:[int]");
+            player = null;
+            return;
+        }
+        player = new Player(fileName, numberLine, numberColumn, width, height);
     }
 
     private void setPlayerContent() {
