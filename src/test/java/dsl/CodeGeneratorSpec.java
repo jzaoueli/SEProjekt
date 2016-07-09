@@ -65,17 +65,15 @@ public class CodeGeneratorSpec extends TestBase {
         thenFileIsNotGenerated(PLAYER_FILE_NAME);
     }
 
-    @Ignore
     @Test
     public void testEnemyClassGeneration() {
-        whenRunEnemyGeneratorFunction(TEST_CSV_FILE_PATH);
+        whenRunEnemyGeneratorFunction(TEST_TXT_FILE_PATH);
         thenFileIsGenerated(ENEMY_CLASS_FILE_NAME);
     }
 
-    @Ignore
     @Test
-    public void testEnemyClassGenerationWithWrongCSVData() {
-        whenRunEnemyGeneratorFunction(TEST_WRONG_DATA_CSV_FILE_PATH);
+    public void testEnemyClassGenerationWithWrongData() {
+        whenRunEnemyGeneratorFunction(TEST_WRONG_DATA_TXT_FILE_PATH);
         thenFileIsNotGenerated(ENEMY_CLASS_FILE_NAME);
     }
 
@@ -118,10 +116,10 @@ public class CodeGeneratorSpec extends TestBase {
         }
     }
 
-    private void whenRunEnemyGeneratorFunction(String csvPath) {
+    private void whenRunEnemyGeneratorFunction(String srcFilePath) {
         EnemyGeneratorFunction enemyGeneratorFunction = new EnemyGeneratorFunction();
         try {
-            enemyGeneratorFunction.run(TEST_FILE_PACKAGE_NAME,csvPath);
+            enemyGeneratorFunction.run(TEST_FILE_PACKAGE_NAME,srcFilePath);
         } catch (IOException e) {
             e.printStackTrace();
         }

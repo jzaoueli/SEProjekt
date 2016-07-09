@@ -31,4 +31,5 @@ movement:vertical
 attack:2
 defense:1
 speed:8
+probability:2
 }
