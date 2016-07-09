@@ -60,31 +60,67 @@ public class BulletGeneratorFunction extends MyGramBaseListener {
     }
 
     public void exitGram(MyGramParser.GramContext ctx) {
-        //TODO : check exception and get value single
-        if (isNull(ctx.bullet().spriteObject().imageObject().fileName().exception) &&
-                isNull(ctx.bullet().spriteObject().numberLine().value().exception) &&
-                isNull(ctx.bullet().spriteObject().numberColumn().value().exception) &&
-                isNull(ctx.bullet().spriteObject().width().value().exception) &&
-                isNull(ctx.bullet().spriteObject().height().value().exception) &&
-                isNull(ctx.bullet().attack().value().exception) &&
-                isNull(ctx.bullet().speed().value().exception)
-                ) {
-
-            String fileName = ctx.bullet().spriteObject().imageObject().fileName().getText();
-            int numberLine = valueOf(ctx.bullet().spriteObject().numberLine().value().getText());
-            int numberColumn = valueOf(ctx.bullet().spriteObject().numberColumn().value().getText());
-            int width = valueOf(ctx.bullet().spriteObject().width().value().getText());
-            int height = valueOf(ctx.bullet().spriteObject().height().value().getText());
-            int attack = valueOf(ctx.bullet().attack().value().getText());
-            int speed = valueOf(ctx.bullet().speed().value().getText());
-
-            bullet = new Bullet(fileName, numberLine, numberColumn, width, height, attack, speed);
+        String fileName;
+        int numberLine, numberColumn, width, height, attack, speed;
+        if (isNull(ctx.bullet().spriteObject().imageObject().fileName().exception)) {
+            fileName = ctx.bullet().spriteObject().imageObject().fileName().getText();
         } else {
+            System.err.println("please verify filename of bullet:");
+            System.err.println("        Ex: file:[filename].[extension]");
             bullet = null;
+            return;
         }
-
-
+        if (isNull(ctx.bullet().spriteObject().numberLine().value().exception)) {
+            numberLine = valueOf(ctx.bullet().spriteObject().numberLine().value().getText());
+        } else {
+            System.err.println("please verify numberLine 'row' of bullet:");
+            System.out.println("        Ex: row:[int]");
+            bullet = null;
+            return;
+        }
+        if (isNull(ctx.bullet().spriteObject().numberColumn().value().exception)) {
+            numberColumn = valueOf(ctx.bullet().spriteObject().numberColumn().value().getText());
+        } else {
+            System.err.println("please verify numberColumn 'column' of bullet:");
+            System.out.println("        Ex: column:[int]");
+            bullet = null;
+            return;
+        }
+        if (isNull(ctx.bullet().spriteObject().width().value().exception)) {
+            width = valueOf(ctx.bullet().spriteObject().width().value().getText());
+        } else {
+            System.err.println("please verify width of bullet:");
+            System.out.println("        Ex: width:[int]");
+            bullet = null;
+            return;
+        }
+        if (isNull(ctx.bullet().spriteObject().height().value().exception)) {
+            height = valueOf(ctx.bullet().spriteObject().height().value().getText());
+        } else {
+            System.err.println("please verify value of bullet height:");
+            System.out.println("        Ex: height:[int]");
+            bullet = null;
+            return;
+        }
+        if (isNull(ctx.bullet().attack().value().exception)) {
+            attack = valueOf(ctx.bullet().attack().value().getText());
+        } else {
+            System.err.println("please verify value of ballet attack:");
+            System.out.println("        Ex: attack:[int]");
+            bullet = null;
+            return;
+        }
+        if (isNull(ctx.bullet().speed().value().exception)) {
+            speed = valueOf(ctx.bullet().speed().value().getText());
+        } else {
+            System.err.println("please verify value of ballet speed:");
+            System.out.println("        Ex: speed:[int]");
+            bullet = null;
+            return;
+        }
+        bullet = new Bullet(fileName, numberLine, numberColumn, width, height, attack, speed);
     }
+
 
     private void setPlayerContent() {
         content += getBulletMemberVariable();
