@@ -13,7 +13,7 @@ public class CodeGenerator {
     public static void main(String[] args) throws IOException {
 
         String packageName = "main.generated";
-        String srcFile= "src/dsl/antlr/srcjson.txt";
+        String srcFile = "src/dsl/antlr/srcjson.txt";
 
 
         //generateLogo
@@ -50,7 +50,7 @@ public class CodeGenerator {
         } else {
             System.out.println("- Enemy class not generated");
         }
-
+        */
         //generateBullet
         BulletGeneratorFunction bulletGeneratorFunction = new BulletGeneratorFunction();
         if (bulletGeneratorFunction.run("main.generated.bullet", srcFile)) {
@@ -58,6 +58,5 @@ public class CodeGenerator {
         } else {
             System.out.println("- Bullet class not generated");
         }
-        */
     }
 }
