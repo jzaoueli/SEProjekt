@@ -47,6 +47,18 @@ public class GamePanel extends JPanel implements KeyListener {
     private boolean playerLeft = false;
     private boolean playerRight = false;
 
+
+    /**
+     * display  SCORE, DISTANCE and BonusLives
+     */
+    int scoreValue = 10;
+    int distanceValue = 30;
+    int bonusLivesValue = 4;
+
+    String Score = "SCORE : " + scoreValue ;
+    String distance = "DISTANCE : " + distanceValue ;
+    String bonusLives = "BONUS LIVES : " + bonusLivesValue ;
+
     /**
      * GUI Timer
      * Animates Objects on Screen
@@ -137,6 +149,12 @@ public class GamePanel extends JPanel implements KeyListener {
 
     public void paint(Graphics g) {
         super.paint(g);
+
+
+
+      /*  g.drawString( distanceLabel, 25,4);
+        g.drawString( bonusLivesLabel, 12 ,4);*/
+
         /**
          * Draw Background seamlessly
          */
@@ -158,8 +176,18 @@ public class GamePanel extends JPanel implements KeyListener {
         for (Enemy enemy : aliveEnemy) {
             g.drawImage(enemy.enemyAnimation.frame, enemy.getX(), enemy.getY(), null);
         }
-    }
 
+        /**
+         * Draw Score , Distance  and Bonus lives
+         */
+        int fontSize = 14;
+        g.setFont(new Font("Courier New", Font.BOLD, fontSize));
+        g.setColor(Color.RED);
+        g.drawString(Score, 33, 15);
+        g.drawString(distance, 33, 35);
+        g.drawString( bonusLives,33, 55);
+
+    }
     @Override
     public void keyTyped(KeyEvent e) {
         // No action
