@@ -111,6 +111,17 @@ public class GamePanel extends JPanel implements KeyListener {
             enemy.enemyAnimation.animate();
             enemy.enemyAnimation.setActionFrames(0);
         }
+
+        /**
+         * Animate Items
+         * Move Items
+         */
+
+        for (Item item : leftItem) {
+            item.setMovement(1);
+            item.itemAnimation.animate();
+        }
+
         repaint();
     });
 
@@ -137,7 +148,9 @@ public class GamePanel extends JPanel implements KeyListener {
         super.paint(g);
         stateGame += 1;
 
-        //make the game faster after
+        /**
+         * Increase game speed over time
+         */
         if ((stateGame % 30) == 0) {
             distanceValue += 1;
             if ((distanceValue >= 100) && (distanceValue % 100) == 0 && game.enemyTimer.getDelay() > 100) {
@@ -170,6 +183,13 @@ public class GamePanel extends JPanel implements KeyListener {
          */
         for (Enemy enemy : aliveEnemy) {
             g.drawImage(enemy.enemyAnimation.frame, enemy.getX(), enemy.getY(), null);
+        }
+
+        /**
+         * Draw Items
+         */
+        for (Item item : leftItem) {
+            g.drawImage(item.itemAnimation.frame, item.getX(), item.getY(), null);
         }
 
         /**

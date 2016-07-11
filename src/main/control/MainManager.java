@@ -4,6 +4,7 @@ import main.generated.bullet.BulletNormal;
 import main.generated.enemy.*;
 import main.generated.image.ImageBackground;
 import main.generated.image.ImagePlayer;
+import main.generated.item.WeakAttackItemData;
 import main.model.Game;
 import main.model.Player;
 import main.view.GameGUI;
@@ -38,9 +39,6 @@ public class MainManager {
         GameGUI gameGUI = new GameGUI(gamePanel);
         game.play(gameGUI);
 
-        //BufferedImage gameLogo = ImageIO.read(new File(new ImageLogo().getFileName()));
-        //GameStart gameStart = new GameStart(gameLogo, game);
-        //gameStart.setVisible(true);
     }
 
     private static void setUpImageObject() throws IOException {
@@ -53,7 +51,8 @@ public class MainManager {
 
     public static void setItem() {
         itemClass = new ArrayList<>();
-        // TODO add Item class
+        Object[] weakAttackItemObject = new WeakAttackItemData().getWeakAttackItemData();
+        itemClass.add(weakAttackItemObject);
     }
 
     public static void setEnemy() {

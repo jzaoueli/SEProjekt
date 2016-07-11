@@ -35,8 +35,7 @@ public class Game {
      */
     public Timer enemyTimer = new Timer(enemyRate, e -> {
         randomType = (int) (Math.random() * 6);
-        randomRate = (int) (Math.random() * 6);
-        randomItemDrop = (int) (Math.random() * 6);
+        randomRate = (int) (Math.random() * 6) + 1;
         randomStartX = (int) (Math.random() * 272) + 32;
         switch (randomType) {
             case 0:
@@ -92,14 +91,26 @@ public class Game {
         }
         for (Iterator<Enemy> enemyIterator = aliveEnemy.iterator(); enemyIterator.hasNext(); ) {
             Enemy enemy = enemyIterator.next();
-            if (enemy.getY() > 480) {
+            if (enemy.getDefense() <= 0) {
+                randomItemDrop = (int) (Math.random() * 6) + 1;
+                if(randomItemDrop > 5){
+                    try {
+                        /**
+                         * Add Item on killed Enemy Coordinates
+                         */
+                        leftItem.add(new Item(itemClass.get(0), enemy.getX(), enemy.getY()));
+                    } catch (IOException e1) {
+                        e1.printStackTrace();
+                    }
+                }
                 enemyIterator.remove();
             }
-            if (enemy.getDefense() <= 0) {
+            if (enemy.getY() > 480) {
                 enemyIterator.remove();
             }
         }
     });
+
     /**
      * Bullet Shoot Timer
      * creates Bullets at specified bulletRate

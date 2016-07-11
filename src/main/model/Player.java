@@ -24,19 +24,19 @@ public class Player{
     }
 
     private void setPlayerData(Object[] bulletData) throws IOException {
-        this.setPlayerAnimation(new FrameAnimation(bulletData, 12));
+        this.setPlayerAnimation(new FrameAnimation(bulletData, 8));
         this.playerAnimation.setActionFrames(0);
     }
 
     public void setMovement(String direction, int startX) {
         if (direction.equals("right")) {
-            if (this.getX() <= 320 && this.getX() <= (startX + 32) ) {
-                this.setX(this.getX() + 8);
+            if (this.getX() <= 320) {
+                this.setX(this.getX() + 4);
             }
         }
         if (direction.equals("left")) {
-            if (this.getX() >= 32 && this.getX() >= (startX - 32)) {
-                this.setX(this.getX() - 8);
+            if (this.getX() >= 32) {
+                this.setX(this.getX() - 4);
             }
         }
     }

@@ -12,10 +12,6 @@ import java.io.IOException;
 public class Enemy {
 
     /**
-     * Enemy Type
-     */
-    private int type;
-    /**
      * Enemy Animation Frames
      */
     public FrameAnimation enemyAnimation;
@@ -36,10 +32,6 @@ public class Enemy {
      */
     private int defense;
     /**
-     * Probability the Enemy will appear
-     */
-    private float probability;
-    /**
      * Enemy Coordinates
      */
     private int x;
@@ -48,22 +40,10 @@ public class Enemy {
      * Enemy State 1 = move, 2 = hit, 3 = dead
      */
     private int state;
-
-    /**
-     * true if enemy moving in that direction
-     */
-        private boolean right;
-        private boolean left;
-
     /**
      * Enemy Collision Area
      */
     private Rectangle boundingBox;
-
-    /**
-     * Step count in one direction for left/right movement
-     */
-    private int steps = 0;
 
     public Enemy(){
     }
@@ -102,7 +82,6 @@ public class Enemy {
         this.speed = (int)(enemyData[6]);
         this.attack = (int)(enemyData[7]);
         this.defense = (int)(enemyData[8]);
-        this.probability = (int)(enemyData[9]);
     }
 
     public int getY() {
