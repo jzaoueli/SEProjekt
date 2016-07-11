@@ -1,4 +1,4 @@
-package test.java.main;
+package test.java.main.Runner;
 
 import org.junit.Test;
 import test.java.support.base.TestBase;
