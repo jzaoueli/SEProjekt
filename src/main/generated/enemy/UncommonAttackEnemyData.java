@@ -7,7 +7,7 @@ import main.model.Enemy;
  */
 public class UncommonAttackEnemyData extends Enemy {
 
-    private String fileName = "e_uncommonattack.png";
+    private String fileName = "euncommonattack.png";
     private int numberLine = 3;
     private int numberColumn = 4;
     private int width = 64;
