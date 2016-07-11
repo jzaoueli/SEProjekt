@@ -19,7 +19,7 @@ public class Game {
 
     public Player player;
     private int bulletRate = 250;
-    private int enemyRate = 200;
+    private int enemyRate = 1000;
     private int randomType;
     private int randomRate;
     private int randomStartX;
@@ -32,7 +32,7 @@ public class Game {
      * Enemy Timer
      * creates Enemies at specified enemyRate
      */
-    private Timer enemyTimer = new Timer(enemyRate, e -> {
+    public Timer enemyTimer = new Timer(enemyRate, e -> {
         randomType = (int) (Math.random() * 6);
         randomRate = (int) (Math.random() * 10);
         randomStartX = (int) (Math.random() * 272) + 32;
