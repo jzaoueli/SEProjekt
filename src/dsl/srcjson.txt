@@ -41,9 +41,9 @@ column:4
 width:32
 height:32
 movement:vertical
-attack:7
-defense:1
-speed:2
+attack:1
+defense:2
+speed:7
 probability:2
 }
 RareAttackEnemy{
@@ -51,7 +51,7 @@ file:eraredefense.png
 row:3
 column:4
 width:80
-height:80
+height:64
 movement:vertical
 attack:32
 defense:16
