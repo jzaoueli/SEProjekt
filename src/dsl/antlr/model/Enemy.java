@@ -1,10 +1,16 @@
 package dsl.antlr.model;
 
+import com.sun.istack.internal.Nullable;
+
+import static java.util.Objects.isNull;
+
+
 /**
  * creation : 2016/07/07 16:47
  */
 public class Enemy {
 
+    private String enemyName;
     private String fileName;
     private int numberLine;
     private int numberColumn;
@@ -19,7 +25,11 @@ public class Enemy {
     /**
      * Constructor with parameters
      */
-    public Enemy(String fileName, int numberLine, int numberColumn, int width, int height, String movingType, int speed, int offense, int defence, int probability) {
+    public Enemy(@Nullable String enemyName, String fileName, int numberLine, int numberColumn, int width, int height, String movingType, int speed, int offense, int defence, int probability) {
+        if(isNull(enemyName)){
+            enemyName = "AutoName";
+        }
+        this.enemyName = enemyName;
         this.fileName = fileName;
         this.numberLine = numberLine;
         this.numberColumn = numberColumn;
@@ -30,6 +40,10 @@ public class Enemy {
         this.offense = offense;
         this.defence = defence;
         this.probability = probability;
+    }
+
+    public String getEnemyName(){
+        return enemyName;
     }
 
     public String getFileName() {
