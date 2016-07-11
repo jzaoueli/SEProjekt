@@ -1,19 +1,21 @@
 grammar MyGram;
 
-gram : images bullet enemy EOF;
+gram : images bullet enemyCollection EOF;
 
 images : 'image' logo background player;
+enemyCollection : 'enemy' enemy+;
 
 logo : 'ImageLogo' '{' imageObject '}';
 background : 'ImageBackground' '{' imageObject '}';
 player : 'ImagePlayer' '{' spriteObject '}';
 bullet : 'BulletNormal' '{' spriteObject attack speed '}';
-enemy : 'CommonAttackEnemy' '{' spriteObject movement attack defense speed probability '}';
+enemy : className '{' spriteObject movement attack defense speed probability '}';
 
 spriteObject : imageObject numberLine numberColumn width height ;
 
+className : LETTERS;
 imageObject : 'file' ':' fileName;
-fileName : STRING '.' STRING;
+fileName : LETTERS '.' LETTERS;
 numberLine : 'row' ':' value;
 numberColumn : 'column' ':' value;
 width : 'width' ':' value;
@@ -27,7 +29,9 @@ value : DIGIT;
 movingType : Type;
 Type : (ZIGZAG | VERTICAL | CONTINUE);
 
-STRING : ('a'..'z')+;
+LETTERS : (SMALLLETTER | BIGLETTER)+;
+SMALLLETTER : ('a'..'z');
+BIGLETTER : ('A'..'Z');
 DIGIT  : ('0'..'9')+;
 ZIGZAG   : 'zigzag';
 VERTICAL : 'vertical';
