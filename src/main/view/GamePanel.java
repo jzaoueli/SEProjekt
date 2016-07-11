@@ -14,6 +14,7 @@ import java.util.ArrayList;
 public class GamePanel extends JPanel implements KeyListener {
 
     public Player player;
+
     /**
      * The actual game
      */
@@ -43,6 +44,10 @@ public class GamePanel extends JPanel implements KeyListener {
      */
     private int stateGame = 0;
 
+    /**
+     * Player movement direction
+     */
+    private String direction = "";
 
     /**
      * display  SCORE, DISTANCE and BonusLives
@@ -73,6 +78,7 @@ public class GamePanel extends JPanel implements KeyListener {
          * Animate Player
          * Move
          */
+        this.player.setMovement(direction, this.player.getX());
         this.player.playerAnimation.animate();
 
         /**
@@ -180,30 +186,27 @@ public class GamePanel extends JPanel implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        //movePlayer(e);
+        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
+            direction = "left";
+        }
+        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
+            direction = "right";
+        }
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        movePlayer(e);
+        if(e.getKeyCode() == KeyEvent.VK_LEFT){
+            direction = "left";
+        }
+        if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+            direction = "right";
+        }
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-        // movePlayer(e);
-    }
-
-    private void movePlayer(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            if (player.getX() <= backgroundImage.getWidth() - 64) {
-                player.setX(player.getX() + 3);
-            }
-        }
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            if (player.getX() >= 32) {
-                player.setX(player.getX() - 3);
-            }
-        }
+        direction = "";
     }
 }
 

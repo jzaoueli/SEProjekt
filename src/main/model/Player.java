@@ -18,11 +18,27 @@ public class Player{
     private Rectangle boundingBox;
 
     public Player(Object[] playerData) throws IOException {
-        this.playerAnimation = new FrameAnimation(playerData, 16);
-        this.playerAnimation.setActionFrames(getAction());
+        this.setPlayerData(playerData);
         this.setX(192);
         this.setY(400);
-        this.setBoundingBox(new Rectangle(this.getX(), this.getY(), this.playerAnimation.sizeX, this.playerAnimation.sizeY));
+    }
+
+    private void setPlayerData(Object[] bulletData) throws IOException {
+        this.setPlayerAnimation(new FrameAnimation(bulletData, 12));
+        this.playerAnimation.setActionFrames(0);
+    }
+
+    public void setMovement(String direction, int startX) {
+        if (direction.equals("right")) {
+            if (this.getX() <= 320 && this.getX() <= (startX + 32) ) {
+                this.setX(this.getX() + 8);
+            }
+        }
+        if (direction.equals("left")) {
+            if (this.getX() >= 32 && this.getX() >= (startX - 32)) {
+                this.setX(this.getX() - 8);
+            }
+        }
     }
 
     public int getLifePoints() {
@@ -59,5 +75,13 @@ public class Player{
 
     private void setBoundingBox(Rectangle boundingBox) {
         this.boundingBox = boundingBox;
+    }
+
+    public FrameAnimation getPlayerAnimation() {
+        return playerAnimation;
+    }
+
+    private void setPlayerAnimation(FrameAnimation playerAnimation) {
+        this.playerAnimation = playerAnimation;
     }
 }
