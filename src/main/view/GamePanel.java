@@ -39,10 +39,8 @@ public class GamePanel extends JPanel implements KeyListener {
      */
     private int backgroundOffY;
     /**
-     * true if Player is moving in that direction
+     * somme of frame shown, +1 in every repaint()
      */
-    private boolean playerLeft = false;
-    private boolean playerRight = false;
     private int stateGame = 0;
 
 
@@ -140,8 +138,8 @@ public class GamePanel extends JPanel implements KeyListener {
                 game.enemyTimer.setDelay(game.enemyTimer.getDelay() - 20);
                 System.out.println("new Enemy Rate : " + game.enemyTimer.getDelay());
             }
-            if ((distanceValue >= 300) && (distanceValue % 300) == 0 && guiTimer.getDelay()>1){
-                guiTimer.setDelay(guiTimer.getDelay() -1);
+            if ((distanceValue >= 300) && (distanceValue % 300) == 0 && guiTimer.getDelay() > 1) {
+                guiTimer.setDelay(guiTimer.getDelay() - 1);
                 System.out.println("new game animation speed : " + guiTimer.getDelay());
             }
         }
@@ -182,7 +180,7 @@ public class GamePanel extends JPanel implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        movePlayer(e);
+        //movePlayer(e);
     }
 
     @Override
@@ -197,19 +195,13 @@ public class GamePanel extends JPanel implements KeyListener {
 
     private void movePlayer(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            playerLeft = false;
             if (player.getX() <= backgroundImage.getWidth() - 64) {
                 player.setX(player.getX() + 3);
-            } else {
-                playerRight = false;
             }
         }
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            playerRight = false;
             if (player.getX() >= 32) {
                 player.setX(player.getX() - 3);
-            } else {
-                playerLeft = false;
             }
         }
     }
