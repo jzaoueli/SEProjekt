@@ -13,7 +13,7 @@ public class Bullet {
     public FrameAnimation bulletAnimation;
     private int x;
     private int y;
-    public int speed;
+    private int speed;
     private int attack;
     private Rectangle boundingBox;
 
@@ -33,7 +33,7 @@ public class Bullet {
         this.setSpeed((int) bulletData[6]);
     }
 
-    public void setMovement(){
+    public void setMovement() {
         this.setY(this.getY() - this.getSpeed());
         this.setBoundingBox(new Rectangle(this.getX(), this.getY(), this.bulletAnimation.sizeX, this.bulletAnimation.sizeY));
     }
@@ -41,12 +41,15 @@ public class Bullet {
     public int getX() {
         return x;
     }
+
     private void setX(int x) {
         this.x = x;
     }
+
     public int getY() {
         return y;
     }
+
     public void setY(int y) {
         this.y = y;
     }
@@ -54,6 +57,7 @@ public class Bullet {
     public Rectangle getBoundingBox() {
         return boundingBox;
     }
+
     private void setBoundingBox(Rectangle rectangle) {
         this.boundingBox = rectangle;
     }
@@ -61,13 +65,15 @@ public class Bullet {
     public int getSpeed() {
         return speed;
     }
-    public void setSpeed(int speed) {
+
+    private void setSpeed(int speed) {
         this.speed = speed;
     }
 
     public int getAttack() {
         return attack;
     }
+
     private void setAttack(int attack) {
         this.attack = attack;
     }
