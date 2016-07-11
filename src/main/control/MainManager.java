@@ -20,26 +20,18 @@ import java.util.ArrayList;
  * TODO Documentation
  */
 public class MainManager {
+    private static String imageDirectory = "images/";
+
+    public static BufferedImage backgroundImage;
+    public static Player player;
+
+    public static ArrayList<Object[]> bulletClass;
+    public static ArrayList<Object[]> enemyClass;
+    public static ArrayList<Object[]> itemClass;
 
     public static void main(String[] args) throws IOException, InterruptedException {
 
-        BufferedImage backgroundImage = ImageIO.read(new File("images/" + new ImageBackground().getFileName()));
-        Player player = new Player(new ImagePlayer().getPlayerImage());
-
-        ArrayList<Object[]> bulletClass = new ArrayList<>();
-        bulletClass.add(new BulletNormal().getBulletImage());
-        //TODO Alle Bullet Klassen hinzufügen
-
-        ArrayList<Object[]> enemyClass = new ArrayList<>();
-        enemyClass.add(new CommonAttackEnemyData().getCommonAttackEnemyData());
-        enemyClass.add(new CommonDefenseEnemyData().getCommonDefenseEnemyData());
-        enemyClass.add(new UncommonAttackEnemyData().getUncommonAttackEnemyData());
-        enemyClass.add(new UncommonDefenseEnemyData().getUncommonDefenseEnemyData());
-        enemyClass.add(new RareAttackEnemyData().getRareAttackEnemyData());
-        enemyClass.add(new RareDefenseEnemyData().getRareDefenseEnemyData());
-
-        ArrayList<Object[]> itemClass = new ArrayList<>();
-        // TODO Alle Item Klassen hinzufügen
+        setUpImageObject();
 
         Game game = new Game(player, bulletClass, enemyClass, itemClass);
         GamePanel gamePanel = new GamePanel(backgroundImage, game);
@@ -50,4 +42,56 @@ public class MainManager {
         //GameStart gameStart = new GameStart(gameLogo, game);
         //gameStart.setVisible(true);
     }
+
+    private static void setUpImageObject() throws IOException {
+        setBackGround();
+        setPlayer();
+        setBullet();
+        setEnemy();
+        setItem();
+    }
+
+    public static void setItem() {
+        itemClass = new ArrayList<>();
+        // TODO add Item class
+    }
+
+    public static void setEnemy() {
+        enemyClass = new ArrayList<>();
+        Object[] commonAttackEnemyObject = new CommonAttackEnemyData().getCommonAttackEnemyData();
+        enemyClass.add(commonAttackEnemyObject);
+
+        Object[] commonDefenseEnemyObject = new CommonDefenseEnemyData().getCommonDefenseEnemyData();
+        enemyClass.add(commonDefenseEnemyObject);
+
+        Object[] uncommonAttackEnemyObject = new UncommonAttackEnemyData().getUncommonAttackEnemyData();
+        enemyClass.add(uncommonAttackEnemyObject);
+
+        Object[] uncommonDefenseEnemyObject = new UncommonDefenseEnemyData().getUncommonDefenseEnemyData();
+        enemyClass.add(uncommonDefenseEnemyObject);
+
+        Object[] rareAttackEnemyObject = new RareAttackEnemyData().getRareAttackEnemyData();
+        enemyClass.add(rareAttackEnemyObject);
+
+        Object[] rareDefenseEnemyData = new RareDefenseEnemyData().getRareDefenseEnemyData();
+        enemyClass.add(rareDefenseEnemyData);
+    }
+
+    public static void setBullet() {
+        bulletClass = new ArrayList<>();
+        Object[] bulletObject = new BulletNormal().getBulletImage();
+        bulletClass.add(bulletObject);
+    }
+
+    public static void setPlayer() throws IOException {
+        Object[] playerObject = new ImagePlayer().getPlayerImage();
+        player = new Player(playerObject);
+    }
+
+    public static void setBackGround() throws IOException {
+        String backgroundImageFileName = new ImageBackground().getFileName();
+        File backgroundImageFile = new File(imageDirectory + backgroundImageFileName);
+        backgroundImage = ImageIO.read(backgroundImageFile);
+    }
+
 }
