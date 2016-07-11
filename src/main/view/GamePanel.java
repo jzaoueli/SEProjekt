@@ -83,7 +83,7 @@ public class GamePanel extends JPanel implements KeyListener {
          */
         for (Bullet bullet : onScreenBullet) {
             bullet.setMovement();
-            bullet.bulletAnimation.animate();
+            bullet.getBulletAnimation().animate();
         }
 
         /**
@@ -145,9 +145,6 @@ public class GamePanel extends JPanel implements KeyListener {
                 System.out.println("new game animation speed : " + guiTimer.getDelay());
             }
         }
-
-      /*  g.drawString( distanceLabel, 25,4);
-        g.drawString( bonusLivesLabel, 12 ,4);*/
 
         /**
          * Draw Background seamlessly

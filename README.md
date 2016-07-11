@@ -2,10 +2,9 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/5bb50f74a80b426cb2bab6d28af78406)](https://www.codacy.com/app/Yahima/SEProjekt?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Yahima/SEProjekt&amp;utm_campaign=Badge_Grade)
 
 ## Project TODO 
-- [ ] DSL **sehr wichtig**
+- [ ] DSL
 - [ ] 4000 LOC
-- [ ] MVC
-- [ ] Testing (optional)
+- [ ] Testing
 - [ ] DOKUMENTATION
 - [ ] Klassen Diagramm
 
@@ -17,16 +16,16 @@
 
 ### GUI TODO
 - [ ] Start Buttons
-- [ ] Highscore xml *wichtig*
+- [ ] Highscore xml
 - [ ] Labels
 
 
 #### gerade:
-* Sprites
+* Items
+* Player Steuerung
 
 #### fertig:
 - [x] Frame Animation
-- [x] Player Steuerung
 - [x] Enemy erzeugen
 - [x] Bullets
 - [x] Mehrere Gegner implementieren

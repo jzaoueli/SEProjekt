@@ -17,24 +17,27 @@ public class Bullet {
     private int attack;
     private Rectangle boundingBox;
 
-
     public Bullet() {
     }
 
-    Bullet(Object[] bulletData, int startX, int startY, int speed) throws IOException {
-        this.bulletAnimation = new FrameAnimation(bulletData, 4);
-        this.bulletAnimation.setActionFrames(0);
+    Bullet(Object[] bulletData, int startX, int startY) throws IOException {
         this.setX(startX);
         this.setY(startY);
-        this.setSpeed(speed);
+        this.setBulletData(bulletData);
+    }
+
+    private void setBulletData(Object[] bulletData) throws IOException {
+        this.setBulletAnimation(new FrameAnimation(bulletData, 12));
+        this.bulletAnimation.setActionFrames(0);
         this.setAttack((int) bulletData[5]);
-        this.setBoundingBox(new Rectangle(this.getX(), this.getY(), this.bulletAnimation.sizeX, this.bulletAnimation.sizeY));
+        this.setSpeed((int) bulletData[6]);
     }
 
     public void setMovement(){
         this.setY(this.getY() - this.getSpeed());
-        this.setBoundingBox(new Rectangle(this.getX(), this.getY(), 12, 12));
+        this.setBoundingBox(new Rectangle(this.getX(), this.getY(), this.bulletAnimation.sizeX, this.bulletAnimation.sizeY));
     }
+
     public int getX() {
         return x;
     }
@@ -65,8 +68,15 @@ public class Bullet {
     public int getAttack() {
         return attack;
     }
-
     private void setAttack(int attack) {
         this.attack = attack;
+    }
+
+    public FrameAnimation getBulletAnimation() {
+        return bulletAnimation;
+    }
+
+    private void setBulletAnimation(FrameAnimation bulletAnimation) {
+        this.bulletAnimation = bulletAnimation;
     }
 }

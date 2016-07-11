@@ -22,19 +22,21 @@ public class Game {
     private int enemyRate = 500;
     private int randomType;
     private int randomRate;
+    private int randomItemDrop;
     private int randomStartX;
-    private int speed = 4;
     private int distance = 0;
     private int highScore = 0;
     private ArrayList<Object[]> bulletClass;
     private ArrayList<Object[]> enemyClass;
+    private ArrayList<Object[]> itemClass;
     /**
      * Enemy Timer
      * creates Enemies at specified enemyRate
      */
     public Timer enemyTimer = new Timer(enemyRate, e -> {
         randomType = (int) (Math.random() * 6);
-        randomRate = (int) (Math.random() * 10);
+        randomRate = (int) (Math.random() * 6);
+        randomItemDrop = (int) (Math.random() * 6);
         randomStartX = (int) (Math.random() * 272) + 32;
         switch (randomType) {
             case 0:
@@ -54,7 +56,7 @@ public class Game {
                     }
                 }
             case 2:
-                if (randomRate > 5) {
+                if (randomRate > 2) {
                     try {
                         aliveEnemy.add(new Enemy(enemyClass.get(randomType), randomStartX));
                     } catch (IOException e1) {
@@ -62,7 +64,7 @@ public class Game {
                     }
                 }
             case 3:
-                if (randomRate > 6) {
+                if (randomRate > 3) {
                     try {
                         aliveEnemy.add(new Enemy(enemyClass.get(randomType), randomStartX));
                     } catch (IOException e1) {
@@ -70,7 +72,7 @@ public class Game {
                     }
                 }
             case 4:
-                if (randomRate > 7) {
+                if (randomRate > 4) {
                     try {
                         aliveEnemy.add(new Enemy(enemyClass.get(randomType), randomStartX));
                     } catch (IOException e1) {
@@ -78,7 +80,7 @@ public class Game {
                     }
                 }
             case 5:
-                if (randomRate > 8) {
+                if (randomRate > 5) {
                     try {
                         aliveEnemy.add(new Enemy(enemyClass.get(randomType), randomStartX));
                     } catch (IOException e1) {
@@ -98,14 +100,13 @@ public class Game {
             }
         }
     });
-    private ArrayList<Object[]> itemClass;
     /**
      * Bullet Shoot Timer
      * creates Bullets at specified bulletRate
      */
     private Timer shootTimer = new Timer(bulletRate, e -> {
         try {
-            onScreenBullet.add(new Bullet(bulletClass.get(0), player.getX(), player.getY(), speed));
+            onScreenBullet.add(new Bullet(bulletClass.get(0), player.getX(), player.getY()));
         } catch (IOException e1) {
             e1.printStackTrace();
         }
