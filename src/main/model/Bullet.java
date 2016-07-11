@@ -27,7 +27,7 @@ public class Bullet {
     }
 
     private void setBulletData(Object[] bulletData) throws IOException {
-        this.setBulletAnimation(new FrameAnimation(bulletData, 12));
+        this.setBulletAnimation(new FrameAnimation(bulletData, 8));
         this.bulletAnimation.setActionFrames(0);
         this.setAttack((int) bulletData[5]);
         this.setSpeed((int) bulletData[6]);
