@@ -11,9 +11,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 
-/**
- * Created by Pi on 04.07.2016.
- */
 public class GamePanel extends JPanel implements KeyListener {
 
     public Player player;
@@ -46,18 +43,19 @@ public class GamePanel extends JPanel implements KeyListener {
      */
     private boolean playerLeft = false;
     private boolean playerRight = false;
+    private int stateGame = 0;
 
 
     /**
      * display  SCORE, DISTANCE and BonusLives
      */
-    int scoreValue = 10;
-    int distanceValue = 30;
-    int bonusLivesValue = 4;
+    private int scoreValue = 10;
+    private int distanceValue = 0;
+    private int bonusLivesValue = 4;
 
-    String Score = "SCORE : " + scoreValue ;
-    String distance = "DISTANCE : " + distanceValue ;
-    String bonusLives = "BONUS LIVES : " + bonusLivesValue ;
+    private String Score = "SCORE : " + scoreValue;
+    private String distance = "DISTANCE : " + distanceValue;
+    private String bonusLives = "BONUS LIVES : " + bonusLivesValue;
 
     /**
      * GUI Timer
@@ -77,22 +75,6 @@ public class GamePanel extends JPanel implements KeyListener {
          * Animate Player
          * Move
          */
-        if (playerRight) {
-            playerLeft = false;
-            if (player.getX() <= backgroundImage.getWidth() - 64) {
-                player.setX(player.getX() + 3);
-            } else {
-                playerRight = false;
-            }
-        }
-        if (playerLeft) {
-            playerRight = false;
-            if (player.getX() >= 32) {
-                player.setX(player.getX() - 3);
-            } else {
-                playerLeft = false;
-            }
-        }
         this.player.playerAnimation.animate();
 
         /**
@@ -109,8 +91,8 @@ public class GamePanel extends JPanel implements KeyListener {
          * Move Enemies
          */
         for (Enemy enemy : aliveEnemy) {
-            for(Bullet bullet : onScreenBullet){
-                if(bullet.getBoundingBox().intersects(enemy.getBoundingBox())){
+            for (Bullet bullet : onScreenBullet) {
+                if (bullet.getBoundingBox().intersects(enemy.getBoundingBox())) {
                     enemy.enemyAnimation.setActionFrames(1);
                     enemy.setDefense(enemy.getDefense() - bullet.getAttack());
                     if (enemy.getDefense() == 0) {
@@ -149,8 +131,20 @@ public class GamePanel extends JPanel implements KeyListener {
 
     public void paint(Graphics g) {
         super.paint(g);
+        stateGame += 1;
 
-
+        //make the game faster after
+        if ((stateGame % 30) == 0) {
+            distanceValue += 1;
+            if ((distanceValue >= 100) && (distanceValue % 100) == 0 && game.enemyTimer.getDelay() > 100) {
+                game.enemyTimer.setDelay(game.enemyTimer.getDelay() - 20);
+                System.out.println("new Enemy Rate : " + game.enemyTimer.getDelay());
+            }
+            if ((distanceValue >= 300) && (distanceValue % 300) == 0 && guiTimer.getDelay()>1){
+                guiTimer.setDelay(guiTimer.getDelay() -1);
+                System.out.println("new game animation speed : " + guiTimer.getDelay());
+            }
+        }
 
       /*  g.drawString( distanceLabel, 25,4);
         g.drawString( bonusLivesLabel, 12 ,4);*/
@@ -182,36 +176,44 @@ public class GamePanel extends JPanel implements KeyListener {
          */
         int fontSize = 14;
         g.setFont(new Font("Courier New", Font.BOLD, fontSize));
-        g.setColor(Color.RED);
+        g.setColor(Color.WHITE);
         g.drawString(Score, 33, 15);
-        g.drawString(distance, 33, 35);
-        g.drawString( bonusLives,33, 55);
+        g.drawString("DISTANCE :" + distanceValue, 33, 35);
+        g.drawString(bonusLives, 33, 55);
 
     }
+
     @Override
     public void keyTyped(KeyEvent e) {
-        // No action
+        movePlayer(e);
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        // No action}
+        movePlayer(e);
     }
 
     @Override
     public void keyReleased(KeyEvent e) {
-/*        if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+        // movePlayer(e);
+    }
 
-
-        }
-*/
+    private void movePlayer(KeyEvent e) {
         if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            playerRight = true;
             playerLeft = false;
+            if (player.getX() <= backgroundImage.getWidth() - 64) {
+                player.setX(player.getX() + 3);
+            } else {
+                playerRight = false;
+            }
         }
         if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            playerLeft = true;
             playerRight = false;
+            if (player.getX() >= 32) {
+                player.setX(player.getX() - 3);
+            } else {
+                playerLeft = false;
+            }
         }
     }
 }
