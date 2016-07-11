@@ -1,9 +1,8 @@
 package main.generated.enemy;
 
 import main.model.Enemy;
-
 /**
- * creation : 2016/06/29 13:52
+ * creation : 2016/07/10 12:06
  */
 public class CommonAttackEnemyData extends Enemy {
 
@@ -16,10 +15,10 @@ public class CommonAttackEnemyData extends Enemy {
     private int speed = 8;
     private int offense = 2;
     private int defence = 1;
-    private int probability = 2;
 
     public Object[] getCommonAttackEnemyData() {
         return new Object[]{fileName, numberLine, numberColumn, width, height,
-                movingType, speed, offense, defence, probability};
+                movingType, speed, offense, defence};
     }
+
 }
