@@ -40,6 +40,18 @@ public class MyGramBaseListener implements MyGramListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterEnemyCollection(MyGramParser.EnemyCollectionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitEnemyCollection(MyGramParser.EnemyCollectionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterLogo(MyGramParser.LogoContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -107,6 +119,18 @@ public class MyGramBaseListener implements MyGramListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitSpriteObject(MyGramParser.SpriteObjectContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterClassName(MyGramParser.ClassNameContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitClassName(MyGramParser.ClassNameContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *

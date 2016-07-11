@@ -23,6 +23,12 @@ public interface MyGramVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitImages(MyGramParser.ImagesContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MyGramParser#enemyCollection}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEnemyCollection(MyGramParser.EnemyCollectionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MyGramParser#logo}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -58,6 +64,12 @@ public interface MyGramVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitSpriteObject(MyGramParser.SpriteObjectContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyGramParser#className}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitClassName(MyGramParser.ClassNameContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MyGramParser#imageObject}.
 	 * @param ctx the parse tree

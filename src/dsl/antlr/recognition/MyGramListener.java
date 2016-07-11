@@ -28,6 +28,16 @@ public interface MyGramListener extends ParseTreeListener {
 	 */
 	void exitImages(MyGramParser.ImagesContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MyGramParser#enemyCollection}.
+	 * @param ctx the parse tree
+	 */
+	void enterEnemyCollection(MyGramParser.EnemyCollectionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyGramParser#enemyCollection}.
+	 * @param ctx the parse tree
+	 */
+	void exitEnemyCollection(MyGramParser.EnemyCollectionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MyGramParser#logo}.
 	 * @param ctx the parse tree
 	 */
@@ -87,6 +97,16 @@ public interface MyGramListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitSpriteObject(MyGramParser.SpriteObjectContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyGramParser#className}.
+	 * @param ctx the parse tree
+	 */
+	void enterClassName(MyGramParser.ClassNameContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyGramParser#className}.
+	 * @param ctx the parse tree
+	 */
+	void exitClassName(MyGramParser.ClassNameContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MyGramParser#imageObject}.
 	 * @param ctx the parse tree
