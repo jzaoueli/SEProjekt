@@ -19,7 +19,7 @@ public class Game {
 
     public Player player;
     private int bulletRate = 250;
-    private int enemyRate = 1000;
+    private int enemyRate = 500;
     private int randomType;
     private int randomRate;
     private int randomStartX;
