@@ -38,6 +38,16 @@ public interface MyGramListener extends ParseTreeListener {
 	 */
 	void exitEnemyCollection(MyGramParser.EnemyCollectionContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MyGramParser#itemCollection}.
+	 * @param ctx the parse tree
+	 */
+	void enterItemCollection(MyGramParser.ItemCollectionContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyGramParser#itemCollection}.
+	 * @param ctx the parse tree
+	 */
+	void exitItemCollection(MyGramParser.ItemCollectionContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MyGramParser#logo}.
 	 * @param ctx the parse tree
 	 */
@@ -87,6 +97,16 @@ public interface MyGramListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitEnemy(MyGramParser.EnemyContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyGramParser#item}.
+	 * @param ctx the parse tree
+	 */
+	void enterItem(MyGramParser.ItemContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyGramParser#item}.
+	 * @param ctx the parse tree
+	 */
+	void exitItem(MyGramParser.ItemContext ctx);
 	/**
 	 * Enter a parse tree produced by {@link MyGramParser#spriteObject}.
 	 * @param ctx the parse tree
@@ -218,6 +238,16 @@ public interface MyGramListener extends ParseTreeListener {
 	 */
 	void exitMovement(MyGramParser.MovementContext ctx);
 	/**
+	 * Enter a parse tree produced by {@link MyGramParser#effect}.
+	 * @param ctx the parse tree
+	 */
+	void enterEffect(MyGramParser.EffectContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyGramParser#effect}.
+	 * @param ctx the parse tree
+	 */
+	void exitEffect(MyGramParser.EffectContext ctx);
+	/**
 	 * Enter a parse tree produced by {@link MyGramParser#value}.
 	 * @param ctx the parse tree
 	 */
@@ -237,4 +267,14 @@ public interface MyGramListener extends ParseTreeListener {
 	 * @param ctx the parse tree
 	 */
 	void exitMovingType(MyGramParser.MovingTypeContext ctx);
+	/**
+	 * Enter a parse tree produced by {@link MyGramParser#effectType}.
+	 * @param ctx the parse tree
+	 */
+	void enterEffectType(MyGramParser.EffectTypeContext ctx);
+	/**
+	 * Exit a parse tree produced by {@link MyGramParser#effectType}.
+	 * @param ctx the parse tree
+	 */
+	void exitEffectType(MyGramParser.EffectTypeContext ctx);
 }

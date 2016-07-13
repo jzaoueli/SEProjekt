@@ -29,6 +29,12 @@ public interface MyGramVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitEnemyCollection(MyGramParser.EnemyCollectionContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MyGramParser#itemCollection}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitItemCollection(MyGramParser.ItemCollectionContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MyGramParser#logo}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -58,6 +64,12 @@ public interface MyGramVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitEnemy(MyGramParser.EnemyContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyGramParser#item}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitItem(MyGramParser.ItemContext ctx);
 	/**
 	 * Visit a parse tree produced by {@link MyGramParser#spriteObject}.
 	 * @param ctx the parse tree
@@ -137,6 +149,12 @@ public interface MyGramVisitor<T> extends ParseTreeVisitor<T> {
 	 */
 	T visitMovement(MyGramParser.MovementContext ctx);
 	/**
+	 * Visit a parse tree produced by {@link MyGramParser#effect}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEffect(MyGramParser.EffectContext ctx);
+	/**
 	 * Visit a parse tree produced by {@link MyGramParser#value}.
 	 * @param ctx the parse tree
 	 * @return the visitor result
@@ -148,4 +166,10 @@ public interface MyGramVisitor<T> extends ParseTreeVisitor<T> {
 	 * @return the visitor result
 	 */
 	T visitMovingType(MyGramParser.MovingTypeContext ctx);
+	/**
+	 * Visit a parse tree produced by {@link MyGramParser#effectType}.
+	 * @param ctx the parse tree
+	 * @return the visitor result
+	 */
+	T visitEffectType(MyGramParser.EffectTypeContext ctx);
 }

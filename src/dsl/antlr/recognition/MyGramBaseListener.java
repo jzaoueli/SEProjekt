@@ -52,6 +52,18 @@ public class MyGramBaseListener implements MyGramListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterItemCollection(MyGramParser.ItemCollectionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitItemCollection(MyGramParser.ItemCollectionContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterLogo(MyGramParser.LogoContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -107,6 +119,18 @@ public class MyGramBaseListener implements MyGramListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitEnemy(MyGramParser.EnemyContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterItem(MyGramParser.ItemContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitItem(MyGramParser.ItemContext ctx) { }
 	/**
 	 * {@inheritDoc}
 	 *
@@ -268,6 +292,18 @@ public class MyGramBaseListener implements MyGramListener {
 	 *
 	 * <p>The default implementation does nothing.</p>
 	 */
+	@Override public void enterEffect(MyGramParser.EffectContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitEffect(MyGramParser.EffectContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
 	@Override public void enterValue(MyGramParser.ValueContext ctx) { }
 	/**
 	 * {@inheritDoc}
@@ -287,6 +323,18 @@ public class MyGramBaseListener implements MyGramListener {
 	 * <p>The default implementation does nothing.</p>
 	 */
 	@Override public void exitMovingType(MyGramParser.MovingTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void enterEffectType(MyGramParser.EffectTypeContext ctx) { }
+	/**
+	 * {@inheritDoc}
+	 *
+	 * <p>The default implementation does nothing.</p>
+	 */
+	@Override public void exitEffectType(MyGramParser.EffectTypeContext ctx) { }
 
 	/**
 	 * {@inheritDoc}
