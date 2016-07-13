@@ -158,7 +158,6 @@ public class Game {
                         }
                     case "bulletrate":
                         rateCounter = 0;
-                        System.out.println(shootTimer.getDelay());
                             shootTimer.setDelay(100);
                 }
                 itemIterator.remove();
@@ -171,9 +170,7 @@ public class Game {
         if(rateCounter > 50){
             rateCounter = 0;
             shootTimer.setDelay(shootTimer.getInitialDelay());
-            System.out.println(shootTimer.getDelay());
         }
-        System.out.println(rateCounter);
     });
 
     public Game(Player player, ArrayList<Object[]> bulletClass, ArrayList<Object[]> enemyClass, ArrayList<Object[]> itemClass) throws IOException, InterruptedException {
