@@ -19,12 +19,12 @@ import static test.java.support.utils.Strings.*;
 public class CodeGeneratorSpec extends TestBase {
 
     @Before
-    public void setUp(){
+    public void setUp() {
         cleanOldGeneratedFiles();
     }
 
     @After
-    public void cleanUp(){
+    public void cleanUp() {
         cleanOldGeneratedFiles();
     }
 
@@ -35,7 +35,7 @@ public class CodeGeneratorSpec extends TestBase {
     }
 
     @Test
-    public void testLogoClassGenerationWithWrongData(){
+    public void testLogoClassGenerationWithWrongData() {
         whenRunLogoGeneratorFunction(TEST_WRONG_DATA_TXT_FILE_PATH);
         thenFileIsNotGenerated(LOGO_CLASS_FILE_NAME);
     }
@@ -47,7 +47,7 @@ public class CodeGeneratorSpec extends TestBase {
     }
 
     @Test
-    public void testBackGroundClassGenerationWithWrongData(){
+    public void testBackGroundClassGenerationWithWrongData() {
         whenRunBackGroundGeneratorFunction(TEST_WRONG_DATA_TXT_FILE_PATH);
         thenFileIsNotGenerated(BACKGROUND_CLASS_FILE_NAME);
     }
@@ -108,9 +108,9 @@ public class CodeGeneratorSpec extends TestBase {
     }
 
     private void whenRunPlayerGeneratorFunction(String srcFilePath) {
-        PlayerGeneratorFunction playerGeneratorFunction = new PlayerGeneratorFunction();
+        PlayerGeneratorFunction playerGeneratorFunction = new PlayerGeneratorFunction(TEST_FILE_PACKAGE_NAME);
         try {
-            playerGeneratorFunction.run(TEST_FILE_PACKAGE_NAME,srcFilePath);
+            playerGeneratorFunction.run(srcFilePath);
         } catch (IOException e) {
             e.printStackTrace();
         }

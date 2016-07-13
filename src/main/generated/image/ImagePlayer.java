@@ -1,7 +1,7 @@
 package main.generated.image;
 
 /**
- * creation : 2016/07/10 12:06
+ * creation : 2016/07/14 01:17
  */
 public class ImagePlayer {
 

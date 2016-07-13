@@ -7,41 +7,29 @@ import dsl.antlr.recognition.MyGramLexer;
 import dsl.antlr.recognition.MyGramParser;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.io.FileReader;
 import java.io.IOException;
 
 import static java.lang.Integer.valueOf;
-import static java.util.Objects.isNull;
 
 /**
  * player class generation
  */
 public class PlayerGeneratorFunction extends MyGramBaseListener {
     private static Player player;
+    private String packageName;
+
     private String content = "";
+    private boolean noError = true;
 
-    public boolean run(String packageName, String src) throws IOException {
-        if (isNull(initPlayer(src))) {
-            return false;
-        }
-
-        String className = "ImagePlayer";
-        CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
-
-        codeGeneratorFunction.setHeader(null, null);
-
-        setPlayerContent();
-
-        codeGeneratorFunction.setContent(content);
-        codeGeneratorFunction.setFooter();
-        codeGeneratorFunction.createAndWriteInFile();
-
-        return true;
+    public PlayerGeneratorFunction(String packageName) {
+        this.packageName = packageName;
     }
 
-    private static Player initPlayer(String src) throws IOException {
+    public void run(String src) throws IOException {
         FileReader fileReader = new FileReader(src);
         ANTLRInputStream antlrInputStream = new ANTLRInputStream(fileReader);
         // Get CSV lexer
@@ -54,56 +42,37 @@ public class PlayerGeneratorFunction extends MyGramBaseListener {
         MyGramParser.GramContext fileContext = parser.gram();
         // Walk it and attach our listener
         ParseTreeWalker walker = new ParseTreeWalker();
-        MyGramBaseListener listener = new PlayerGeneratorFunction();
+        MyGramBaseListener listener = new PlayerGeneratorFunction(packageName);
         walker.walk(listener, fileContext);
-        return player;
     }
 
-    public void exitGram(MyGramParser.GramContext ctx) {
+    @Override
+    public void visitErrorNode(ErrorNode node) {
+        noError = false;
+    }
+
+    @Override
+    public void exitPlayer(MyGramParser.PlayerContext ctx) {
         String fileName;
         int numberLine, numberColumn, width, height;
-        if (isNull(ctx.images().player().spriteObject().imageObject().fileName().exception)) {
-            fileName = ctx.images().player().spriteObject().imageObject().fileName().getText();
+        if (noError) {
+            fileName = ctx.spriteObject().imageObject().fileName().getText();
+            numberLine = valueOf(ctx.spriteObject().numberLine().value().getText());
+            numberColumn = valueOf(ctx.spriteObject().numberColumn().value().getText());
+            width = valueOf(ctx.spriteObject().width().value().getText());
+            height = valueOf(ctx.spriteObject().height().value().getText());
         } else {
-            System.out.println("please verify filename of player:");
-            System.out.println("        Ex: file:[filename].[extension]");
-            player = null;
-            return;
-        }
-        if (isNull(ctx.images().player().spriteObject().numberLine().value().exception)) {
-            numberLine = valueOf(ctx.images().player().spriteObject().numberLine().value().getText());
-        } else {
-            System.out.println("please verify numberLine 'row' of player");
-            System.out.println("        Ex: row:[int]");
-            player = null;
-            return;
-        }
-        if (isNull(ctx.images().player().spriteObject().numberColumn().value().exception)) {
-            numberColumn = valueOf(ctx.images().player().spriteObject().numberColumn().value().getText());
-        } else {
-            System.out.println("please verify numberColumn 'column' of player");
-            System.out.println("        Ex: column:[int]");
-            player = null;
-            return;
-        }
-        if (isNull(ctx.images().player().spriteObject().width().value().exception)) {
-            width = valueOf(ctx.images().player().spriteObject().width().value().getText());
-        } else {
-            System.out.println("please verify width of player");
-            System.out.println("        Ex: width:[int]");
-            player = null;
-            return;
-        }
-        if (isNull(ctx.images().player().spriteObject().height().value().exception)) {
-            height = valueOf(ctx.images().player().spriteObject().height().value().getText());
-        } else {
-            System.out.println("please verify value of player height:");
-            System.out.println("        Ex: height:[int]");
-            player = null;
+            noError = true;
             return;
         }
         player = new Player(fileName, numberLine, numberColumn, width, height);
+        try {
+            generatePlayer();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
+
 
     private void setPlayerContent() {
         content += getPlayerMemberVariable();
@@ -111,13 +80,6 @@ public class PlayerGeneratorFunction extends MyGramBaseListener {
     }
 
     private String getPlayerMethods() {
-        String tempString = "";
-        tempString += getGetPlayerImage();
-
-        return tempString;
-    }
-
-    private String getGetPlayerImage() {
         return "    public Object[] getPlayerImage() {\n" +
                 "        return new Object[]{fileName, numberLine, numberColumn, width, height};\n" +
                 "    }";
@@ -129,5 +91,20 @@ public class PlayerGeneratorFunction extends MyGramBaseListener {
                 "    private int numberColumn = " + player.getNumberColumn() + ";\n" +
                 "    private int width = " + player.getWidth() + ";\n" +
                 "    private int height = " + player.getHeight() + ";\n\n";
+    }
+
+    private void generatePlayer() throws IOException {
+        String className = "ImagePlayer";
+        CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
+
+        codeGeneratorFunction.setHeader(null, null);
+
+        setPlayerContent();
+
+        codeGeneratorFunction.setContent(content);
+        codeGeneratorFunction.setFooter();
+        codeGeneratorFunction.createAndWriteInFile();
+        System.out.println("- " + "Player" + " is generated");
+        content = "";
     }
 }

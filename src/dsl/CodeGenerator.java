@@ -23,12 +23,8 @@ public class CodeGenerator {
         backGroundGeneratorFunction.run(srcFile);
 
         //generatePlayer
-        PlayerGeneratorFunction playerGeneratorFunction = new PlayerGeneratorFunction();
-        if (playerGeneratorFunction.run("main.generated.image", srcFile)) {
-            System.out.println("- Player class generated");
-        } else {
-            System.out.println("- Player class not generated");
-        }
+        PlayerGeneratorFunction playerGeneratorFunction = new PlayerGeneratorFunction("main.generated.image");
+        playerGeneratorFunction.run(srcFile);
 
         //generateEnemy
         EnemyGeneratorFunction enemyGeneratorFunction = new EnemyGeneratorFunction("main.generated.enemy");
