@@ -20,12 +20,11 @@ public class Enemy {
     private int speed;
     private int offense;
     private int defence;
-    private int probability;
 
     /**
      * Constructor with parameters
      */
-    public Enemy(@Nullable String enemyName, String fileName, int numberLine, int numberColumn, int width, int height, String movingType, int speed, int offense, int defence, int probability) {
+    public Enemy(@Nullable String enemyName, String fileName, int numberLine, int numberColumn, int width, int height, String movingType, int speed, int offense, int defence) {
         if(isNull(enemyName)){
             enemyName = "AutoName";
         }
@@ -39,7 +38,6 @@ public class Enemy {
         this.speed = speed;
         this.offense = offense;
         this.defence = defence;
-        this.probability = probability;
     }
 
     public String getEnemyName(){
@@ -80,10 +78,6 @@ public class Enemy {
 
     public int getDefence() {
         return defence;
-    }
-
-    public int getProbability() {
-        return probability;
     }
 
 

@@ -16,7 +16,7 @@ public class EnemyTest extends TestBase{
 
     @Test
     public void testParametrizedConstructor(){
-        enemy = new Enemy(null,TEST_JAVA_FILE_NAME,1,2,3,4,"vertical",5,6,7,8);
+        enemy = new Enemy(null,TEST_JAVA_FILE_NAME,1,2,3,4,"vertical",5,6,7);
 
         assertNotNull(enemy);
 
@@ -30,7 +30,6 @@ public class EnemyTest extends TestBase{
         assertEquals(enemy.getSpeed(),5);
         assertEquals(enemy.getOffense(),6);
         assertEquals(enemy.getDefence(),7);
-        assertEquals(enemy.getProbability(),8);
 
     }
 }
