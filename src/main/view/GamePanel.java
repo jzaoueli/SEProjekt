@@ -229,21 +229,25 @@ public class GamePanel extends JPanel implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        if (e.getKeyCode() == KeyEvent.VK_LEFT) {
-            direction = "left";
-        }
-        if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
-            direction = "right";
+        if(!isGameOver){
+            if(e.getKeyCode() == KeyEvent.VK_LEFT){
+                direction = "left";
+            }
+            if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+                direction = "right";
+            }
         }
     }
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(e.getKeyCode() == KeyEvent.VK_LEFT){
-            direction = "left";
-        }
-        if(e.getKeyCode() == KeyEvent.VK_RIGHT){
-            direction = "right";
+        if(!isGameOver){
+            if(e.getKeyCode() == KeyEvent.VK_LEFT){
+                direction = "left";
+            }
+            if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+                direction = "right";
+            }
         }
     }
 
