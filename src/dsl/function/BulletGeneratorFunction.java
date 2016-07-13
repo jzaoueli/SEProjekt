@@ -7,41 +7,29 @@ import dsl.antlr.recognition.MyGramParser;
 import dsl.antlr.model.Bullet;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.io.FileReader;
 import java.io.IOException;
 
 import static java.lang.Integer.valueOf;
-import static java.util.Objects.isNull;
 
 /**
  * Bullet class generation
  */
 public class BulletGeneratorFunction extends MyGramBaseListener {
     private static Bullet bullet;
+    private String packageName;
+
     private String content = "";
+    private boolean noError = true;
 
-    public boolean run(String packageName, String src) throws IOException {
-        if (isNull(initBullet(src))) {
-            return false;
-        }
-
-        String className = "BulletNormal";
-        CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
-
-        codeGeneratorFunction.setHeader("import main.model.Bullet;", "extends Bullet");
-
-        setBulletContent();
-
-        codeGeneratorFunction.setContent(content);
-        codeGeneratorFunction.setFooter();
-        codeGeneratorFunction.createAndWriteInFile();
-
-        return true;
+    public BulletGeneratorFunction(String packageName) {
+        this.packageName = packageName;
     }
 
-    private static Bullet initBullet(String src) throws IOException {
+    public void run(String src) throws IOException {
         FileReader fileReader = new FileReader(src);
         ANTLRInputStream antlrInputStream = new ANTLRInputStream(fileReader);
         // Get CSV lexer
@@ -54,71 +42,37 @@ public class BulletGeneratorFunction extends MyGramBaseListener {
         MyGramParser.GramContext fileContext = parser.gram();
         // Walk it and attach our listener
         ParseTreeWalker walker = new ParseTreeWalker();
-        MyGramBaseListener listener = new BulletGeneratorFunction();
+        MyGramBaseListener listener = new BulletGeneratorFunction(packageName);
         walker.walk(listener, fileContext);
-        return bullet;
     }
 
-    public void exitGram(MyGramParser.GramContext ctx) {
+    @Override
+    public void visitErrorNode(ErrorNode node) {
+        noError = false;
+    }
+
+    @Override
+    public void exitBullet(MyGramParser.BulletContext ctx) {
         String fileName;
         int numberLine, numberColumn, width, height, attack, speed;
-        if (isNull(ctx.bullet().spriteObject().imageObject().fileName().exception)) {
-            fileName = ctx.bullet().spriteObject().imageObject().fileName().getText();
+        if (noError) {
+            fileName = ctx.spriteObject().imageObject().fileName().getText();
+            numberLine = valueOf(ctx.spriteObject().numberLine().value().getText());
+            numberColumn = valueOf(ctx.spriteObject().numberColumn().value().getText());
+            width = valueOf(ctx.spriteObject().width().value().getText());
+            height = valueOf(ctx.spriteObject().height().value().getText());
+            attack = valueOf(ctx.attack().value().getText());
+            speed = valueOf(ctx.speed().value().getText());
         } else {
-            System.out.println("please verify filename of bullet:");
-            System.out.println("        Ex: file:[filename].[extension]");
-            bullet = null;
-            return;
-        }
-        if (isNull(ctx.bullet().spriteObject().numberLine().value().exception)) {
-            numberLine = valueOf(ctx.bullet().spriteObject().numberLine().value().getText());
-        } else {
-            System.out.println("please verify numberLine 'row' of bullet:");
-            System.out.println("        Ex: row:[int]");
-            bullet = null;
-            return;
-        }
-        if (isNull(ctx.bullet().spriteObject().numberColumn().value().exception)) {
-            numberColumn = valueOf(ctx.bullet().spriteObject().numberColumn().value().getText());
-        } else {
-            System.out.println("please verify numberColumn 'column' of bullet:");
-            System.out.println("        Ex: column:[int]");
-            bullet = null;
-            return;
-        }
-        if (isNull(ctx.bullet().spriteObject().width().value().exception)) {
-            width = valueOf(ctx.bullet().spriteObject().width().value().getText());
-        } else {
-            System.out.println("please verify width of bullet:");
-            System.out.println("        Ex: width:[int]");
-            bullet = null;
-            return;
-        }
-        if (isNull(ctx.bullet().spriteObject().height().value().exception)) {
-            height = valueOf(ctx.bullet().spriteObject().height().value().getText());
-        } else {
-            System.out.println("please verify value of bullet height:");
-            System.out.println("        Ex: height:[int]");
-            bullet = null;
-            return;
-        }
-        if (isNull(ctx.bullet().attack().value().exception)) {
-            attack = valueOf(ctx.bullet().attack().value().getText());
-        } else {
-            System.out.println("please verify value of ballet attack:");
-            System.out.println("        Ex: attack:[int]");
-            bullet = null;
-            return;
-        }
-        if (isNull(ctx.bullet().speed().value().exception)) {
-            speed = valueOf(ctx.bullet().speed().value().getText());
-        } else {
-            System.out.println("please verify value of ballet speed:");
-            System.out.println("        Ex: speed:[int]");
-            bullet = null;
+            noError = true;
             return;
         }
         bullet = new Bullet(fileName, numberLine, numberColumn, width, height, attack, speed);
+        try {
+            generateBullet();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
@@ -129,7 +83,7 @@ public class BulletGeneratorFunction extends MyGramBaseListener {
 
     private String getBulletMethods() {
         return "    public Object[] getBulletImage(){\n" +
-                "        return new Object[]{fileName, numberLine, numberColumn, width, height, attack};\n" +
+                "        return new Object[]{fileName, numberLine, numberColumn, width, height, attack, speed};\n" +
                 "    }";
     }
 
@@ -139,6 +93,24 @@ public class BulletGeneratorFunction extends MyGramBaseListener {
                 "    private int numberColumn = " + bullet.getNumberColumn() + ";\n" +
                 "    private int width = " + bullet.getWidth() + ";\n" +
                 "    private int height = " + bullet.getHeight() + ";\n" +
-                "    private int attack = 1;\n\n";
+                "    private int attack = " + bullet.getAttack() + ";\n" +
+                "    private int speed = " + bullet.getSpeed() + ";\n\n";
+    }
+
+    private void generateBullet() throws IOException {
+        String className = "BulletNormal";
+        CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
+
+        String importClass = "import main.model.Bullet;";
+        String extendsClass = "extends Bullet";
+        codeGeneratorFunction.setHeader(importClass, extendsClass);
+
+        setBulletContent();
+
+        codeGeneratorFunction.setContent(content);
+        codeGeneratorFunction.setFooter();
+        codeGeneratorFunction.createAndWriteInFile();
+        System.out.println("- " + "Bullet" + " is generated");
+        content = "";
     }
 }
