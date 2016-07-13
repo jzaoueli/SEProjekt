@@ -7,7 +7,7 @@ import main.model.Item;
  */
 public class HealItemData extends Item{
 
-    private String fileName = "i_heal.png";
+    private String fileName = "iheal.png";
     private int numberLine = 1;
     private int numberColumn = 4;
     private int width = 32;

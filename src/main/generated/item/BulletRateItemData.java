@@ -7,7 +7,7 @@ import main.model.Item;
  */
 public class BulletRateItemData extends Item {
 
-    private String fileName = "i_bulletrateincrease.png";
+    private String fileName = "ibulletrateincrease.png";
     private int numberLine = 1;
     private int numberColumn = 4;
     private int width = 32;
