@@ -93,6 +93,7 @@ public class GamePanel extends JPanel implements KeyListener {
             player.getPlayerAnimation().setActionFrames(2);
             player.setMovement("down");
             this.game.shootTimer.stop();
+            this.game.enemyTimer.stop();
         }
 
         /**
