@@ -9,7 +9,8 @@ public class Strings {
     public static String BACKGROUND_CLASS_FILE_NAME = "ImageBackGround.java";
     public static String PLAYER_FILE_NAME = "ImagePlayer.java";
     public static String BULLET_CLASS_FILE_NAME = "BulletNormal.java";
-    public static String ENEMY_CLASS_FILE_NAME = "CommonAttackEnemyData.java";
+    public static String ENEMY_CLASS_FILE_NAME = "TestEnemyData.java";
+    public static String ITEM_CLASS_FILE_NAME = "TestItemData.java";
 
     public static String TEST_JAVA_FILE_NAME = "TestFile.java";
 

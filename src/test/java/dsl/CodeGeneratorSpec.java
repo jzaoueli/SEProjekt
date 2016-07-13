@@ -89,6 +89,18 @@ public class CodeGeneratorSpec extends TestBase {
         thenFileIsNotGenerated(BULLET_CLASS_FILE_NAME);
     }
 
+    @Test
+    public void testItemClassGeneration() {
+        whenRunItemGeneratorFunction(TEST_TXT_FILE_PATH);
+        thenFileIsGenerated(ITEM_CLASS_FILE_NAME);
+    }
+
+    @Test
+    public void testItemClassGenerationWithWrongData() {
+        whenRunItemGeneratorFunction(TEST_WRONG_DATA_TXT_FILE_PATH);
+        thenFileIsNotGenerated(ITEM_CLASS_FILE_NAME);
+    }
+
     private void whenRunLogoGeneratorFunction(String srcFilePath) {
         LogoGeneratorFunction logoGeneratorFunction = new LogoGeneratorFunction(TEST_FILE_PACKAGE_NAME);
         try {
@@ -130,6 +142,15 @@ public class CodeGeneratorSpec extends TestBase {
         BulletGeneratorFunction bulletGeneratorFunction = new BulletGeneratorFunction(TEST_FILE_PACKAGE_NAME);
         try {
             bulletGeneratorFunction.run(srcFilePath);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void whenRunItemGeneratorFunction(String srcFilePath) {
+        ItemGeneratorFunction itemGeneratorFunction = new ItemGeneratorFunction(TEST_FILE_PACKAGE_NAME);
+        try {
+            itemGeneratorFunction.run(srcFilePath);
         } catch (IOException e) {
             e.printStackTrace();
         }
