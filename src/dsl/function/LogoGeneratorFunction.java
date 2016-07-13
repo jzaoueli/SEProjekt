@@ -59,9 +59,12 @@ public class LogoGeneratorFunction extends MyGramBaseListener {
     }
 
     public void exitGram(MyGramParser.GramContext ctx) {
-        if (isNull(ctx.images().logo().imageObject().fileName().exception)) {
-            logo = new Logo(ctx.images().logo().imageObject().fileName().getText());
-        } else {
+        if (isNull(ctx.images().logo().exception)) {
+            if (isNull(ctx.images().logo().imageObject().fileName().exception)) {
+                logo = new Logo(ctx.images().logo().imageObject().fileName().getText());
+            }
+        }
+        else {
             logo = null;
         }
     }
