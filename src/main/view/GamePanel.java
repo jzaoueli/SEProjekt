@@ -52,14 +52,14 @@ public class GamePanel extends JPanel implements KeyListener {
     /**
      * display  SCORE, DISTANCE and BonusLives
      */
-    private int scoreValue = 10;
-    private int distanceValue = 0;
-    private int bonusLivesValue = 4;
+    private int scoreValue;
+    private int distanceValue;
+    private int playerLifeValue;
+    private String gameInfo = "";
+    private Font dataFont = new Font ("Monospaced", Font.PLAIN, 12);
+    private Font infoFont = new Font ("Monospaced", Font.PLAIN, 20);
 
-    private String Score = "SCORE : " + scoreValue;
-    private String distance = "DISTANCE : " + distanceValue;
-    private String bonusLives = "BONUS LIVES : " + bonusLivesValue;
-
+    boolean isGameOver = false;
     /**
      * GUI Timer
      * Animates Objects on Screen
@@ -78,8 +78,22 @@ public class GamePanel extends JPanel implements KeyListener {
          * Animate Player
          * Move
          */
-        this.player.setMovement(direction, this.player.getX());
-        this.player.playerAnimation.animate();
+        player.setMovement(direction);
+        player.getPlayerAnimation().animate();
+        player.getPlayerAnimation().setActionFrames(0);
+        playerLifeValue = player.getLifePoints();
+
+        /**
+         * When Player dies Game Over
+         */
+        if(player.getLifePoints() <= 0){
+            isGameOver = true;
+            gameInfo = "GAME OVER";
+            playerLifeValue = 0;
+            player.getPlayerAnimation().setActionFrames(2);
+            player.setMovement("down");
+            this.game.shootTimer.stop();
+        }
 
         /**
          * Animate Bullets
@@ -97,16 +111,24 @@ public class GamePanel extends JPanel implements KeyListener {
         for (Enemy enemy : aliveEnemy) {
             for (Bullet bullet : onScreenBullet) {
                 if (bullet.getBoundingBox().intersects(enemy.getBoundingBox())) {
+                    scoreValue += bullet.getAttack();
                     enemy.enemyAnimation.setActionFrames(1);
                     enemy.setDefense(enemy.getDefense() - bullet.getAttack());
                     if (enemy.getDefense() == 0) {
+                        scoreValue += enemy.getAttack();
                         enemy.enemyAnimation.setActionFrames(2);
-                        enemy.setState(2);
                         break;
                     }
                     bullet.setY(0);
                 }
             }
+
+            if(player.getBoundingBox().intersects(enemy.getBoundingBox())){
+                player.getPlayerAnimation().setActionFrames(1);
+                player.setLifePoints(player.getLifePoints() - enemy.getAttack());
+                enemy.setDefense(0);
+            }
+
             enemy.setMovement(enemy.movement);
             enemy.enemyAnimation.animate();
             enemy.enemyAnimation.setActionFrames(0);
@@ -118,8 +140,11 @@ public class GamePanel extends JPanel implements KeyListener {
          */
 
         for (Item item : leftItem) {
+            if(item.getBoundingBox().intersects(player.getBoundingBox())){
+                item.isEffectActivated = true;
+            }
             item.setMovement(1);
-            item.itemAnimation.animate();
+            item.getItemAnimation().animate();
         }
 
         repaint();
@@ -146,20 +171,19 @@ public class GamePanel extends JPanel implements KeyListener {
 
     public void paint(Graphics g) {
         super.paint(g);
-        stateGame += 1;
 
         /**
          * Increase game speed over time
          */
+        stateGame += 1;
+
         if ((stateGame % 30) == 0) {
             distanceValue += 1;
             if ((distanceValue >= 100) && (distanceValue % 100) == 0 && game.enemyTimer.getDelay() > 100) {
                 game.enemyTimer.setDelay(game.enemyTimer.getDelay() - 20);
-                System.out.println("new Enemy Rate : " + game.enemyTimer.getDelay());
             }
             if ((distanceValue >= 300) && (distanceValue % 300) == 0 && guiTimer.getDelay() > 1) {
                 guiTimer.setDelay(guiTimer.getDelay() - 1);
-                System.out.println("new game animation speed : " + guiTimer.getDelay());
             }
         }
 
@@ -192,15 +216,14 @@ public class GamePanel extends JPanel implements KeyListener {
             g.drawImage(item.itemAnimation.frame, item.getX(), item.getY(), null);
         }
 
-        /**
-         * Draw Score , Distance  and Bonus lives
-         */
-        int fontSize = 14;
-        g.setFont(new Font("Courier New", Font.BOLD, fontSize));
-        g.setColor(Color.WHITE);
-        g.drawString(Score, 33, 15);
-        g.drawString("DISTANCE :" + distanceValue, 33, 35);
-        g.drawString(bonusLives, 33, 55);
+        g.setColor(Color.white);
+        g.setFont(dataFont);
+        g.drawString(("SCORE: " + scoreValue), 35, 15);
+        g.drawString(("DISTANCE: " + distanceValue), 35, 35);
+        g.drawString(("LIFE: " + playerLifeValue), 35, 55);
+        g.setColor(Color.red);
+        g.setFont(infoFont);
+        g.drawString(gameInfo, 35, 240);
 
     }
 

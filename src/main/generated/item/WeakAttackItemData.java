@@ -12,7 +12,7 @@ public class WeakAttackItemData extends Item{
     private int numberColumn = 4;
     private int width = 32;
     private int height = 32;
-    private String effect = "lifepoints+10";
+    private String effect = "lifepoints";
 
     public Object[] getWeakAttackItemData(){
         return new Object[]{fileName, numberLine, numberColumn, width, height, effect};

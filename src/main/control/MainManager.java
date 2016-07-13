@@ -38,7 +38,6 @@ public class MainManager {
         GamePanel gamePanel = new GamePanel(backgroundImage, game);
         GameGUI gameGUI = new GameGUI(gamePanel);
         game.play(gameGUI);
-
     }
 
     private static void setUpImageObject() throws IOException {
@@ -92,5 +91,4 @@ public class MainManager {
         File backgroundImageFile = new File(imageDirectory + backgroundImageFileName);
         backgroundImage = ImageIO.read(backgroundImageFile);
     }
-
 }

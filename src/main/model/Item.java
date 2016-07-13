@@ -15,6 +15,7 @@ public class Item {
     private int y;
     private String effect;
     private Rectangle boundingBox;
+    public boolean isEffectActivated = false;
 
     public Item() {
     }
@@ -23,6 +24,7 @@ public class Item {
         this.setX(startX);
         this.setY(startY);
         this.setItemData(itemData);
+        this.setBoundingBox(new Rectangle(this.getX(), this.getY(), this.itemAnimation.sizeX, this.itemAnimation.sizeY));
     }
 
     private void setItemData(Object[] bulletData) throws IOException {
@@ -36,11 +38,15 @@ public class Item {
         this.setBoundingBox(new Rectangle(this.getX(), this.getY(), this.itemAnimation.sizeX, this.itemAnimation.sizeY));
     }
 
+    public void activateEffect(){
+
+    }
+
     public int getY() {
         return y;
     }
 
-    public void setY(int y) {
+    private void setY(int y) {
         this.y = y;
     }
 
@@ -56,7 +62,7 @@ public class Item {
         return boundingBox;
     }
 
-    public void setBoundingBox(Rectangle boundingBox) {
+    private void setBoundingBox(Rectangle boundingBox) {
         this.boundingBox = boundingBox;
     }
 
@@ -64,7 +70,7 @@ public class Item {
         return itemAnimation;
     }
 
-    public void setItemAnimation(FrameAnimation itemAnimation) {
+    private void setItemAnimation(FrameAnimation itemAnimation) {
         this.itemAnimation = itemAnimation;
     }
 
@@ -72,7 +78,7 @@ public class Item {
         return effect;
     }
 
-    public void setEffect(String effect) {
+    private void setEffect(String effect) {
         this.effect = effect;
     }
 }

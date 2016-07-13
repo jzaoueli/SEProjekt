@@ -21,6 +21,8 @@ public class Player{
         this.setPlayerData(playerData);
         this.setX(192);
         this.setY(400);
+        this.setLifePoints(100);
+        this.setBoundingBox(new Rectangle(this.getX(), this.getY(), this.playerAnimation.sizeX, this.playerAnimation.sizeY));
     }
 
     private void setPlayerData(Object[] bulletData) throws IOException {
@@ -28,7 +30,7 @@ public class Player{
         this.playerAnimation.setActionFrames(0);
     }
 
-    public void setMovement(String direction, int startX) {
+    public void setMovement(String direction) {
         if (direction.equals("right")) {
             if (this.getX() <= 320) {
                 this.setX(this.getX() + 4);
@@ -38,6 +40,10 @@ public class Player{
             if (this.getX() >= 32) {
                 this.setX(this.getX() - 4);
             }
+        }
+        this.setBoundingBox(new Rectangle(this.getX(), this.getY(), this.playerAnimation.sizeX, this.playerAnimation.sizeY));
+        if(direction.equals("down")){
+            this.setY(this.getY() + 1);
         }
     }
 

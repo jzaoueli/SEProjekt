@@ -89,11 +89,12 @@ public class Game {
             default:
 
         }
+
         for (Iterator<Enemy> enemyIterator = aliveEnemy.iterator(); enemyIterator.hasNext(); ) {
             Enemy enemy = enemyIterator.next();
             if (enemy.getDefense() <= 0) {
-                randomItemDrop = (int) (Math.random() * 6) + 1;
-                if(randomItemDrop > 5){
+                randomItemDrop = (int) (Math.random() * 6);
+                if(randomItemDrop == 5){
                     try {
                         /**
                          * Add Item on killed Enemy Coordinates
@@ -105,7 +106,7 @@ public class Game {
                 }
                 enemyIterator.remove();
             }
-            if (enemy.getY() > 480) {
+            else if (enemy.getY() > 480) {
                 enemyIterator.remove();
             }
         }
@@ -115,7 +116,7 @@ public class Game {
      * Bullet Shoot Timer
      * creates Bullets at specified bulletRate
      */
-    private Timer shootTimer = new Timer(bulletRate, e -> {
+    public Timer shootTimer = new Timer(bulletRate, e -> {
         try {
             onScreenBullet.add(new Bullet(bulletClass.get(0), player.getX(), player.getY()));
         } catch (IOException e1) {
@@ -125,6 +126,32 @@ public class Game {
             Bullet bullet = bulletIterator.next();
             if (bullet.getY() < 0) {
                 bulletIterator.remove();
+            }
+        }
+    });
+
+    /**
+     * Item Effect Timer
+     * Activates Item Effects
+     */
+    private Timer itemTimer = new Timer(32, e -> {
+        for (Iterator<Item> itemIterator = leftItem.iterator(); itemIterator.hasNext(); ) {
+            Item item = itemIterator.next();
+            if(item.isEffectActivated){
+                switch (item.getEffect()){
+                    case "lifepoints":
+                        if(player.getLifePoints() <= 99){
+                            player.setLifePoints(player.getLifePoints() + 1);
+                        }
+                    case "bulletrate":
+                        if(bulletRate <= 250){
+                            bulletRate = bulletRate * 2;
+                        }
+                }
+                itemIterator.remove();
+            }
+            if (item.getY() > 480) {
+                itemIterator.remove();
             }
         }
     });
@@ -140,6 +167,7 @@ public class Game {
         gameGUI.setVisible(true);
         shootTimer.start();
         enemyTimer.start();
+        itemTimer.start();
     }
 
     public int getEnemyRate() {
