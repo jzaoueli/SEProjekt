@@ -39,19 +39,16 @@ public class CodeGenerator {
         }
 
         //generateEnemy
-        EnemyGeneratorFunction enemyGeneratorFunction = new EnemyGeneratorFunction();
-        if (enemyGeneratorFunction.run("main.generated.enemy", srcFile)) {
-            System.out.println("- Enemy class generated");
-        } else {
-            System.out.println("- Enemy class not generated");
-        }
+        EnemyGeneratorFunction enemyGeneratorFunction = new EnemyGeneratorFunction("main.generated.enemy");
+        enemyGeneratorFunction.run(srcFile);
 
         //generateBullet
-        BulletGeneratorFunction bulletGeneratorFunction = new BulletGeneratorFunction();
-        if (bulletGeneratorFunction.run("main.generated.bullet", srcFile)) {
-            System.out.println("- Bullet class generated");
-        } else {
-            System.out.println("- Bullet class not generated");
-        }
+        BulletGeneratorFunction bulletGeneratorFunction = new BulletGeneratorFunction("main.generated.bullet");
+        bulletGeneratorFunction.run(srcFile);
+
+        //item generation
+        ItemGeneratorFunction itemGeneratorFunction = new ItemGeneratorFunction("main.generated.item");
+        itemGeneratorFunction.run(srcFile);
+
     }
 }
