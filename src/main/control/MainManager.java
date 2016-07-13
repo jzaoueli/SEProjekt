@@ -4,7 +4,8 @@ import main.generated.bullet.BulletNormal;
 import main.generated.enemy.*;
 import main.generated.image.ImageBackground;
 import main.generated.image.ImagePlayer;
-import main.generated.item.WeakAttackItemData;
+import main.generated.item.BulletRateItemData;
+import main.generated.item.HealItemData;
 import main.model.Game;
 import main.model.Player;
 import main.view.GameGUI;
@@ -50,8 +51,10 @@ public class MainManager {
 
     public static void setItem() {
         itemClass = new ArrayList<>();
-        Object[] weakAttackItemObject = new WeakAttackItemData().getWeakAttackItemData();
-        itemClass.add(weakAttackItemObject);
+        Object[] healItemObject = new HealItemData().getHealItemData();
+        itemClass.add(healItemObject);
+        Object[] bulletRateItemObject = new BulletRateItemData().getBulletRateItemData();
+        itemClass.add(bulletRateItemObject);
     }
 
     public static void setEnemy() {

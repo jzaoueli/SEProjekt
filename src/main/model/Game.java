@@ -23,9 +23,9 @@ public class Game {
     private int randomType;
     private int randomRate;
     private int randomItemDrop;
+    private int randomItemType;
     private int randomStartX;
-    private int distance = 0;
-    private int highScore = 0;
+    private int rateCounter = 0;
     private ArrayList<Object[]> bulletClass;
     private ArrayList<Object[]> enemyClass;
     private ArrayList<Object[]> itemClass;
@@ -93,15 +93,28 @@ public class Game {
         for (Iterator<Enemy> enemyIterator = aliveEnemy.iterator(); enemyIterator.hasNext(); ) {
             Enemy enemy = enemyIterator.next();
             if (enemy.getDefense() <= 0) {
-                randomItemDrop = (int) (Math.random() * 6);
-                if(randomItemDrop == 5){
-                    try {
-                        /**
-                         * Add Item on killed Enemy Coordinates
-                         */
-                        leftItem.add(new Item(itemClass.get(0), enemy.getX(), enemy.getY()));
-                    } catch (IOException e1) {
-                        e1.printStackTrace();
+                randomItemType = (int) (Math.random() * 2);
+                randomItemDrop = (int) (Math.random() * 10);
+                if(randomItemDrop == 0){
+                    switch (randomItemType){
+                        case 0:
+                            try {
+                                /**
+                                 * Add Item on killed Enemy Coordinates
+                                 */
+                                leftItem.add(new Item(itemClass.get(0), enemy.getX(), enemy.getY()));
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
+                        case 1:
+                            try {
+                                /**
+                                 * Add Item on killed Enemy Coordinates
+                                 */
+                                leftItem.add(new Item(itemClass.get(1), enemy.getX(), enemy.getY()));
+                            } catch (IOException e1) {
+                                e1.printStackTrace();
+                            }
                     }
                 }
                 enemyIterator.remove();
@@ -140,13 +153,13 @@ public class Game {
             if(item.isEffectActivated){
                 switch (item.getEffect()){
                     case "lifepoints":
-                        if(player.getLifePoints() <= 99){
-                            player.setLifePoints(player.getLifePoints() + 1);
+                        if(player.getLifePoints() <= 95){
+                            player.setLifePoints(player.getLifePoints() + 5);
                         }
                     case "bulletrate":
-                        if(bulletRate <= 250){
-                            bulletRate = bulletRate * 2;
-                        }
+                        rateCounter = 0;
+                        System.out.println(shootTimer.getDelay());
+                            shootTimer.setDelay(100);
                 }
                 itemIterator.remove();
             }
@@ -154,6 +167,13 @@ public class Game {
                 itemIterator.remove();
             }
         }
+        rateCounter++;
+        if(rateCounter > 50){
+            rateCounter = 0;
+            shootTimer.setDelay(shootTimer.getInitialDelay());
+            System.out.println(shootTimer.getDelay());
+        }
+        System.out.println(rateCounter);
     });
 
     public Game(Player player, ArrayList<Object[]> bulletClass, ArrayList<Object[]> enemyClass, ArrayList<Object[]> itemClass) throws IOException, InterruptedException {
@@ -168,30 +188,6 @@ public class Game {
         shootTimer.start();
         enemyTimer.start();
         itemTimer.start();
-    }
-
-    public int getEnemyRate() {
-        return enemyRate;
-    }
-
-    public void setEnemyRate(int enemyRate) {
-        this.enemyRate = enemyRate;
-    }
-
-    public int getHighScore() {
-        return highScore;
-    }
-
-    public void setHighScore(int highScore) {
-        this.highScore = highScore;
-    }
-
-    public int getDistance() {
-        return distance;
-    }
-
-    public void setDistance(int distance) {
-        this.distance = distance;
     }
 
 }
