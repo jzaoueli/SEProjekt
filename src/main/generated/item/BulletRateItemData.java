@@ -1,9 +1,8 @@
 package main.generated.item;
 
 import main.model.Item;
-
 /**
- * Created by Pi on 04.07.2016.
+ * creation : 2016/07/13 22:26
  */
 public class BulletRateItemData extends Item {
 
@@ -14,7 +13,8 @@ public class BulletRateItemData extends Item {
     private int height = 32;
     private String effect = "bulletrate";
 
-    public Object[] getBulletRateItemData(){
+    public Object[] getBulletRateItemData() {
         return new Object[]{fileName, numberLine, numberColumn, width, height, effect};
     }
+
 }

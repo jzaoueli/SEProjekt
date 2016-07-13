@@ -1,11 +1,10 @@
 package main.generated.item;
 
 import main.model.Item;
-
 /**
- * Created by Pi on 04.07.2016.
+ * creation : 2016/07/13 22:26
  */
-public class HealItemData extends Item{
+public class HealItemData extends Item {
 
     private String fileName = "iheal.png";
     private int numberLine = 1;
@@ -14,7 +13,8 @@ public class HealItemData extends Item{
     private int height = 32;
     private String effect = "lifepoints";
 
-    public Object[] getHealItemData(){
+    public Object[] getHealItemData() {
         return new Object[]{fileName, numberLine, numberColumn, width, height, effect};
     }
+
 }
