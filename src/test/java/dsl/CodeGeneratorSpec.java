@@ -117,9 +117,9 @@ public class CodeGeneratorSpec extends TestBase {
     }
 
     private void whenRunEnemyGeneratorFunction(String srcFilePath) {
-        EnemyGeneratorFunction enemyGeneratorFunction = new EnemyGeneratorFunction();
+        EnemyGeneratorFunction enemyGeneratorFunction = new EnemyGeneratorFunction(TEST_FILE_PACKAGE_NAME);
         try {
-            enemyGeneratorFunction.run(TEST_FILE_PACKAGE_NAME,srcFilePath);
+            enemyGeneratorFunction.run(srcFilePath);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -127,9 +127,9 @@ public class CodeGeneratorSpec extends TestBase {
     }
 
     private void whenRunBulletGeneratorFunction(String srcFilePath) {
-        BulletGeneratorFunction bulletGeneratorFunction = new BulletGeneratorFunction();
+        BulletGeneratorFunction bulletGeneratorFunction = new BulletGeneratorFunction(TEST_FILE_PACKAGE_NAME);
         try {
-            bulletGeneratorFunction.run(TEST_FILE_PACKAGE_NAME,srcFilePath);
+            bulletGeneratorFunction.run(srcFilePath);
         } catch (IOException e) {
             e.printStackTrace();
         }
