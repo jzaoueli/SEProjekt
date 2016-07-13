@@ -178,7 +178,9 @@ public class GamePanel extends JPanel implements KeyListener {
         stateGame += 1;
 
         if ((stateGame % 30) == 0) {
-            distanceValue += 1;
+            if(!isGameOver){
+                distanceValue += 1;
+            }
             if ((distanceValue >= 100) && (distanceValue % 100) == 0 && game.enemyTimer.getDelay() > 100) {
                 game.enemyTimer.setDelay(game.enemyTimer.getDelay() - 20);
             }
