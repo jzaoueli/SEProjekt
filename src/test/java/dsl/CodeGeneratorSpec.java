@@ -99,9 +99,9 @@ public class CodeGeneratorSpec extends TestBase {
     }
 
     private void whenRunBackGroundGeneratorFunction(String srcFilePath) {
-        BackGroundGeneratorFunction backGroundGeneratorFunction = new BackGroundGeneratorFunction();
+        BackGroundGeneratorFunction backGroundGeneratorFunction = new BackGroundGeneratorFunction(TEST_FILE_PACKAGE_NAME);
         try {
-            backGroundGeneratorFunction.run(TEST_FILE_PACKAGE_NAME, srcFilePath);
+            backGroundGeneratorFunction.run(srcFilePath);
         } catch (IOException e) {
             e.printStackTrace();
         }

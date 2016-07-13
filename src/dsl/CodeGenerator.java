@@ -23,12 +23,8 @@ public class CodeGenerator {
         }
 
         //generateBackGround
-        BackGroundGeneratorFunction backGroundGeneratorFunction = new BackGroundGeneratorFunction();
-        if (backGroundGeneratorFunction.run("main.generated.image", srcFile)) {
-            System.out.println("- BackGround class generated");
-        } else {
-            System.out.println("- BackGround class not generated");
-        }
+        BackGroundGeneratorFunction backGroundGeneratorFunction = new BackGroundGeneratorFunction("main.generated.image");
+        backGroundGeneratorFunction.run(srcFile);
 
         //generatePlayer
         PlayerGeneratorFunction playerGeneratorFunction = new PlayerGeneratorFunction();
