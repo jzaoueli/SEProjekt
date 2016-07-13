@@ -15,13 +15,12 @@ public class Item {
     private int numberColumn;
     private int width;
     private int height;
-    private int attack;
     private String effect;
 
     /**
      * Constructor with parameters
      */
-    public Item(@Nullable String itemName, String fileName, int numberLine, int numberColumn, int width, int height, int attack, String effec) {
+    public Item(@Nullable String itemName, String fileName, int numberLine, int numberColumn, int width, int height, String effec) {
         if(isNull(itemName)){
             itemName = "AutoName";
         }
@@ -31,7 +30,6 @@ public class Item {
         this.numberColumn = numberColumn;
         this.width = width;
         this.height = height;
-        this.attack = attack;
         this.effect = effec;
     }
 
@@ -53,10 +51,6 @@ public class Item {
 
     public int getHeight() {
         return height;
-    }
-
-    public int getAttack() {
-        return attack;
     }
 
     public String getEffect() {
