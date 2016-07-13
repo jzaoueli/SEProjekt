@@ -7,41 +7,30 @@ import dsl.antlr.recognition.MyGramLexer;
 import dsl.antlr.recognition.MyGramParser;
 import org.antlr.v4.runtime.ANTLRInputStream;
 import org.antlr.v4.runtime.CommonTokenStream;
+import org.antlr.v4.runtime.tree.ErrorNode;
 import org.antlr.v4.runtime.tree.ParseTreeWalker;
 
 import java.io.FileReader;
 import java.io.IOException;
 
 import static dsl.CodeGeneratorFunction.getGetter;
-import static java.util.Objects.isNull;
 
 /**
  * Logo class generation
  */
 public class LogoGeneratorFunction extends MyGramBaseListener {
     private static Logo logo;
+    private String packageName;
+
     private String content = "";
+    private boolean noError = true;
 
-    public boolean run(String packageName, String srcFile) throws IOException {
-        if (isNull(initLogo(srcFile))) {
-            return false;
-        }
-
-        String className = "ImageLogo";
-        CodeGeneratorFunction codeGeneratorFunction = new CodeGeneratorFunction(packageName, className);
-
-        codeGeneratorFunction.setHeader(null,null);
-
-        setLogoContent();
-
-        codeGeneratorFunction.setContent(content);
-        codeGeneratorFunction.setFooter();
-        codeGeneratorFunction.createAndWriteInFile();
-        return true;
+    public LogoGeneratorFunction(String packageName) {
+        this.packageName = packageName;
     }
 
-    private static Logo initLogo(String srcFile) throws IOException {
-        FileReader fileReader = new FileReader(srcFile);
+    public void run(String src) throws IOException {
+        FileReader fileReader = new FileReader(src);
         ANTLRInputStream antlrInputStream = new ANTLRInputStream(fileReader);
         // Get CSV lexer
         MyGramLexer lexer = new MyGramLexer(antlrInputStream);
@@ -53,19 +42,29 @@ public class LogoGeneratorFunction extends MyGramBaseListener {
         MyGramParser.GramContext fileContext = parser.gram();
         // Walk it and attach our listener
         ParseTreeWalker walker = new ParseTreeWalker();
-        MyGramBaseListener listener = new LogoGeneratorFunction();
+        MyGramBaseListener listener = new LogoGeneratorFunction(packageName);
         walker.walk(listener, fileContext);
-        return logo;
     }
 
-    public void exitGram(MyGramParser.GramContext ctx) {
-        if (isNull(ctx.images().logo().exception)) {
-            if (isNull(ctx.images().logo().imageObject().fileName().exception)) {
-                logo = new Logo(ctx.images().logo().imageObject().fileName().getText());
-            }
+    @Override
+    public void visitErrorNode(ErrorNode node) {
+        noError = false;
+    }
+
+    @Override
+    public void exitLogo(MyGramParser.LogoContext ctx) {
+        String fileName;
+        if (noError) {
+            fileName = ctx.imageObject().fileName().getText();
+        } else {
+            noError = true;
+            return;
         }
-        else {
-            logo = null;
+        logo = new Logo(fileName);
+        try {
+            generateLogo();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -82,4 +81,18 @@ public class LogoGeneratorFunction extends MyGramBaseListener {
         return "    private String fileName = \"" + logo.getFileName() + "\";\n\n";
     }
 
+    private void generateLogo() throws IOException {
+        String className = "ImageLogo";
+        CodeGeneratorFunction codeGeneratorFunction =  new CodeGeneratorFunction(packageName, className);
+
+        codeGeneratorFunction.setHeader(null, null);
+
+        setLogoContent();
+
+        codeGeneratorFunction.setContent(content);
+        codeGeneratorFunction.setFooter();
+        codeGeneratorFunction.createAndWriteInFile();
+        System.out.println("- " + "Logo" + " is generated");
+        content = "";
+    }
 }

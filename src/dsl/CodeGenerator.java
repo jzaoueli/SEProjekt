@@ -15,12 +15,8 @@ public class CodeGenerator {
         String srcFile = "src/dsl/srcjson.txt";
 
         //generateLogo
-        LogoGeneratorFunction logoGeneratorFunction = new LogoGeneratorFunction();
-        if (logoGeneratorFunction.run("main.generated.image", srcFile)) {
-            System.out.println("- Logo class generated");
-        } else {
-            System.out.println("- Logo class not generated");
-        }
+        LogoGeneratorFunction logoGeneratorFunction = new LogoGeneratorFunction("main.generated.image");
+        logoGeneratorFunction.run(srcFile);
 
         //generateBackGround
         BackGroundGeneratorFunction backGroundGeneratorFunction = new BackGroundGeneratorFunction("main.generated.image");

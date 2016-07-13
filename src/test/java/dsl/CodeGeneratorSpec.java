@@ -90,9 +90,9 @@ public class CodeGeneratorSpec extends TestBase {
     }
 
     private void whenRunLogoGeneratorFunction(String srcFilePath) {
-        LogoGeneratorFunction logoGeneratorFunction = new LogoGeneratorFunction();
+        LogoGeneratorFunction logoGeneratorFunction = new LogoGeneratorFunction(TEST_FILE_PACKAGE_NAME);
         try {
-            logoGeneratorFunction.run(TEST_FILE_PACKAGE_NAME, srcFilePath);
+            logoGeneratorFunction.run(srcFilePath);
         } catch (IOException e) {
             e.printStackTrace();
         }
