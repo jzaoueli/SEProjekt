@@ -32,7 +32,7 @@ public class BulletGeneratorFunction extends MyGramBaseListener {
 
         codeGeneratorFunction.setHeader("import main.model.Bullet;", "extends Bullet");
 
-        setPlayerContent();
+        setBulletContent();
 
         codeGeneratorFunction.setContent(content);
         codeGeneratorFunction.setFooter();
@@ -122,7 +122,7 @@ public class BulletGeneratorFunction extends MyGramBaseListener {
     }
 
 
-    private void setPlayerContent() {
+    private void setBulletContent() {
         content += getBulletMemberVariable();
         content += getBulletMethods();
     }
