@@ -1,10 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="4aced601-68ff-4dae-974c-80fe9cdea50c" name="Default" comment="images update">
+    <list default="true" id="4aced601-68ff-4dae-974c-80fe9cdea50c" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/SEProjekt.iml" afterPath="$PROJECT_DIR$/SEProjekt.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/main/control/MainManager.java" afterPath="$PROJECT_DIR$/src/main/control/MainManager.java" />
     </list>
     <ignored path="SEProjekt.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -920,7 +918,14 @@
       <option name="project" value="LOCAL" />
       <updated>1468453976300</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Conversion of the sounds from  .mp3  to  .au  format">
+      <created>1468454680396</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1468454680396</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TestHistory">
@@ -1039,7 +1044,8 @@
     <MESSAGE value="images update" />
     <MESSAGE value="adding of  SCORE , DISTANCE and BONUS LIVES" />
     <MESSAGE value="add of  Background Sound" />
-    <option name="LAST_COMMIT_MESSAGE" value="add of  Background Sound" />
+    <MESSAGE value="Conversion of the sounds from  .mp3  to  .au  format" />
+    <option name="LAST_COMMIT_MESSAGE" value="Conversion of the sounds from  .mp3  to  .au  format" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
