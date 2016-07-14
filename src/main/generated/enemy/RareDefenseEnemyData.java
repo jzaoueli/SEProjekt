@@ -16,11 +16,10 @@ public class RareDefenseEnemyData extends Enemy {
     private int speed = 3;
     private int offense = 16;
     private int defence = 32;
-    private int probability = 16;
 
     private Object[] commonAttackEnemyImageData
             = {fileName, numberLine, numberColumn, width, height,
-            movingType, speed, offense, defence, probability};
+            movingType, speed, offense, defence};
 
     public Object[] getRareDefenseEnemyData() {
         return commonAttackEnemyImageData;

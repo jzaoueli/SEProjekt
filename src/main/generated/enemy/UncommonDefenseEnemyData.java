@@ -16,11 +16,10 @@ public class UncommonDefenseEnemyData extends Enemy {
     private int speed = 5;
     private int offense = 4;
     private int defence = 8;
-    private int probability = 8;
 
     private Object[] commonAttackEnemyImageData
             = {fileName, numberLine, numberColumn, width, height,
-            movingType, speed, offense, defence, probability};
+            movingType, speed, offense, defence};
 
     public Object[] getUncommonDefenseEnemyData() {
         return commonAttackEnemyImageData;
