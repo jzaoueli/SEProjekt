@@ -23,7 +23,7 @@ import static main.control.MainManager.backgroundImage;
 import static org.junit.Assert.*;
 
 /**
- * TODO Testing Game model class
+ * Testing Game model class
  */
 public class TestGame {
 
@@ -46,17 +46,28 @@ public class TestGame {
         assertNull(game);
 
         whenCreateGame();
-        assertFalse(game.enemyTimer.isRunning());
-        assertFalse(game.shootTimer.isRunning());
+        thenGameRunning();
 
         GameGUI gameGUI = givenGameGUI();
-        whenCallPlay(gameGUI);
 
-        assertTrue(game.enemyTimer.isRunning());
-        assertTrue(game.shootTimer.isRunning());
-        sleep(2000);
+        whenCallPlay(gameGUI);
+        thenGameNotRunning();
 
         whenStopTimers();
+        thenGameRunning();
+    }
+
+    private void thenGameNotRunning() {
+        assertTrue(game.enemyTimer.isRunning());
+        assertTrue(game.shootTimer.isRunning());
+        try {
+            sleep(2000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private void thenGameRunning() {
         assertFalse(game.enemyTimer.isRunning());
         assertFalse(game.shootTimer.isRunning());
     }
