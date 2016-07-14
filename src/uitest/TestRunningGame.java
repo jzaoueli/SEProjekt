@@ -1,8 +1,16 @@
 package uitest;
 
+import main.generated.enemy.CommonAttackEnemyData;
+import main.model.Game;
+import main.view.GameGUI;
+import main.view.GamePanel;
+import org.junit.Before;
 import org.junit.Test;
 
+import javax.imageio.ImageIO;
+import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import static java.lang.Thread.sleep;
 import static main.control.MainManager.*;
@@ -19,9 +27,14 @@ public class TestRunningGame {
     private static int RIGHT_BORDER = 320;
     private static int LEFT_BORDER = 32;
 
+    @Before
+    public void setUp() throws IOException {
+        givenGameObjects();
+    }
+
     @Test
     public void testRunMain() throws IOException, InterruptedException {
-        main(null);
+        whenStartGame();
         thenGUIRunning();
 
         while (gamePanel.distanceValue < DISTANCE_TO_TEST) {
@@ -34,6 +47,18 @@ public class TestRunningGame {
 
             thenGUIRunning();
         }
+    }
+
+    private void setBackground() throws IOException {
+        File backgroundImageFile = new File("src/test/assets/back.jpg");
+        backgroundImage = ImageIO.read(backgroundImageFile);
+    }
+
+    private void whenStartGame() throws IOException, InterruptedException {
+        game = new Game(player, bulletClass, enemyClass, itemClass);
+        gamePanel = new GamePanel(backgroundImage, game);
+        gameGUI = new GameGUI(gamePanel);
+        game.play(gameGUI);
     }
 
     private void givenMovePlayer(String direction) throws InterruptedException {
@@ -57,5 +82,13 @@ public class TestRunningGame {
 
     private void thenGUIRunning() {
         assertTrue(gameGUI.isEnabled());
+    }
+
+    private void givenGameObjects() throws IOException {
+        setBackground();
+        setPlayer();
+        setBullet();
+        setEnemy();
+        setItem();
     }
 }
