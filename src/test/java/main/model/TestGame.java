@@ -44,7 +44,6 @@ public class TestGame {
         givenGameObjects();
     }
 
-    @Ignore
     @Test
     public void testRunningGame() throws IOException, InterruptedException {
         assertNull(game);
