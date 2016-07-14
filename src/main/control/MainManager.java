@@ -30,13 +30,16 @@ public class MainManager {
     public static ArrayList<Object[]> enemyClass;
     public static ArrayList<Object[]> itemClass;
 
+    public static GameGUI gameGUI;
+    public static GamePanel gamePanel;
+
     public static void main(String[] args) throws IOException, InterruptedException {
 
         setUpImageObject();
 
         Game game = new Game(player, bulletClass, enemyClass, itemClass);
-        GamePanel gamePanel = new GamePanel(backgroundImage, game);
-        GameGUI gameGUI = new GameGUI(gamePanel);
+        gamePanel = new GamePanel(backgroundImage, game);
+        gameGUI = new GameGUI(gamePanel);
         game.play(gameGUI);
     }
 

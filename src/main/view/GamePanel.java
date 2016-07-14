@@ -53,11 +53,11 @@ public class GamePanel extends JPanel implements KeyListener {
      * display  SCORE, DISTANCE and BonusLives
      */
     private int scoreValue;
-    private int distanceValue;
+    public int distanceValue;
     private int playerLifeValue;
     private String gameInfo = "";
-    private Font dataFont = new Font ("Monospaced", Font.PLAIN, 12);
-    private Font infoFont = new Font ("Monospaced", Font.PLAIN, 20);
+    private Font dataFont = new Font("Monospaced", Font.PLAIN, 12);
+    private Font infoFont = new Font("Monospaced", Font.PLAIN, 20);
 
     boolean isGameOver = false;
     /**
@@ -86,7 +86,7 @@ public class GamePanel extends JPanel implements KeyListener {
         /**
          * When Player dies Game Over
          */
-        if(player.getLifePoints() <= 0){
+        if (player.getLifePoints() <= 0) {
             isGameOver = true;
             gameInfo = "GAME OVER";
             playerLifeValue = 0;
@@ -124,7 +124,7 @@ public class GamePanel extends JPanel implements KeyListener {
                 }
             }
 
-            if(player.getBoundingBox().intersects(enemy.getBoundingBox())){
+            if (player.getBoundingBox().intersects(enemy.getBoundingBox())) {
                 player.getPlayerAnimation().setActionFrames(1);
                 player.setLifePoints(player.getLifePoints() - enemy.getAttack());
                 enemy.setDefense(0);
@@ -141,7 +141,7 @@ public class GamePanel extends JPanel implements KeyListener {
          */
 
         for (Item item : leftItem) {
-            if(item.getBoundingBox().intersects(player.getBoundingBox())){
+            if (item.getBoundingBox().intersects(player.getBoundingBox())) {
                 item.isEffectActivated = true;
             }
             item.setMovement(1);
@@ -179,7 +179,7 @@ public class GamePanel extends JPanel implements KeyListener {
         stateGame += 1;
 
         if ((stateGame % 30) == 0) {
-            if(!isGameOver){
+            if (!isGameOver) {
                 distanceValue += 1;
             }
             if ((distanceValue >= 100) && (distanceValue % 100) == 0 && game.enemyTimer.getDelay() > 100) {
@@ -232,11 +232,11 @@ public class GamePanel extends JPanel implements KeyListener {
 
     @Override
     public void keyTyped(KeyEvent e) {
-        if(!isGameOver){
-            if(e.getKeyCode() == KeyEvent.VK_LEFT){
+        if (!isGameOver) {
+            if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                 direction = "left";
             }
-            if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+            if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                 direction = "right";
             }
         }
@@ -244,11 +244,11 @@ public class GamePanel extends JPanel implements KeyListener {
 
     @Override
     public void keyPressed(KeyEvent e) {
-        if(!isGameOver){
-            if(e.getKeyCode() == KeyEvent.VK_LEFT){
+        if (!isGameOver) {
+            if (e.getKeyCode() == KeyEvent.VK_LEFT) {
                 direction = "left";
             }
-            if(e.getKeyCode() == KeyEvent.VK_RIGHT){
+            if (e.getKeyCode() == KeyEvent.VK_RIGHT) {
                 direction = "right";
             }
         }
