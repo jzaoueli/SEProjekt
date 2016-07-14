@@ -23,7 +23,6 @@ import java.util.ArrayList;
  */
 public class MainManager {
     private static String imageDirectory = "images/";
-
     public static BufferedImage backgroundImage;
     public static Player player;
 
