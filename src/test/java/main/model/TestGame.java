@@ -21,8 +21,6 @@ import java.util.ArrayList;
 
 import static java.lang.Thread.sleep;
 import static main.control.MainManager.backgroundImage;
-import static main.control.MainManager.gameGUI;
-import static main.control.MainManager.gamePanel;
 import static org.junit.Assert.*;
 
 /**
@@ -44,6 +42,7 @@ public class TestGame {
         givenGameObjects();
     }
 
+    @Ignore
     @Test
     public void testRunningGame() throws IOException, InterruptedException {
         assertNull(game);
