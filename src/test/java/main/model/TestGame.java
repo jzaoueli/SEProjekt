@@ -11,6 +11,7 @@ import main.model.Player;
 import main.view.GameGUI;
 import main.view.GamePanel;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import javax.imageio.ImageIO;
@@ -20,6 +21,8 @@ import java.util.ArrayList;
 
 import static java.lang.Thread.sleep;
 import static main.control.MainManager.backgroundImage;
+import static main.control.MainManager.gameGUI;
+import static main.control.MainManager.gamePanel;
 import static org.junit.Assert.*;
 
 /**
@@ -41,6 +44,7 @@ public class TestGame {
         givenGameObjects();
     }
 
+    @Ignore
     @Test
     public void testRunningGame() throws IOException, InterruptedException {
         assertNull(game);
