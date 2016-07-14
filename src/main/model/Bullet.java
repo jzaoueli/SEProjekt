@@ -20,7 +20,7 @@ public class Bullet {
     public Bullet() {
     }
 
-    Bullet(Object[] bulletData, int startX, int startY) throws IOException {
+    public Bullet(Object[] bulletData, int startX, int startY) throws IOException {
         this.setX(startX);
         this.setY(startY);
         this.setBulletData(bulletData);
