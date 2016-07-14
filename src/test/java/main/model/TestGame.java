@@ -46,28 +46,28 @@ public class TestGame {
         assertNull(game);
 
         whenCreateGame();
-        thenGameRunning();
+        thenGameNotRunning();
 
         GameGUI gameGUI = givenGameGUI();
 
         whenCallPlay(gameGUI);
-        thenGameNotRunning();
+        thenGameRunning();
 
         whenStopTimers();
-        thenGameRunning();
+        thenGameNotRunning();
     }
 
-    private void thenGameNotRunning() {
+    private void thenGameRunning() {
         assertTrue(game.enemyTimer.isRunning());
         assertTrue(game.shootTimer.isRunning());
         try {
-            sleep(2000);
+            sleep(1000);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
     }
 
-    private void thenGameRunning() {
+    private void thenGameNotRunning() {
         assertFalse(game.enemyTimer.isRunning());
         assertFalse(game.shootTimer.isRunning());
     }
